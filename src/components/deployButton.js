@@ -7,7 +7,7 @@ class DeployButton extends Component {
   }
 
   render() {
-    return <button onClick={this.handleClick.bind(this)}>Click here to deploy your new Contract! (and get error messages)</button>;
+    return <button onClick={this.handleClick.bind(this)}>Click here to deploy your new Contract!</button>;
   }
 }
 
