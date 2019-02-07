@@ -4,11 +4,15 @@ contract MyToken {
     /* This creates an array with all balances */
     mapping (address => uint256) public balanceOf;
 
+    string ticker;
+    string name;
+    address owner;
+
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    constructor(
-        uint256 initialSupply
-        ) public {
-        balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
+    constructor(uint256 initialSupply, string _ticker, string _name, address _owner) public {
+        balanceOf[_owner] = initialSupply; // Give the owner all initial tokens
+        name = _name;
+        ticker = _ticker;
     }
 
     /* Send coins */
