@@ -8,7 +8,8 @@ async function buildDeployment() {
   const web3 = new Web3(new Web3.providers.HttpProvider(endpoint[network]));
 
   const bcode =
-  "0x" + bytecode;
+  "0x" + bytecode.bytecode;
+  //console.log("bcode", bcode)
 
   var nonce = await web3.eth.getTransactionCount(sendAddress, 'pending');
   var gasP = web3.utils.toHex(gasPrice);
@@ -17,7 +18,8 @@ async function buildDeployment() {
   var cId = web3.utils.toHex(chainId[network]);
   var data = bcode;
 
-  console.log('new transaction nonce is', nonce)
+    console.log('new transaction nonce is', nonce)
+    console.log(data)
 
   return {
     nonce: nonce,
@@ -27,6 +29,7 @@ async function buildDeployment() {
     chainId: cId,
     data: data
   };
+
 }
 
 export default buildDeployment;
