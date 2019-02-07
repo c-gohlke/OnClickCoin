@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Home from './containers/Home';
+import Button from './components/transactionButton'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Home />, document.getElementById('home'));
+ReactDOM.render(<Button />, document.getElementById('transactButton'));
