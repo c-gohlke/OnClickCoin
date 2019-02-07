@@ -1,10 +1,10 @@
 //Connecting to Ethereum via infura
-import {endpoint, sendPrivKey} from '../config/config'
+import {endpoint, sendPrivKey, networkID} from '../config/config'
 import buildTransaction from './buildTransaction'
 
 const Web3 = require("web3");
 const EthTx = require("ethereumjs-tx");
-const web3 = new Web3(new Web3.providers.HttpProvider(endpoint));
+const web3 = new Web3(new Web3.providers.HttpProvider(endpoint[networkID]));
 
 const privateKeyFromBuffer = new Buffer(sendPrivKey, "hex");
 

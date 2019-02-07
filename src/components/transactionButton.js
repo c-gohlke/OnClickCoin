@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import sendMoney from "../utils/sendMoney";
 
 class Button extends Component {
-
   handleClick(event) {
     sendMoney();
   }
