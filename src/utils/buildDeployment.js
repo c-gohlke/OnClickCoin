@@ -9,6 +9,7 @@ async function buildDeployment() {
 
   const bcode =
   "0x" + bytecode.bytecode;
+  console.log(typeof(bytecode.bytecode))
   //console.log("bcode", bcode)
 
   var nonce = await web3.eth.getTransactionCount(sendAddress, 'pending');
