@@ -9,7 +9,7 @@ class Home extends Component {
     return (
         <div>
             <div className="OnClickCoin"><h1>Welcome to OnClickCoin!</h1></div>
-            Choose your network : <DropdownNet/>
+            <DropdownNet/>
             <br/>
             <br/>
             <SendForm/>
