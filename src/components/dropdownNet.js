@@ -10,6 +10,7 @@ class DropdownNet extends Component {
             <option value="0" defaultChecked>rinkeby</option>
             <option value="1">kovan</option>
             <option value="2">ropsten</option>
+            <option value="3">mainnet</option>
         </select>
           <br/>
           <br/>
