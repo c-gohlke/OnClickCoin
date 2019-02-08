@@ -9,8 +9,6 @@ async function buildDeployment() {
 
   const bcode =
   "0x" + bytecode.bytecode;
-  console.log(typeof(bytecode.bytecode))
-  //console.log("bcode", bcode)
 
   var nonce = await web3.eth.getTransactionCount(sendAddress, 'pending');
   var gasP = web3.utils.toHex(gasPrice);
@@ -20,7 +18,6 @@ async function buildDeployment() {
   var data = bcode;
 
     console.log('new transaction nonce is', nonce)
-    console.log(data)
 
   return {
     nonce: nonce,
