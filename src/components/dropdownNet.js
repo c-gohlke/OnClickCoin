@@ -5,8 +5,9 @@ class DropdownNet extends Component {
     return (
       <div>
         <select id="network">
-          <option value="0" defaultChecked>rynkeby</option>
-          <option value="1">kovan</option>
+            <option value="0" defaultChecked>rinkeby</option>
+            <option value="1">kovan</option>
+            <option value="2">ropsten</option>
         </select>
       </div>
     );
