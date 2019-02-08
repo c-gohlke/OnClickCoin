@@ -5,6 +5,7 @@ Simple react app to deploy an Ethereum token in one click
 ```
 git clone https://github.com/clement2705/OnClickCoin
 cd OnClickCoin
+npm install
 npm start 
 ```
 
