@@ -10,7 +10,7 @@ const sendPrivKey =
 const receiveAddr = "0x8244Df0ACF6d2Dac25699A4F21E54f561C54Ed69";
 const gasPrice = "10000000000";
 const gasLimit = "800000";
-const sendAmount = "0.01";
+const sendAmount = "0.0001";
 
 export {
   endpoint,
