@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ConstructorForm from "../components/constructorForm";
 import styles from "../style/styles";
 import coin from "../images/coins.gif";
+import DeployButton from "../components/deployButton";
 
 class Home extends Component {
   render() {
@@ -21,7 +22,7 @@ class Home extends Component {
         <div style={styles.FormStyles}>
           <ConstructorForm />
         </div>
-
+        <DeployButton/>
         <br />
         <br />
       </div>
