@@ -12,7 +12,7 @@ class DeployButton extends Component {
   render() {
     return (
       <button onClick={this.handleClick.bind(this)}>
-        Click here to deploy your new Contract!
+        Click here to create your coin!
       </button>
     );
   }

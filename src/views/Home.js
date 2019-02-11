@@ -23,8 +23,13 @@ class Home extends Component {
           <ConstructorForm />
         </div>
         <DeployButton/>
-        <br />
-        <br />
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          Powered by <a href="https://ethereum.org">Ethereum</a> and  <a href="https://metamask.io/">Metamask</a>
       </div>
     );
   }
