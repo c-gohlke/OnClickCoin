@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ConstructorForm from "../components/constructorForm";
 import styles from "../style/styles";
 import coin from "../images/coins.gif";
+import eth from "../images/ethereum.png";
+import meta from "../images/metamask.png";
 import DeployButton from "../components/deployButton";
 
 class Home extends Component {
@@ -23,8 +25,13 @@ class Home extends Component {
           <ConstructorForm />
         </div>
         <DeployButton/>
-        <br />
-        <br />
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          Powered by <a href="https://ethereum.org">Ethereum</a> and  <a href="https://metamask.io/">Metamask</a>
       </div>
     );
   }

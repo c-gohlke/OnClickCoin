@@ -5,7 +5,7 @@ class constructorForm extends Component {
     render(){
         return(
             <div >
-                <h3 >Your coin parameters</h3>
+                <h3 >your coin parameters</h3>
                 <form id="constructorForm">
                     <br></br>Name your coin <br/><br/>
 
