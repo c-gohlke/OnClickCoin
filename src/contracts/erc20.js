@@ -159,4 +159,12 @@ const abiERC20 = [{
     "type": "event"
 }]
 
-export {bytecodeERC20, abiERC20}
+
+const abiConstructorErc20 = {
+    "inputs": [{"name": "_symbol", "type": "string"}, {"name": "_name", "type": "string"}, {
+        "name": "_decimals",
+        "type": "uint8"
+    }, {"name": "_supply", "type": "uint256"}], "payable": false, "stateMutability": "nonpayable", "type": "constructor"
+}
+
+export {bytecodeERC20, abiERC20, abiConstructorErc20}

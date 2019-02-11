@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import deployMetaContract from "../utils/deployMetaContract";
+import deployErc20Contract from "../utils/deployErc20Contract";
+
 
 class DeployButton extends Component {
   handleClick(event) {
     const formInfo = document.getElementById("constructorForm");
-    const name = formInfo[0].value;
-    const supply = formInfo[1].value;
-    deployMetaContract(name, supply)
+    const symbol = formInfo[0].value;
+    const name = formInfo[1].value;
+    const decimals = formInfo[2].value;
+    const supply = formInfo[3].value;
+
+
+    deployErc20Contract(name, supply)
   }
 
   render() {
