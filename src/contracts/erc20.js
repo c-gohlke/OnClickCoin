@@ -167,4 +167,14 @@ const abiConstructorErc20 = {
     }, {"name": "_supply", "type": "uint256"}], "payable": false, "stateMutability": "nonpayable", "type": "constructor"
 }
 
-export {bytecodeERC20, abiERC20, abiConstructorErc20}
+const abiTransferErc20 = {
+    "constant": false,
+    "inputs": [{"name": "to", "type": "address"}, {"name": "tokens", "type": "uint256"}],
+    "name": "transfer",
+    "outputs": [{"name": "success", "type": "bool"}],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+}
+
+export {bytecodeERC20, abiERC20, abiTransferErc20, abiConstructorErc20}
