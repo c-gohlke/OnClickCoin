@@ -11,7 +11,9 @@ const FormStyles = {
 }
 
 const InputStyle = {
-  border: "1.5px solid black"
+  border: "1.5px solid black",
+  width: "300px",
+  height: "35px"
 
 }
 

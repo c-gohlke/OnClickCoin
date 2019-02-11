@@ -27,9 +27,15 @@ class Home extends Component {
           <br/>
           <br/>
           <br/>
+
+          Already created a coin? <a href={"send"}>Send!</a>
           <br/>
           <br/>
-          Powered by <a href="https://ethereum.org">Ethereum</a> and  <a href="https://metamask.io/">Metamask</a>
+          <br/>
+          <br/>
+
+
+
       </div>
     );
   }
