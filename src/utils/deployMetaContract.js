@@ -79,7 +79,13 @@ async function deployMetaContract(name, supply) {
         "http://localhost:3000/giveaway/:" +
           netname +
           "?" +
-          receipt.contractAddress + "?" + name + "?" + supply
+          receipt.contractAddress +
+          "?" +
+          name +
+          "?" +
+          supply +
+          "?" +
+          accounts[0]
       );
       console.log("receipt info is", receipt);
     });

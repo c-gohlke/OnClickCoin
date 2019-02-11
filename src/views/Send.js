@@ -13,7 +13,6 @@ class Send extends Component {
             <img src={give}/>
         <TransfermForm/>
         <TransactButton />
-
       </div>
     );
   }
