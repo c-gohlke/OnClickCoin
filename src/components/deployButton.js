@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import deployContract from "../utils/deployContract";
 import deployMetaContract from "../utils/deployMetaContract";
 
 class DeployButton extends Component {

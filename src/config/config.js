@@ -8,7 +8,7 @@ const chainId = [4, 42, 3,1];
 const sendAddress = "0x2afd357E96a3aCbcd01615681C1D7e3398d5fb61";
 const sendPrivKey =
   "a33fca62081a2665454fe844a8afbe8e2e02fb66af558e695a79d058f9042f0d";
-const receiveAddr = "0x8244Df0ACF6d2Dac25699A4F21E54f561C54Ed69";
+const receiveAddr = "0xfb16FF8087fefbD54cD398e14967dCC72DE5ACf9";
 const gasPrice = "10000000000";
 const gasLimit = "800000";
 const sendAmount = "0.0001";
