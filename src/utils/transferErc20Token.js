@@ -19,7 +19,7 @@ async function transferErc20Token(contractAddress, toAddress, amount) {
 
     //var removeMethodSignature = abiPackedArgs.substring(10);
 
-    const data = "0x" + abiPackedArgs
+    const data = abiPackedArgs
     console.log("erc20 transfer data",data)
 
 
@@ -58,6 +58,7 @@ async function transferErc20Token(contractAddress, toAddress, amount) {
             netname = "Unknown";
     }
 
+    console.log("got to here")
 
     const tx = await web3.eth
         .sendTransaction({
