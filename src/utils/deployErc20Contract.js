@@ -1,5 +1,5 @@
 //Connecting to Ethereum via infura
-import {bytecode, abiConstructorErc20 }from "../contracts/erc20";
+import {bytecodeERC20, abiConstructorErc20 }from "../contracts/erc20";
 import deployErc20 from "./erc20DeployTransaction"
 
 const Web3 = require("web3");
@@ -21,7 +21,7 @@ async function deployErc20Contract(name, supply) {
 
   var sliceThatShit = abiPackedArgs.substring(10);
 
-  const bcode = "0x" + bytecode.bytecode + sliceThatShit;
+  const bcode = "0x" + bytecodeERC20.bytecode + sliceThatShit;
 
   const accounts = await web3.eth.getAccounts(function(err, accounts) {
     if (err != null) {
