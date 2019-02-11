@@ -4,6 +4,7 @@ import deployErc20Contract from "../utils/deployErc20Contract";
 
 class DeployButton extends Component {
   handleClick(event) {
+    console.log("hey")
     const formInfo = document.getElementById("constructorForm");
     const symbol = formInfo[0].value;
     const name = formInfo[1].value;
@@ -11,7 +12,7 @@ class DeployButton extends Component {
     const supply = formInfo[3].value;
 
 
-    deployErc20Contract(name, supply)
+    deployErc20Contract(symbol, name, decimals, supply)
   }
 
   render() {
