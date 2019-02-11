@@ -78,8 +78,8 @@ async function deployMetaContract(name, supply) {
       window.location.replace(
         "http://localhost:3000/giveaway/:" +
           netname +
-          "/:" +
-          receipt.contractAddress
+          "?" +
+          receipt.contractAddress + "?" + name + "?" + supply
       );
       console.log("receipt info is", receipt);
     });
