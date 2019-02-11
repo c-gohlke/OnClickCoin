@@ -1,10 +1,11 @@
 //Connecting to Ethereum via infura
-import bytecode from "../contracts/basicContract";
+import {bytecodeERC20, abiConstructorErc20 }from "../contracts/erc20";
+import deployErc20 from "./erc20DeployTransaction"
 
 const Web3 = require("web3");
 const web3 = new Web3(Web3.givenProvider);
 
-async function deployMetaContract(name, supply) {
+async function deployErc20Contract(name, supply) {
   window.web3 = new Web3(window.ethereum);
   try {
     await window.ethereum.enable();
@@ -12,24 +13,15 @@ async function deployMetaContract(name, supply) {
     console.log(error);
   }
 
-  const abiItemConstructor = {
-    inputs: [
-      { name: "initialSupply", type: "uint256" },
-      { name: "_name", type: "string" }
-    ],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "constructor"
-  };
-
-  var abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiItemConstructor, [
+  const abiConstructor = abiConstructorErc20
+  var abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiConstructor, [
     supply,
     name
   ]);
 
   var sliceThatShit = abiPackedArgs.substring(10);
 
-  const bcode = "0x" + bytecode.bytecode + sliceThatShit;
+  const bcode = "0x" + bytecodeERC20.bytecode + sliceThatShit;
 
   const accounts = await web3.eth.getAccounts(function(err, accounts) {
     if (err != null) {
@@ -72,7 +64,7 @@ async function deployMetaContract(name, supply) {
       data: bcode
     })
     .on("transactionHash", function(hash) {
-      console.log("transaction recieved, hash is", hash);
+      console.log("transaction received, hash is", hash);
     })
     .on("receipt", function(receipt) {
       window.location.replace(
@@ -92,4 +84,4 @@ async function deployMetaContract(name, supply) {
   console.log(tx);
 }
 
-export default deployMetaContract;
+export default deployErc20Contract;
