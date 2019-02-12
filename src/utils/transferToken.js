@@ -1,6 +1,5 @@
 import { abiTransferErc20 } from "../contracts/erc20";
 import getPermission from "./getPermission.js";
-import getAccounts from "./getAccounts.js";
 
 const Web3 = require("web3");
 const web3 = new Web3(Web3.givenProvider);
@@ -11,6 +10,7 @@ async function transferToken(contractAddress, toAddress, amount) {
   //gets permission from metamask to access accounts and other info
   getPermission();
 
+  ////Create the data for the transfer transaction encoding the arguments of the transfer function with the transfer item of the contract ABI
   const data = web3.eth.abi.encodeFunctionCall(abiTransferErc20, [
     toAddress,
     amount

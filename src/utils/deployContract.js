@@ -12,7 +12,7 @@ async function deployContract(symbol, name, decimals, supply) {
   //gets permission from metamask to access accounts and other info
   getPermission()
 
-  //TODO: Hugo: comment on what this does
+  //Create the data for the deploy transaction encoding the arguments of the constructor with the constructor item of the contract ABI
   var abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiConstructorErc20, [
     symbol,
     name,
@@ -20,7 +20,7 @@ async function deployContract(symbol, name, decimals, supply) {
     supply
   ]);
 
-  //TODO: Hugo: comment on form of abiPackedArgs, find better name for removeMethodSignature
+  //remove the function signature (hash of the method signature) so the object can be added directly to the bytecode
   var removeMethodSignature = abiPackedArgs.substring(10);
 
   const bcode = "0x" + bytecodeERC20 + removeMethodSignature;
@@ -42,7 +42,7 @@ async function deployContract(symbol, name, decimals, supply) {
       console.log("MetaMask is unlocked");
     }
   });
-  //remove untill here
+  //remove until here
 
   var netname;
 
