@@ -1,18 +1,22 @@
 import React, { Component } from "react";
-import deployErc20Contract from "../utils/deployErc20Contract";
+import deployContract from "../../utils/deployContract";
 
+/*
+This class creates the DeployButton Component
+*/
 
 class DeployButton extends Component {
   handleClick(event) {
-    console.log("hey")
-    const formInfo = document.getElementById("constructorForm");
+    /*
+    fetch constructor information from the contract form
+    contract form is defined in src/components/ContractForm
+    */
+    const formInfo = document.getElementById("ContractForm");
     const symbol = formInfo[0].value;
     const name = formInfo[1].value;
     const decimals = formInfo[2].value;
     const supply = formInfo[3].value;
-
-
-    deployErc20Contract(symbol, name, decimals, supply)
+    deployContract(symbol, name, decimals, supply)
   }
 
   render() {

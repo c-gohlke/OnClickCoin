@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Home from "./Home";
-import Send from "./Send";
-import Deploy from "./Deploy";
-import Giveaway from "./Giveaway";
+import Home from "./pages/Home";
+import Send from "./pages/Send";
+import ContractReceipt from "./pages/ContractReceipt";
+
+/*
+Set up the Routes of the application. App Class gets rendered from "src/index.js"
+*/
 
 class App extends Component {
   render() {
@@ -11,13 +14,11 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Route exact={true} path="/" render={() => <Home />} />
-          <Route exact={true} path="/send" render={() => <Send />} />
           <Route exact={true} path="/send/:id" render={() => <Send />} />
-          <Route exact={true} path="/deploy" render={() => <Deploy />} />
           <Route
             exact={true}
-            path="/giveaway/:id"
-            render={() => <Giveaway />}
+            path="/receipt/:id"
+            render={() => <ContractReceipt />}
           />
         </div>
       </BrowserRouter>

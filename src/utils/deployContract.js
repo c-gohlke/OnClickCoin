@@ -1,41 +1,102 @@
-//Connecting to Ethereum via infura
-import { endpoint, sendPrivKey } from "../config/config";
-import buildDeployment from "./buildDeployment";
-import erc20DeployTransaction from "./erc20DeployTransaction"
+import { bytecodeERC20, abiConstructorErc20 } from "../contracts/erc20";
+import getPermission from "./getPermission";
+import getAccounts from "./getAccounts"
 
 const Web3 = require("web3");
-const EthTx = require("ethereumjs-tx");
+//TODO: check if client doesn't have web3 provider (metamask uninstalled)
+const web3 = new Web3(Web3.givenProvider);
 
 async function deployContract(symbol, name, decimals, supply) {
-  var netID = document.getElementById("network");
-  var network = netID.options[netID.selectedIndex].value;
-  const netname = netID.options[netID.selectedIndex].text;
-  var link = "https://" + netname + ".etherscan.io/tx/";
-  console.log("the network is", network);
-  const web3 = new Web3(new Web3.providers.HttpProvider(endpoint[network]));
+  window.web3 = new Web3(window.ethereum);
 
-  const privateKeyFromBuffer = new Buffer(sendPrivKey, "hex");
+  //gets permission from metamask to access accounts and other info
+  getPermission()
 
-  const tx = await new EthTx(await erc20DeployTransaction(symbol, name, decimals, supply));
-  tx.sign(privateKeyFromBuffer);
-  const serializedTx = tx.serialize();
-  web3.eth
-    .sendSignedTransaction("0x" + serializedTx.toString("hex"), function(
-      err,
-      hash
-    ) {
-      if (err) {
-        console.log(err);
-      }
+  //TODO: Hugo: comment on what this does
+  var abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiConstructorErc20, [
+    symbol,
+    name,
+    decimals,
+    supply
+  ]);
+
+  //TODO: Hugo: comment on form of abiPackedArgs, find better name for removeMethodSignature
+  var removeMethodSignature = abiPackedArgs.substring(10);
+
+  const bcode = "0x" + bytecodeERC20 + removeMethodSignature;
+
+  //returns an array of the accounts of the metamask user
+
+
+  //TODO: make getAccounts work
+  // const accounts = await getAccounts()
+  //TODO: remove what is below
+  const accounts = await web3.eth.getAccounts(function(err, accounts) {
+    if (err != null) {
+      console.log("error in getAccount");
+      console.log(err);
+    } else if (accounts.length === 0) {
+      console.log("MetaMask is locked");
+      return -1;
+    } else {
+      console.log("MetaMask is unlocked");
+    }
+  });
+  //remove untill here
+
+  var netname;
+
+  //returns the id of the ethereum network the client is working on
+  const netID = await web3.eth.net.getId();
+
+  switch (netID) {
+    case "1":
+      netname = "";
+      break;
+    case "2":
+      netname = "morden";
+      break;
+    case "3":
+      netname = "ropsten";
+      break;
+    case 4:
+      netname = "rinkeby";
+      break;
+    case "42":
+      netname = "kovan";
+      break;
+    default:
+      netname = "Unknown";
+  }
+
+  //sends the transaction via metamask
+  await web3.eth
+    .sendTransaction({
+      from: accounts[0],
+      value: 0,
+      chainId: netID,
+      data: bcode
     })
     .on("transactionHash", function(hash) {
-      console.log("transaction recieved, hash is", hash);
-      link = link + hash;
+      console.log("transaction received, hash is", hash);
     })
     .on("receipt", function(receipt) {
-      // window.confirm("Receipt received! Click ok to go to transaction details");
-      window.open(link.toString());
-      console.log("receipt info is", receipt);
+      //when the transaction receipt is returned by the sendTransaction function,
+      //reroute to the receipt page
+      //on top of rerouting, add netname, contractAddress, name of token, initial supply and account address to the URL so that receipt page can use that info
+      //TODO: Clem: find better/safer way to pass the info to the receipt page
+      window.location.replace(
+        "http://localhost:3000/receipt/:" +
+          netname +
+          "?" +
+          receipt.contractAddress +
+          "?" +
+          name +
+          "?" +
+          supply +
+          "?" +
+          accounts[0]
+      );
     });
 }
 
