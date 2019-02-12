@@ -11,6 +11,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Route exact={true} path="/" render={() => <Home />} />
+          <Route exact={true} path="/send" render={() => <Send />} />
           <Route exact={true} path="/send/:id" render={() => <Send />} />
           <Route exact={true} path="/deploy" render={() => <Deploy />} />
           <Route

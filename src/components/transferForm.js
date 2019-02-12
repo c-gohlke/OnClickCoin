@@ -5,7 +5,7 @@ class constructorForm extends Component {
     render(){
         return(
             <div  style={styles.General}>
-                <form id="constructorForm">
+                <form id="transferForm">
                     <br></br>Enter your contract address <br/><br/>
                     <input id= "contract" placeholder="0xabc123" style={styles.InputStyle}/><br/>
                     <br></br>Enter your friend address <br/><br/>

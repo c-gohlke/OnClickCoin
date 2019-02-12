@@ -28,7 +28,7 @@ class Home extends Component {
           <br/>
           <br/>
 
-          Already created a coin? <a href={"send"}>Send!</a>
+          Already created a coin? <a href={"Send"}>Send!</a>
           <br/>
           <br/>
           <br/>

@@ -1,11 +1,11 @@
-//Connecting to Ethereum via infura
-import bytecode from "../contracts/basicContract";
+import {bytecodeERC20, abiConstructorErc20 }from "../contracts/erc20";
+
 
 const Web3 = require("web3");
 //todo check if given provider = null
 const web3 = new Web3(Web3.givenProvider);
 
-async function deployMetaContract(name, supply) {
+async function deployErc20Contract(symbol, name, decimals, supply) {
   window.web3 = new Web3(window.ethereum);
   try {
     await window.ethereum.enable();
@@ -13,24 +13,18 @@ async function deployMetaContract(name, supply) {
     console.log(error);
   }
 
-  const abiItemConstructor = {
-    inputs: [
-      { name: "initialSupply", type: "uint256" },
-      { name: "_name", type: "string" }
-    ],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "constructor"
-  };
-
-  var abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiItemConstructor, [
-    supply,
-    name
+  const abiConstructor = abiConstructorErc20
+  var abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiConstructor, [
+    symbol, name, decimals, supply
   ]);
 
-  var sliceThatShit = abiPackedArgs.substring(10);
+  var removeMethodSignature = abiPackedArgs.substring(10);
 
-  const bcode = "0x" + bytecode.bytecode + sliceThatShit;
+  const bcode = "0x" + bytecodeERC20 + removeMethodSignature;
+
+
+  console.log(bytecodeERC20)
+  console.log(bcode)
 
   const accounts = await web3.eth.getAccounts(function(err, accounts) {
     if (err != null) {
@@ -66,14 +60,16 @@ async function deployMetaContract(name, supply) {
       netname = "Unknown";
   }
 
+
   const tx = await web3.eth
     .sendTransaction({
       from: accounts[0],
       value: 0,
+      chainId: netID,
       data: bcode
     })
     .on("transactionHash", function(hash) {
-      console.log("transaction recieved, hash is", hash);
+      console.log("transaction received, hash is", hash);
     })
     .on("receipt", function(receipt) {
       window.location.replace(
@@ -93,4 +89,4 @@ async function deployMetaContract(name, supply) {
   console.log(tx);
 }
 
-export default deployMetaContract;
+export default deployErc20Contract;

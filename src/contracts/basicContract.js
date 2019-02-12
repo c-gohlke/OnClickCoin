@@ -17,7 +17,7 @@ const abi = [{
 }, {
     "inputs": [{"name": "initialSupply", "type": "uint256"}, {"name": "_name", "type": "string"}],
     "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "nonpayable",w
     "type": "constructor"
 }]
 

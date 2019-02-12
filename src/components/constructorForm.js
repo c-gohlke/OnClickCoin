@@ -7,8 +7,12 @@ class constructorForm extends Component {
             <div >
                 <h3 >your coin parameters</h3>
                 <form id="constructorForm">
+                    <br></br>Symbol of your coin <br/><br/>
+                    <input id= "symbol" placeholder="BCC" style={styles.InputStyle}/><br/>
                     <br></br>Name your coin <br/><br/>
                     <input id= "name" placeholder="Bitconnect" style={styles.InputStyle}/><br/>
+                    <br></br>0.01 or 0.00001? <br/><br/>
+                    <input id= "decimals" placeholder="2" style={styles.InputStyle}/><br/>
                     <br></br>How many coins should be created?<br/><br/>
                     <input id="supply" placeholder="21000000" type="number" style={styles.InputStyle}/><br/>
 

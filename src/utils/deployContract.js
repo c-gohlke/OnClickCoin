@@ -1,11 +1,12 @@
 //Connecting to Ethereum via infura
 import { endpoint, sendPrivKey } from "../config/config";
 import buildDeployment from "./buildDeployment";
+import erc20DeployTransaction from "./erc20DeployTransaction"
 
 const Web3 = require("web3");
 const EthTx = require("ethereumjs-tx");
 
-async function deployContract(name, ticker, owner, supply) {
+async function deployContract(symbol, name, decimals, supply) {
   var netID = document.getElementById("network");
   var network = netID.options[netID.selectedIndex].value;
   const netname = netID.options[netID.selectedIndex].text;
@@ -15,7 +16,7 @@ async function deployContract(name, ticker, owner, supply) {
 
   const privateKeyFromBuffer = new Buffer(sendPrivKey, "hex");
 
-  const tx = await new EthTx(await buildDeployment(name, ticker, owner, supply));
+  const tx = await new EthTx(await erc20DeployTransaction(symbol, name, decimals, supply));
   tx.sign(privateKeyFromBuffer);
   const serializedTx = tx.serialize();
   web3.eth
