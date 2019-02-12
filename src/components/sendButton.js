@@ -1,18 +1,14 @@
 import React, { Component } from "react";
-const Web3 = require("web3");
+import {withRouter} from "react-router-dom";
 
-class LinkButton extends Component {
+
+class SendButton extends Component {
   handleClick(event) {
     var parsedInfo = String(window.location).split("?");
     const accID = parsedInfo[4];
-    // console.log("event handled")
-    // const link = "localhost:3000/send/:" + accID;
-    // window.open("localhost:3000/send/:");
-    // window.location.assign("localhost:3000/send/:");
-    // window.location.replace("localhost:3000/send/:");
     const link = "localhost:3000/send/:" + accID;
-    window.open(link);
-    // document.location.href = "localhost:3000/send/:"
+    console.log("in send button link")
+    this.props.history.push(link);
   }
 
   render() {
@@ -26,4 +22,4 @@ class LinkButton extends Component {
   }
 }
 
-export default LinkButton;
+export default withRouter(SendButton);

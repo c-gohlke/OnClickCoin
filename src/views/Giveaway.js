@@ -45,7 +45,7 @@ class Giveaway extends Component {
         <br />
         <div>
           <br />
-          Press here to send same of your tokens to friends!!!:
+          Press here to send some of your tokens to friends!!!:
           <br />
           <br />
           <SendButton />

@@ -2,6 +2,7 @@
 import bytecode from "../contracts/basicContract";
 
 const Web3 = require("web3");
+//todo check if given provider = null
 const web3 = new Web3(Web3.givenProvider);
 
 async function deployMetaContract(name, supply) {
