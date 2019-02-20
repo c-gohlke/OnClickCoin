@@ -22,7 +22,7 @@
     "node": "11.9.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node ./bin/www",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
