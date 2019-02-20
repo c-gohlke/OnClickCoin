@@ -1,3 +1,5 @@
+//TODO find a way to make bundle.js smaller
+
 const express = require("express");
 var router = require('./routes/routes.js')
 const path = require("path");
