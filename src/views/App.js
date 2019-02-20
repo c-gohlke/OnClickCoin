@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Send from "./pages/Send";
 import ContractReceipt from "./pages/ContractReceipt";
 
+
+console.log("App.js is called")
 /*
 Set up the Routes of the application. App Class gets rendered from "src/index.js"
 */

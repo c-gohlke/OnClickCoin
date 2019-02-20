@@ -1,20 +1,23 @@
 const express = require("express");
-const path = require('path')
+const path = require("path");
+var indexRouter = require('./routes/index');
 
 const app = express();
+const port = normalizePort(process.env.PORT || "3000");
 
-const port = normalizePort(process.env.PORT || '3000');
-
-console.log("server.js called")
+console.log("server.js called");
 
 app.set("port", port);
-app.set('views', path.join(__dirname, 'src')); 
+app.set("views", path.join(__dirname, "src/views/pages"));
 
 app.use(express.static(__dirname + "/public"));
+app.use('/', indexRouter);
+
+
 
 // the __dirname is the current directory from where the script is running
 app.get("/", function(req, res) {
-  console.log("rendering ", __dirname + "/src/index.js")
+  console.log("rendering ", __dirname + "/src/index.js");
   res.render(__dirname + "index.js");
 });
 
@@ -24,19 +27,15 @@ app.listen(app.get("port"), function() {
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
-
   if (isNaN(port)) {
     // named pipe
     return val;
   }
-
   if (port >= 0) {
     // port number
     return port;
   }
-
   return false;
 }
 
-
-module.exports = app
+module.exports = app;
