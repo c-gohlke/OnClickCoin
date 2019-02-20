@@ -1,5 +1,4 @@
-var app = require("../app")
+var app = require("../server/server")
+var port = process.env.PORT || "3000"
 
-const http = require("http")
-
-var server = http.createServer(app);
+app.listen(port);

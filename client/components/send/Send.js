@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TransferForm from "../../components/send/TransactionForm"
 import TransactButton from "../../components/send/TransactionButton";
-import styles from "../styles/styles"
+import styles from "../../styles/styles"
 import give from "../images/give.gif"
 
 /*

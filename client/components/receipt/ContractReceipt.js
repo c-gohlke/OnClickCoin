@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "../styles/styles";
+import styles from "../../styles/styles";
 import LinkButton from "../../components/receipt/EtherscanLinkButton.js";
 import SendButton from "../../components/receipt/RerouteSendButton.js";
 
@@ -11,7 +11,7 @@ class ContractReceipt extends Component {
     The URL's form is:
     pathname/receipt/: { name of the net } ? { sender's address } ? { name of the token } ? {initial supply }
 
-    This URL is created by deployErc20Contract() function in src/utils/deployErc20Contract
+    This URL is created by deployErc20Contract() function in server/api/deployErc20Contract
     */
 
     name: String(window.location).split("?")[2],

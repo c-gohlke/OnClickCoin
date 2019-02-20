@@ -1,6 +1,6 @@
 .idea
 .DS_Store
 /node_modules
-/src/test/trial
-build/static/css/*.map
-build/static/js/*.map
+/build
+/test
+/client/bundle.js

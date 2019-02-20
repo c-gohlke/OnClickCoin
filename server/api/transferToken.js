@@ -1,4 +1,4 @@
-import { abiTransferErc20 } from "../contracts/erc20";
+import { abiTransferErc20 } from "../../contracts/erc20";
 import getPermission from "./getPermission.js";
 
 const Web3 = require("web3");

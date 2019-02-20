@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import deployContract from "../../utils/deployContract";
+import deployContract from "../../../server/api/deployContract";
 
 /*
 This class creates the DeployButton Component
@@ -9,7 +9,7 @@ class DeployButton extends Component {
   handleClick(event) {
     /*
     fetch constructor information from the contract form
-    contract form is defined in src/components/ContractForm
+    contract form is defined in server/api/ContractForm
     */
     const formInfo = document.getElementById("ContractForm");
     const symbol = formInfo[0].value;

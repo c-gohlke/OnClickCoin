@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "../../views/styles/styles";
+import styles from "../../styles/styles";
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token

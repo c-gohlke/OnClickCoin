@@ -7,7 +7,7 @@ This class creates the TransactionButton Component for the send page
 
 class TransactionButton extends Component {
   handleClick(event) {
-    //fetch the information that has been filled in the TransactionFrom, defined in src/components/send/TransactionForm
+    //fetch the information that has been filled in the TransactionFrom, defined in client/components/send/TransactionForm
     const formInfo = document.getElementById("TransactionForm");
     const contractAddress = formInfo[0].value;
     const recipientAddress = formInfo[1].value;

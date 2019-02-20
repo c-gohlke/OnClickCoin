@@ -1,4 +1,4 @@
-import { bytecodeERC20, abiConstructorErc20 } from "../contracts/erc20";
+import { bytecodeERC20, abiConstructorErc20 } from "../../contracts/erc20";
 import getPermission from "./getPermission";
 import getAccounts from "./getAccounts"
 
