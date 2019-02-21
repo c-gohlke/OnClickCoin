@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ContractForm from "../../components/home/ContractForm";
 import styles from "../../styles/styles";
-// import coin from "../images/coins.gif";
+import coin from "../images/coins.gif";
 import DeployButton from "../../components/home/DeployButton";
 
 /*
@@ -19,7 +19,7 @@ class Home extends Component {
             token in one click!s
           </h2>
         </div>
-        {/* <img src={coin} alt="loading" /> */}
+        <img src={coin} alt="loading" />
         <div style={styles.FormStyles}>
           <ContractForm />
         </div>
