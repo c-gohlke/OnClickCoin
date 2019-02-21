@@ -1,5 +1,4 @@
 var app = require('../server/server');
-app.close()
 app.listen(app.get('port'), function() {
  console.log('running at localhost: ' + app.get('port'));
 });
