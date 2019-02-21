@@ -10,11 +10,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.jsx?$/,
-        loader: "babel-loader",
-        exclude: /node_modules/,
-        query: {
-          presets: ["@babel/env", "@babel/react"]
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       },
       {

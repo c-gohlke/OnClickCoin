@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import deployContract from "../../../server/api/deployContract";
+import deployContract from "../../../server/api/deployContract";
 
 /*
 This class creates the DeployButton Component
@@ -16,7 +16,7 @@ class DeployButton extends Component {
     const name = formInfo[1].value;
     const decimals = formInfo[2].value;
     const supply = formInfo[3].value;
-    // deployContract(symbol, name, decimals, supply)
+    deployContract(symbol, name, decimals, supply)
   }
 
   render() {

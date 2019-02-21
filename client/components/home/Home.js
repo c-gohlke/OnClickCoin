@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ContractForm from "../../components/home/ContractForm";
 import styles from "../../styles/styles";
-// import coin from "../../images/coins.gif";
+// import coin from "../images/coins.gif";
 import DeployButton from "../../components/home/DeployButton";
 
 /*
@@ -16,7 +16,7 @@ class Home extends Component {
           <h1>Welcome to OnClickCoin!</h1>
           <h2>
             Deploy an <a href="https://en.wikipedia.org/wiki/ERC-20"> ERC20</a>{" "}
-            token in one click!
+            token in one click!s
           </h2>
         </div>
         {/* <img src={coin} alt="loading" /> */}
