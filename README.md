@@ -16,3 +16,7 @@ Enter your parameters : the name of your token, its ticker, the total supply and
 which to send the newly minted tokens to. 
 
 Click on create token :)  
+
+
+visit [onclickcoin.herokuapp.com](onclickcoin.herokuapp.com)!
+it automatically deploys newest master branch (! does not npm install devDependencies by default)
