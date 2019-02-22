@@ -4,6 +4,8 @@ import styles from "../../styles/styles";
 import coin from "../images/coins.gif";
 import DeployButton from "../../components/home/DeployButton";
 
+console.log("in components/home/Home")
+
 /*
 Defines the Homepage of the App
 */
@@ -16,7 +18,7 @@ class Home extends Component {
           <h1>Welcome to OnClickCoin!</h1>
           <h2>
             Deploy an <a href="https://en.wikipedia.org/wiki/ERC-20"> ERC20</a>{" "}
-            token in one click!s
+            token in one click!
           </h2>
         </div>
         <img src={coin} alt="loading" />

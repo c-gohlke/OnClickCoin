@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {withRouter} from "react-router-dom";
 
 /*
 This class creates the EtherscanLinkButton Component
@@ -43,4 +42,4 @@ class EtherscanLinkButton extends Component {
   }
 }
 
-export default withRouter(EtherscanLinkButton);
+export default EtherscanLinkButton;

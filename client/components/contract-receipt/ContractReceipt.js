@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styles from "../../styles/styles";
-import LinkButton from "../../components/receipt/EtherscanLinkButton.js";
-import SendButton from "../../components/receipt/RerouteSendButton.js";
+import LinkButton from "../../components/contract-receipt/EtherscanLinkButton.js";
+import SendButton from "../../components/contract-receipt/RerouteSendButton.js";
+
+console.log("in components/contract-receipt/ContractReceipt")
 
 class ContractReceipt extends Component {
   state = {

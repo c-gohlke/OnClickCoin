@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {withRouter} from "react-router-dom";
 
 /*
 This class creates the Button that redirects to the Send page
@@ -23,4 +22,4 @@ class RerouteSendButton extends Component {
   }
 }
 
-export default withRouter(RerouteSendButton);
+export default RerouteSendButton;

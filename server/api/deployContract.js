@@ -28,7 +28,7 @@ async function deployContract(symbol, name, decimals, supply) {
   //returns an array of the accounts of the metamask user
 
 
-  //TODO: make getAccounts work
+  //TODO: make getAccounts function work
   // const accounts = await getAccounts()
   //TODO: remove what is below
   const accounts = await web3.eth.getAccounts(function(err, accounts) {

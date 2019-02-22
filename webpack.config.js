@@ -2,6 +2,7 @@
 var path = require("path");
 var webpack = require("webpack");
 module.exports = {
+  mode: "development",
   entry: ["@babel/polyfill", "./client/index.js"],
   output: {
     path: path.join(__dirname, "client"),
@@ -26,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: [/(node_modules|bower_components)/, /\.ejs$/],
         use: {
           loader: "file-loader",
           options: {}
