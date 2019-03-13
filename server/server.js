@@ -1,20 +1,28 @@
 //server/server.js
 
-console.log("initializing server")
+console.log("initializing server");
 
-var express = require('express');
-var homeRouter = require('./routes/home.js')
-var contractReceiptRouter = require('./routes/contract-receipt.js')
-var path = require('path');
+var express = require("express");
+var homeRouter = require("./routes/homeRouter.js");
+var contractReceiptRouter = require("./routes/receiptRouter.js");
+var path = require("path");
 var app = express();
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../client'));
-app.use(express.static(path.join(__dirname, '../client')));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "../client"));
+app.use(express.static(path.join(__dirname, "../client")));
 
-app.use('/', homeRouter);
-app.use('/contract-receipt', contractReceiptRouter);
+app.use("/", homeRouter);
+app.use("/receipt", contractReceiptRouter);
 
-console.log("exporting server/server.js")
+app.get("/", function(req, res) {
+  res.render("home");
+});
 
-module.exports=app;
+app.get("/receipt", function(req, res) {
+  res.render("receipt");
+});
+
+console.log("exporting server/server.js");
+
+module.exports = app;

@@ -1,6 +1,6 @@
 import { bytecodeERC20, abiConstructorErc20 } from "../../contracts/erc20";
 import getPermission from "./getPermission";
-import getAccounts from "./getAccounts"
+import getAccounts from "./getAccounts";
 
 const Web3 = require("web3");
 //TODO: check if client doesn't have web3 provider (metamask uninstalled)
@@ -10,7 +10,7 @@ async function deployContract(symbol, name, decimals, supply) {
   window.web3 = new Web3(window.ethereum);
 
   //gets permission from metamask to access accounts and other info
-  getPermission()
+  getPermission();
 
   //Create the data for the deploy transaction encoding the arguments of the constructor with the constructor item of the contract ABI
   var abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiConstructorErc20, [
@@ -26,7 +26,6 @@ async function deployContract(symbol, name, decimals, supply) {
   const bcode = "0x" + bytecodeERC20 + removeMethodSignature;
 
   //returns an array of the accounts of the metamask user
-
 
   //TODO: make getAccounts function work
   // const accounts = await getAccounts()
@@ -85,18 +84,21 @@ async function deployContract(symbol, name, decimals, supply) {
       //reroute to the receipt page
       //on top of rerouting, add netname, contractAddress, name of token, initial supply and account address to the URL so that receipt page can use that info
       //TODO: Clem: find better/safer way to pass the info to the receipt page
-      window.location.replace(
-        "http://localhost:3000/receipt/:" +
-          netname +
-          "?" +
-          receipt.contractAddress +
-          "?" +
-          name +
-          "?" +
-          supply +
-          "?" +
-          accounts[0]
-      );
+
+      window.location.replace("http://localhost:3000/receipt/:");
+
+      // window.location.replace(
+      //   "http://localhost:3000/receipt/:" +
+      //     netname +
+      //     "?" +
+      //     receipt.contractAddress +
+      //     "?" +
+      //     name +
+      //     "?" +
+      //     supply +
+      //     "?" +
+      //     accounts[0]
+      // );
     });
 }
 
