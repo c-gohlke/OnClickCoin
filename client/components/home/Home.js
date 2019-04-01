@@ -5,6 +5,7 @@ import coin from "../images/coins.gif";
 import DeployButton from "../../components/home/DeployButton";
 
 console.log("in components/home/Home")
+console.log(window.location)
 
 /*
 Defines the Homepage of the App

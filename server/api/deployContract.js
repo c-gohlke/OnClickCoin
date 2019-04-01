@@ -86,7 +86,7 @@ async function deployContract(symbol, name, decimals, supply) {
       //TODO: Clem: find better/safer way to pass the info to the receipt page
 
       window.location.replace(
-        "http://localhost:3000/receipt?netname:" +
+        window.location.origin + "/receipt?netname:" +
           netname +
           "?address:" +
           receipt.contractAddress +

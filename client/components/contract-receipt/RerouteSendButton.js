@@ -13,7 +13,7 @@ class RerouteSendButton extends Component {
     const contractAddress = parseContractAddress.split("?tokenname")[0]    
 
     window.location.replace(
-      "http://localhost:3000/send?" + contractAddress
+      window.location.origin + "/send?" + contractAddress
     );
   }
 
