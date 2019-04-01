@@ -85,20 +85,18 @@ async function deployContract(symbol, name, decimals, supply) {
       //on top of rerouting, add netname, contractAddress, name of token, initial supply and account address to the URL so that receipt page can use that info
       //TODO: Clem: find better/safer way to pass the info to the receipt page
 
-      window.location.replace("http://localhost:3000/receipt/:");
-
-      // window.location.replace(
-      //   "http://localhost:3000/receipt/:" +
-      //     netname +
-      //     "?" +
-      //     receipt.contractAddress +
-      //     "?" +
-      //     name +
-      //     "?" +
-      //     supply +
-      //     "?" +
-      //     accounts[0]
-      // );
+      window.location.replace(
+        "http://localhost:3000/receipt?netname:" +
+          netname +
+          "?address:" +
+          receipt.contractAddress +
+          "?tokenname:" +
+          name +
+          "?supply:" +
+          supply +
+          "?sendAddr:" +
+          accounts[0]
+      );
     });
 }
 

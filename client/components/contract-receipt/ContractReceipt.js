@@ -6,8 +6,8 @@ import SendButton from "../../components/contract-receipt/RerouteSendButton.js";
 console.log("in components/contract-receipt/ContractReceipt")
 
 class ContractReceipt extends Component {
-  state = {
 
+  constructor(props){
     /*the name and the Supply's information of the token are passed on through the URL.
 
     The URL's form is:
@@ -15,9 +15,32 @@ class ContractReceipt extends Component {
 
     This URL is created by deployErc20Contract() function in server/api/deployErc20Contract
     */
+   
+    super(props)
+    const url = (String(window.location))
 
-    name: String(window.location).split("?")[2],
-    supply: String(window.location).split("?")[3]
+    console.log("url is", url)
+  
+    var parseName = url.split("tokenname:")[1]
+    var parseSupply = url.split("supply:")[1]
+    
+    console.log(parseName)
+    
+    var name = parseName.split("?supply")[0]
+    var supply = parseSupply.split("?sendAddr")[0]
+    
+    console.log(name)
+    console.log(supply)
+
+    this.state = {
+      name: name,
+      supply: supply
+    }
+  }
+
+  state = {
+    name: "default",
+    supply: "default"
   };
 
   render() {

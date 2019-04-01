@@ -16,13 +16,13 @@ class ContractForm extends Component {
                 <h3 >your coin parameters</h3>
                 <form id="ContractForm">
                     <br></br>Ticker Symbol of your coin <br/><br/>
-                    <input id= "symbol" placeholder="BCC" style={styles.InputStyle}/><br/>
+                    <input id= "symbol" defaultValue="BCC" style={styles.InputStyle}/><br/>
                     <br></br>Name your coin <br/><br/>
-                    <input id= "name" placeholder="Bitconnect" style={styles.InputStyle}/><br/>
-                    <br></br>Number of decimals of the coin. Leave 0 for whole coins<br/><br/>
-                    <input id= "decimals" placeholder="2" style={styles.InputStyle}/><br/>
+                    <input id= "name" defaultValue="Bitconnect" style={styles.InputStyle}/><br/>
+                    <br></br>Divisibility of the coin. (0 for atomic coins, 2 for maximal 2 decimals (e.g. Euros, USD etc.)<br/><br/>
+                    <input id= "decimals" defaultValue="2" style={styles.InputStyle}/><br/>
                     <br></br>How many coins should be created?<br/><br/>
-                    <input id="supply" placeholder="21000000" type="number" style={styles.InputStyle}/><br/>
+                    <input id="supply" defaultValue="21000000" type="number" style={styles.InputStyle}/><br/>
 
                 </form>
             </div>

@@ -13,20 +13,12 @@ class EtherscanLinkButton extends Component {
     TODO: find better way to pass the information. Security issues maybe?? (accountID accessible to attacker if in the URL?)
     */
 
-    //splits the URL in an array with 2 values
-    // array[0]'s value is everything before "receipt/:"
-    //array[1]'s value
-    var parsedInfo = String(window.location).split("receipt/:");
+    var netinfo = String(window.location).split("netname:")[1];
+    const netname = netinfo.split("?")[0];
 
-    //removes "localhost:......" from the array
-    //resulting value is everything following "receipt/:"
-    parsedInfo = parsedInfo.pop();
+    var addrinfo = String(window.location).split("address:")[1];
+    const accID = addrinfo.split("?")[0];
 
-    //All the parameters are separated by a "?" in the URL
-    //This splits the params in an array
-    parsedInfo = parsedInfo.split("?");
-    const netname = parsedInfo[0];
-    const accID = parsedInfo[1];
     const link = "https://" + netname + ".etherscan.io/address/" + accID;
     
     //open the link in a new tab

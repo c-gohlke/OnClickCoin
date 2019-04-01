@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import transferErc20Token from "../../utils/transferToken"
+import transferToken from "../../../server/api/transferToken"
 
 /*
 This class creates the TransactionButton Component for the send page
@@ -12,7 +12,7 @@ class TransactionButton extends Component {
     const contractAddress = formInfo[0].value;
     const recipientAddress = formInfo[1].value;
     const amount = formInfo[2].value;
-    transferErc20Token(contractAddress, recipientAddress, amount)
+    transferToken(contractAddress, recipientAddress, amount)
   }
 
   render() {

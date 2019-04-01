@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "../../views/styles/styles";
+import styles from "../../styles/styles";
 
 /*
 This class creates the TransactionForm Component for the send page
@@ -21,7 +21,7 @@ class TransactionForm extends Component {
     */
 
     //this creates an array, with array[0] everything before "send/:", and array[1] everything after "send/:"
-    var parsedInfo = String(window.location.href).split("send/:?");
+    var parsedInfo = String(window.location.href).split("send?");
     const contractID = String(parsedInfo[1]).split("?")[0];
     this.state = { contractID: contractID };
   }
