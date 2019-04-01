@@ -65,4 +65,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 ### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Click on create token :)  
+
+
+visit [onclickcoin.herokuapp.com](onclickcoin.herokuapp.com)!
+it automatically deploys newest master branch (! does not npm install devDependencies by default)
