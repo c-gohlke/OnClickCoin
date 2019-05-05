@@ -7,7 +7,7 @@ This class creates the DeployButton Component
 */
 
 class DeployButton extends Component {
-  handleClick(event) {
+  async handleClick(event) {
     /*
     fetch constructor information from the contract form
     contract form is defined in server/api/ContractForm
@@ -19,7 +19,7 @@ class DeployButton extends Component {
     const supply = formInfo[3].value;
 
     //gets permission from metamask to access accounts and other info
-    getPermission()
+    await getPermission()
 
     deployContract(symbol, name, decimals, supply)
   }
