@@ -58,6 +58,9 @@ async function deployContract(symbol, name, decimals, supply) {
       netname = "Unknown";
   }
 
+  var progressBar = document.getElementById("myProgressBar");
+  var fullBar = document.getElementById("myBar");
+
   //sends the transaction via metamask
   await web3.eth
     .sendTransaction({
@@ -69,16 +72,13 @@ async function deployContract(symbol, name, decimals, supply) {
     .on("transactionHash", function(hash) {
       console.log("transaction received, hash is", hash);
 
-      //toggle the progress bar to be visible
-      var progressBar = document.getElementById("myProgressBar");
-      var fullBar = document.getElementById("myBar");
       //toggle to show the bars
       progressBar.style.display = 'block';
       fullBar.style.display = 'block';
 
       //code below makes the progress bar move from 1% to 100%. Percentage point incremental happens every 350 milliseconds
       var width = 1;
-      var id = setInterval(frame, 350);
+      var id = setInterval(frame, 300);
 
       function frame() {
         console.log("in frame function. width is", width);
