@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import deployContract from "../../../server/api/deployContract";
+import getPermission from "../../../server/api/getPermission";
 
 /*
 This class creates the DeployButton Component
@@ -16,6 +17,10 @@ class DeployButton extends Component {
     const name = formInfo[1].value;
     const decimals = formInfo[2].value;
     const supply = formInfo[3].value;
+
+    //gets permission from metamask to access accounts and other info
+    getPermission()
+
     deployContract(symbol, name, decimals, supply)
   }
 

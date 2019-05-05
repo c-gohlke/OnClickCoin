@@ -3,9 +3,10 @@ import ContractForm from "../../components/home/ContractForm";
 import styles from "../../styles/styles";
 import coin from "../images/coins.gif";
 import DeployButton from "../../components/home/DeployButton";
+import "../../css/style.css"
 
-console.log("in components/home/Home")
-console.log(window.location)
+console.log("in components/home/Home");
+console.log(window.location);
 
 /*
 Defines the Homepage of the App
@@ -28,6 +29,9 @@ class Home extends Component {
         </div>
         <DeployButton />
         <br />
+        <div id="myProgress">
+          <div id="myBar">Progress</div>
+        </div>
         <br />
         <br />
         <br />
@@ -37,9 +41,6 @@ class Home extends Component {
         <div style={{ justifyContent: "center" }}>
           Powered by <a href="https://ethereum.org">Ethereum</a> and
           <a href="https://metamask.io/"> Metamask </a>
-        </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          Do not use in production
         </div>
         <br />
         <br />
