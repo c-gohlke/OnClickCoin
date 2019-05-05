@@ -76,9 +76,9 @@ async function deployContract(symbol, name, decimals, supply) {
       progressBar.style.display = 'block';
       fullBar.style.display = 'block';
 
-      //code below makes the progress bar move from 1% to 100%. Percentage point incremental happens every 350 milliseconds
+      //code below makes the progress bar move from 1% to 100%. Percentage point incremental happens every 225 milliseconds
       var width = 1;
-      var id = setInterval(frame, 300);
+      var id = setInterval(frame, 225);
 
       function frame() {
         console.log("in frame function. width is", width);
