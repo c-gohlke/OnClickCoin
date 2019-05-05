@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import ContractForm from "../../components/home/ContractForm";
 import coin from "../images/coins.gif";
 import DeployButton from "../../components/home/DeployButton";
-import "../../css/style.css"
+import "../../css/style.css";
 
 console.log("in components/home/Home");
-console.log(window.location);
 
 /*
 Defines the Homepage of the App
@@ -14,7 +13,7 @@ Defines the Homepage of the App
 class Home extends Component {
   render() {
     return (
-      <div className = "wrapper">
+      <div className="wrapper">
         <div className="OnClickCoin">
           <h1>Welcome to OnClickCoin!</h1>
           <h2>
