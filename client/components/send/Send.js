@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TransferForm from "../../components/send/TransactionForm"
 import TransactButton from "../../components/send/TransactionButton";
-import styles from "../../styles/styles"
 import give from "../images/give.gif"
 
 /*
@@ -13,7 +12,7 @@ console.log("in components/send/Send")
 class Send extends Component {
   render() {
     return (
-        <div className="send" style={styles.General}>
+        <div className="send">
         < br/>
         <h1>It's Giveaway time!</h1>
             <img src={give} alt="loading"/>

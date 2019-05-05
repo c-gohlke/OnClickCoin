@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styles from "../../styles/styles";
 import LinkButton from "../../components/contract-receipt/EtherscanLinkButton.js";
 import SendButton from "../../components/contract-receipt/RerouteSendButton.js";
 
@@ -45,7 +44,7 @@ class ContractReceipt extends Component {
 
   render() {
     return (
-      <div style={styles.General}>
+      <div>
         <br />
         <br />
         <br />

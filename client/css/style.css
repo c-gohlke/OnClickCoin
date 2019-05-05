@@ -1,3 +1,24 @@
+/*no prefix for element styles*/
+body { 
+  background-image: url("../components/images/background03.jpg"); /*awesome: 34,26, 03, 040*/
+  background-size: cover;
+  text-align: center;
+  font-family: Orbitron;
+}
+
+/*prefix . for classname styles*/
+.wrapper {
+  margin-right: auto;
+  margin-left:  auto;
+
+  max-width: 960px;
+
+  padding-right: 10px;
+  padding-left:  10px;
+}
+
+
+/*prefix # for id styles*/
 #myBar {
   width: 25%;
   background-color: blue;

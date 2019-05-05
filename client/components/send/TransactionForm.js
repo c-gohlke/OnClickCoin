@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styles from "../../styles/styles";
 
 /*
 This class creates the TransactionForm Component for the send page
@@ -28,19 +27,18 @@ class TransactionForm extends Component {
 
   render() {
     return (
-      <div style={styles.General}>
+      <div>
         <form id="TransactionForm">
           <br />Enter your contract address <br />
           <br />
           <input
             id="contract"
             placeholder={this.state.contractID}
-            style={styles.InputStyle}
           />
           <br />
           <br />Enter your friend address <br />
           <br />
-          <input id="to" placeholder="0xabc123" style={styles.InputStyle} />
+          <input id="to" placeholder="0xabc123"/>
           <br />
           <br />How many coins should be sent?
           <br />
@@ -49,7 +47,6 @@ class TransactionForm extends Component {
             id="amount"
             placeholder="1"
             type="number"
-            style={styles.InputStyle}
           />
           <br />
         </form>
