@@ -29,8 +29,8 @@ class Home extends Component {
         </div>
         <DeployButton />
         <br />
-        <div id="myProgress">
-          <div id="myBar">Progress</div>
+        <div id="myBar">
+          <div id="myProgressBar">Progress</div>
         </div>
         <br />
         <br />

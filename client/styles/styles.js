@@ -25,10 +25,4 @@ const styles = {
   InputStyle: InputStyle
 };
 
-const myBar = {
-  width: "10%",
-  height: "30px",
-  color: "white"
-};
-
 export default styles;

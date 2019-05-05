@@ -1,13 +1,14 @@
-#myProgress {
+#myBar {
   width: 25%;
-  background-color: grey;
+  background-color: blue;
+  display: none;
 }
 
-#myBar {
+#myProgressBar {
   width: 1%;
   height: 30px;
   background-color: green;
-  text-align: left; /* To center it horizontally (if you want) */
   line-height: 30px; /* To center it vertically */
   color: white; 
+  display: none;
 }
