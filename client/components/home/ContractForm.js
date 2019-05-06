@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import DeployButton from "../../components/home/DeployButton";
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -9,23 +10,53 @@ Supply refers to the initial supply of the coin
 */
 
 class ContractForm extends Component {
-    render(){
-        return(
-            <div >
-                <h3 >your coin parameters</h3>
-                <form id="ContractForm">
-                    <br></br>Ticker Symbol of your coin <br/><br/>
-                    <input id= "symbol" defaultValue="BCC"/><br/>
-                    <br></br>Name your coin <br/><br/>
-                    <input id= "name" defaultValue="Bitconnect"/><br/>
-                    <br></br>Divisibility of the coin. (0 for atomic coins, 2 for maximal 2 decimals (e.g. Euros, USD etc.)<br/><br/>
-                    <input id= "decimals" defaultValue="2"/><br/>
-                    <br></br>How many coins should be created?<br/><br/>
-                    <input id="supply" defaultValue="21000000" type="number"/><br/>
-
-                </form>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div class="form">
+        <form>
+          <fieldset>
+            <legend>Your Coin Parameters</legend>
+            <label for="symbol">
+              <span>Ticker Symbol of your coin</span>
+              <input
+                type="text"
+                class="input-field"
+                id="symbol"
+                defaultValue="BCC"
+              />
+            </label>
+            <label for="name">
+              <span>Name your coin</span>
+              <input
+                type="text"
+                class="input-field"
+                id="name"
+                defaultValue="Bitconnect"
+              />
+            </label>
+            <label for="decimals">
+              <span>Divisibility of the coin</span>
+              <input
+                type="text"
+                class="input-field"
+                id="decimals"
+                defaultValue="2"
+              />
+            </label>
+            <label for="supply">
+              <span>How many coins should be created?</span>
+              <input
+                type="text"
+                class="input-field"
+                id="supply"
+                defaultValue="21000000"
+              />
+            </label>
+            <DeployButton />
+          </fieldset>
+        </form>
+      </div>
+    );
+  }
 }
-export default ContractForm
+export default ContractForm;

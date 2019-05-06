@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LinkButton from "../../components/contract-receipt/EtherscanLinkButton.js";
 import SendButton from "../../components/contract-receipt/RerouteSendButton.js";
 import Navbar from "../../components/navbar/Navbar.js";
+import Footer from "../../components/footer/Footer.js";
 
 console.log("in components/contract-receipt/ContractReceipt")
 
@@ -86,6 +87,7 @@ class ContractReceipt extends Component {
           <SendButton />
         </div>
       </div>
+      <Footer />
       </div>
     );
   }

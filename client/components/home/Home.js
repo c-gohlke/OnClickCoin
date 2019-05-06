@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import ContractForm from "../../components/home/ContractForm";
 import coin from "../images/coins.gif";
-import DeployButton from "../../components/home/DeployButton";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
+
 import "../../css/style.css";
 
 console.log("in components/home/Home");
@@ -29,7 +30,6 @@ class Home extends Component {
           <div>
             <ContractForm />
           </div>
-          <DeployButton />
           <br />
           <div id="myBar">
             <div id="myProgressBar">Progress</div>
@@ -47,6 +47,7 @@ class Home extends Component {
           <br />
           <br />
         </div>
+        <Footer />
       </div>
     );
   }

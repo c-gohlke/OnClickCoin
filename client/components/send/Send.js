@@ -3,6 +3,7 @@ import TransferForm from "../../components/send/TransactionForm";
 import TransactButton from "../../components/send/TransactionButton";
 import give from "../images/give.gif";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 /*
 Defines the send page of the app
@@ -22,6 +23,7 @@ class Send extends Component {
           <TransferForm />
           <TransactButton />
         </div>
+        <Footer />
       </div>
     );
   }

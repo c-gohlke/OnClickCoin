@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 /*
 Defines the send page of the app
@@ -16,6 +17,7 @@ class Info extends Component {
           <br />
           <h1>Info Page :)</h1>
         </div>
+        <Footer />
       </div>
     );
   }
