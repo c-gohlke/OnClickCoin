@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DeployButton from "../../components/home/DeployButton";
-import "./ContractForm.css"
+import './ContractForm.css'
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -16,7 +16,7 @@ class ContractForm extends Component {
       <div className="form">
         <form id="ContractForm">
           <fieldset>
-            <legend>Your Coin Parameters</legend>
+            <h3>Your Coin Parameters</h3>
             <label htmlFor="symbol">
               <span>Ticker Symbol of your coin</span>
               <input

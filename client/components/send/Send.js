@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import TransferForm from "../../components/send/TransactionForm";
-import TransactButton from "../../components/send/TransactionButton";
 import give from "../images/give.gif";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
@@ -16,12 +15,15 @@ class Send extends Component {
     return (
       <div>
         <Navbar />
-        <div className="send">
+        <div>
           <br />
-          <h1>It's Giveaway time!</h1>
-          <img src={give} alt="loading" />
+          <h1 className='align-center'>It's Giveaway time!</h1>
+          <br />
+          <div className='align-center'>
+            <img src={give} alt="loading" />
+          </div>
+          <br />
           <TransferForm />
-          <TransactButton />
         </div>
         <Footer />
       </div>

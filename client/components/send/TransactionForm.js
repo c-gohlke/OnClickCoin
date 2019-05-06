@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TransactButton from "../../components/send/TransactionButton";
 
 /*
 This class creates the TransactionForm Component for the send page
@@ -28,27 +29,23 @@ class TransactionForm extends Component {
   render() {
     return (
       <div>
-        <form id="TransactionForm">
-          <br />Enter your contract address <br />
-          <br />
+        <form className='form' id="TransactionForm">
+          <label for="contract">Enter your contract address</label>
           <input
             id="contract"
+            type='text'
             placeholder={this.state.contractID}
           />
-          <br />
-          <br />Enter your friend address <br />
-          <br />
-          <input id="to" placeholder="0xabc123"/>
-          <br />
-          <br />How many coins should be sent?
-          <br />
-          <br />
+          <label for='to'>Enter your friend address</label>
+          <input id="to" type='text' placeholder="0xabc123"/>
+          <label for='amount'>How many coins should be sent?</label>
           <input
             id="amount"
             placeholder="1"
             type="number"
           />
           <br />
+          <TransactButton />
         </form>
       </div>
     );
