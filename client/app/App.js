@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../components/home/Home';
+import 'concrete.css'
 import ContractReceipt from '../components/contract-receipt/ContractReceipt';
 import Send from '../components/send/Send'
 import Info from '../components/info/Info'
@@ -8,7 +9,7 @@ import Info from '../components/info/Info'
 class App extends Component {
   render() {
     const App = () => (
-      <div>
+      <div className='container'>
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/receipt' component={ContractReceipt}/>

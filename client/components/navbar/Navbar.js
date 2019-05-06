@@ -1,21 +1,13 @@
 import React, { Component } from "react";
-import "./Navbar.css"
+import './Navbar.css'
 
 class Navbar extends Component {
   render() {
     return (
-      <div className="navbar">
-        <a href="/">Home</a>
-        <a href="/Send">Send</a>
-        <div className="dropdown">
-          <button className="dropbtn">
-            Info
-            <i className="fa fa-caret-down" />
-          </button>
-          <div className="dropdown-content">
-            <a href="info?metamask">Metamask</a>
-          </div>
-        </div>
+      <div className='navbar'>
+        <a className='button' href="/">Home</a>
+        <a className='button' href="/Send">Send</a>
+        <a className='button' href="info">Info</a>
       </div>
     );
   }

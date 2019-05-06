@@ -16,35 +16,27 @@ class Home extends Component {
     return (
       <div>
         <Navbar />
-        <div className="wrapper">
-          <div className="OnClickCoin">
-            <h1>Welcome to OnClickCoin!</h1>
-            <h2>
+        <div>
+          <div>
+            <h1 className='title'>Welcome to OnClickCoin!</h1>
+            <h2 className='align-center'>
               Deploy an{" "}
               <a href="https://en.wikipedia.org/wiki/ERC-20"> ERC20</a> token in
               one click!
             </h2>
           </div>
-          <img src={coin} alt="loading" />
+          <div className='align-center'>
+            <img src={coin} alt="loading" />
+          </div>
           <div>
             <ContractForm />
           </div>
           <br />
-          <div id="myBar">
-            <div id="myProgressBar">Progress</div>
+          <h4 className='align-center'>Already created a coin? <a className='button' href={"send?0x12345"}>Send!</a></h4>
+          <br />
+          <div className='align-center'>
+            Powered by <a href="https://ethereum.org">Ethereum</a> and <a href="https://metamask.io/">Metamask</a>
           </div>
-          <br />
-          <br />
-          <br />
-          Already created a coin? <a href={"send?0x12345"}>Send!</a>
-          <br />
-          <br />
-          <div style={{ justifyContent: "center" }}>
-            Powered by <a href="https://ethereum.org">Ethereum</a> and
-            <a href="https://metamask.io/"> Metamask </a>
-          </div>
-          <br />
-          <br />
         </div>
         <Footer />
       </div>
