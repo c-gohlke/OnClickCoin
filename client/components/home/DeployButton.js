@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import deployContract from "../../../server/api/deployContract";
 import getPermission from "../../../server/api/getPermission";
+import "./DeployButton.css"
 
 /*
 This class creates the DeployButton Component
@@ -26,8 +27,8 @@ class DeployButton extends Component {
 
   render() {
     return (
-      <button onClick={this.handleClick.bind(this)}>
-        Click here to create your coin!
+      <button className = "ContractButton" onClick={this.handleClick.bind(this)}>
+        Deploy Contract
       </button>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DeployButton from "../../components/home/DeployButton";
+import "./ContractForm.css"
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -12,42 +13,42 @@ Supply refers to the initial supply of the coin
 class ContractForm extends Component {
   render() {
     return (
-      <div class="form">
-        <form>
+      <div className="form">
+        <form id="ContractForm">
           <fieldset>
             <legend>Your Coin Parameters</legend>
-            <label for="symbol">
+            <label htmlFor="symbol">
               <span>Ticker Symbol of your coin</span>
               <input
                 type="text"
-                class="input-field"
+                className="input-field"
                 id="symbol"
                 defaultValue="BCC"
               />
             </label>
-            <label for="name">
+            <label htmlFor="name">
               <span>Name your coin</span>
               <input
                 type="text"
-                class="input-field"
+                className="input-field"
                 id="name"
                 defaultValue="Bitconnect"
               />
             </label>
-            <label for="decimals">
+            <label htmlFor="decimals">
               <span>Divisibility of the coin</span>
               <input
                 type="text"
-                class="input-field"
+                className="input-field"
                 id="decimals"
                 defaultValue="2"
               />
             </label>
-            <label for="supply">
+            <label htmlFor="supply">
               <span>How many coins should be created?</span>
               <input
                 type="text"
-                class="input-field"
+                className="input-field"
                 id="supply"
                 defaultValue="21000000"
               />

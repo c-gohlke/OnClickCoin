@@ -3,8 +3,7 @@ import ContractForm from "../../components/home/ContractForm";
 import coin from "../images/coins.gif";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
-
-import "../../css/style.css";
+import "./Home.css"
 
 console.log("in components/home/Home");
 
