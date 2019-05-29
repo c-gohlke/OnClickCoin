@@ -1,5 +1,7 @@
 This project was bootstrapped with [React boilerplate](https://github.com/react-boilerplate/react-boilerplate)
 
+https://docs.google.com/document/d/1k_XHviZq3jtIAnWnD0OBBSmVl081V2AP_wcjX1nON_E/edit?usp=sharing
+
 ## Available Scripts
 
 In the project directory, you can run:
