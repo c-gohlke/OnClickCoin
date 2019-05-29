@@ -6,7 +6,6 @@ const Web3 = require('web3');
 async function transferToken(contractAddress, toAddress, amount) {
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider.
-    const web3 = new Web3(Web3.currentProvider);
     window.web3 = new Web3(window.ethereum);
 
     // gets permission from metamask to access accounts and other info
@@ -14,7 +13,7 @@ async function transferToken(contractAddress, toAddress, amount) {
 
     // Create the data for the transfer transaction encoding the
     // arguments of the transfer function with the transfer item of the contract ABI
-    const data = web3.eth.abi.encodeFunctionCall(abiTransferErc20, [
+    const data = window.web3.eth.abi.encodeFunctionCall(abiTransferErc20, [
       toAddress,
       amount,
     ]);
@@ -22,9 +21,9 @@ async function transferToken(contractAddress, toAddress, amount) {
     const accounts = await window.ethereum.enable();
 
     // returns the id of the ethereum network the client is working on
-    const netID = await web3.eth.net.getId();
+    const netID = await window.web3.eth.net.getId();
 
-    await web3.eth
+    await window.web3.eth
       .sendTransaction({
         from: accounts[0],
         to: contractAddress,

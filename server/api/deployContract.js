@@ -4,7 +4,6 @@ const Web3 = require('web3');
 
 async function deployContract(symbol, name, decimals, supply) {
   if (typeof web3 !== 'undefined') {
-    window.web3 = new Web3(Web3.currentProvider);
     window.web3 = new Web3(window.ethereum);
 
     // Create the data for the deploy transaction encoding the
