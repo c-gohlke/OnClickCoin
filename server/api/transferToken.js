@@ -2,10 +2,12 @@ import { abiTransferErc20 } from "../../contracts/erc20";
 import getPermission from "./getPermission.js";
 
 const Web3 = require("web3");
-const web3 = new Web3(Web3.givenProvider);
 
 async function transferToken(contractAddress, toAddress, amount) {
-  window.web3 = new Web3(window.ethereum);
+  if (typeof web3 !== "undefined") {
+    // Use Mist/MetaMask's provider.
+    web3 = new Web3(Web3.currentProvider);
+    window.web3 = new Web3(window.ethereum);
 
   //gets permission from metamask to access accounts and other info
   getPermission();
@@ -49,7 +51,16 @@ async function transferToken(contractAddress, toAddress, amount) {
     })
     .on("receipt", function(receipt) {
       console.log("receipt info is", receipt);
-    });
+    })}else {
+      console.log("Client does not have a web3 provider");
+      if (
+        window.confirm(
+          "It seems you do not have a web3 provider installed. To be able to safely deploy your smart contracts/create your own ERC-20 token, it is advised you download metamask. Press OK for more information"
+        )
+      ) {
+        window.location.replace(window.location.origin + "/info?metamask");
+      }
+    }
 }
 
 export default transferToken;
