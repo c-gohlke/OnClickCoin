@@ -1,20 +1,19 @@
 import React, { Component } from "react";
+import "./Navbar.css"
 
 class Navbar extends Component {
   render() {
     return (
-      <div class="navbar">
+      <div className="navbar">
         <a href="/">Home</a>
         <a href="/Send">Send</a>
-        <div class="dropdown">
-          <button class="dropbtn">
+        <div className="dropdown">
+          <button className="dropbtn">
             Info
-            <i class="fa fa-caret-down" />
+            <i className="fa fa-caret-down" />
           </button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <a href="info?metamask">Metamask</a>
-            {/* <a href="">Link 2</a>
-            <a href="">Link 3</a> */}
           </div>
         </div>
       </div>

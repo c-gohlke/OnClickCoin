@@ -6,8 +6,6 @@ This class creates the Button that redirects to the Send page
 
 class RerouteSendButton extends Component {
   async handleClick(event) {
-    //TODO: Clem: find way to reroute and only pass the important params (Contract address) to window.location
-
     const url = (String(window.location))
     const parseContractAddress = url.split("address:")[1]
     const contractAddress = parseContractAddress.split("?tokenname")[0]    

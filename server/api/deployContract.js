@@ -20,7 +20,6 @@ async function deployContract(symbol, name, decimals, supply) {
 
   const bcode = "0x" + bytecodeERC20 + removeMethodSignature;
 
-
   const accounts = await ethereum.enable()
 
   var netname;
@@ -82,7 +81,6 @@ async function deployContract(symbol, name, decimals, supply) {
         "It seems you do not have a web3 provider installed. To be able to safely deploy your smart contracts/create your own ERC-20 token, it is advised you download metamask. Press OK for more information"
       )
     ) {
-      //TODO redirect
       window.location.replace(window.location.origin + "/info?metamask");
     }
   }

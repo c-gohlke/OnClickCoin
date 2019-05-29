@@ -13,7 +13,6 @@ Defaulted to the address of the contract that has been created from the Home Pag
 class TransactionForm extends Component {
   constructor(props) {
     super(props);
-    //TODO: Clem: find better/safer way to pass the contract ID to new route
 
     /*The URL of the send page is of the form:
     pathname /send/: {contractID}

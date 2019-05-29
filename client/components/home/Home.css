@@ -1,0 +1,22 @@
+body {
+    background-image: url("../../components/images/background03.jpg"); /*awesome: 34,26, 03, 040*/
+    background-size: cover;
+    text-align: center;
+    font-family: Orbitron;
+  }
+
+  #myBar {
+    width: 25%;
+    background-color: blue;
+    display: none;
+  }
+
+  #myProgressBar {
+    width: 1%;
+    height: 30px;
+    background-color: green;
+    text-align: left; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white;
+    display: none;
+  }

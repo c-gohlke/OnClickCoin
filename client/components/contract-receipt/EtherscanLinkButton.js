@@ -9,8 +9,6 @@ class EtherscanLinkButton extends Component {
 
     /*
     Given URL is of the form pathame/receipt/: {network name} + "?" + {accountID}
-    TODO: Clem: form?
-    TODO: find better way to pass the information. Security issues maybe?? (accountID accessible to attacker if in the URL?)
     */
 
     var netinfo = String(window.location).split("netname:")[1];
