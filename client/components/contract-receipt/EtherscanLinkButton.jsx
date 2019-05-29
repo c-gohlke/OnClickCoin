@@ -5,7 +5,7 @@ This class creates the EtherscanLinkButton Component
 */
 
 class EtherscanLinkButton extends Component {
-  static handleClick() {
+  handleClick() {
     /*
     Given URL is of the form pathame/receipt/: {network name} + "?" + {accountID}
     */

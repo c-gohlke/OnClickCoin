@@ -36,6 +36,4 @@ app.get(['/info', '/info*'], (req, res) => {
   res.render('info');
 });
 
-console.log('exporting server/server.js');
-
 module.exports = app;

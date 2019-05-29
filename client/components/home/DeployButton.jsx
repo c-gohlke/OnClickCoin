@@ -8,7 +8,7 @@ This class creates the DeployButton Component
 */
 
 class DeployButton extends Component {
-  static async handleClick() {
+  async handleClick() {
     /*
     fetch constructor information from the contract form
     contract form is defined in server/api/ContractForm

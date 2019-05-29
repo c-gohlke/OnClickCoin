@@ -6,8 +6,6 @@ import Footer from '../footer/Footer';
 import './Home.css';
 import DeployButton from './DeployButton';
 
-console.log('in components/home/Home');
-
 /*
 Defines the Homepage of the App
 */
@@ -19,8 +17,7 @@ const Home = () => (
       <div className="OnClickCoin">
         <h1>Welcome to OnClickCoin!</h1>
         <h2>
-          Deploy an
-          <a href="https://en.wikipedia.org/wiki/ERC-20"> ERC20</a>
+          Deploy an <a href="https://en.wikipedia.org/wiki/ERC-20"> ERC20</a>{' '}
           token in one click!
         </h2>
       </div>

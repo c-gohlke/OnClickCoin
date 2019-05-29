@@ -59,7 +59,7 @@ async function deployContract(symbol, name, decimals, supply) {
         console.log('transaction received, hash is', hash);
       })
       .on('confirmation', (confirmationNumber, receipt) => {
-        console.log('trnsaction has been confirmed');
+        console.log('transaction has been confirmed');
         window.location.replace(
           `${window.location.origin}/receipt?netname:${netname}?address:${
             receipt.contractAddress

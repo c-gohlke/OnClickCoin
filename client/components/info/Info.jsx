@@ -6,8 +6,6 @@ import Footer from '../footer/Footer';
 Defines the send page of the app
 */
 
-console.log('in components/info/Info');
-
 const Info = () => (
   <div>
     <Navbar />

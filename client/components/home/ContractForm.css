@@ -1,47 +1,48 @@
 .form {
-    width: 50%;
-    text-align: center;
-    margin: auto
-  }
+  width: 50%;
+  margin: auto;
+}
 
-  /* span (e.g Name of your coin) */
-  .form label {
-    display: inline-block;
-    text-align: left;
-    width: 50%;
-    color: #3846b4;
-    font-weight: bold;
-    font-size: 15px;
-  }
+.form label {
+  color: #3846b4;
+  font-size: 18px;
+}
 
-  /* full surruounding form */
-  .form fieldset {
-    border-radius: 15px;
-    border: 2px solid rgb(33, 33, 233);
-    background: rgb(255, 255, 255);
-    width: 100%;
-  }
+.form label > span {
+  font-weight: bold;
+  float: left;
+  padding-right: 5px;
+}
 
-  /* thing on top of the form (Your coin parameters) */
-  .form fieldset legend {
-    color: #3846b4;
-    border-top: 1px solid rgb(58, 20, 20);
-    border-left: 1px solid rgb(58, 20, 20);
-    border-right: 1px solid rgb(58, 20, 20);
-    border-bottom: 1px solid rgb(58, 20, 20);
-    border-radius: 5px 5px 5px 5px;
-    font-weight: bold;
-    background: rgb(255, 255, 255);
-    font: "Lucida Sans Unicode";
-    font-size: 24px;
-  }
+/* full surruounding form */
+.form fieldset {
+  border-radius: 15px;
+  border: 2px solid rgb(33, 33, 233);
+  background: rgb(255, 255, 255);
+  width: 100%;
+}
 
-  .form input{
-    border-radius: 3px;
-    border: 1px solid rgb(29, 3, 95);
-    color: #3846b4;
-    font-weight: bold;
-    background: rgb(255, 255, 255);
-    width: 10%;
-    text-align: left;
-  }
+/* thing on top of the form (Your coin parameters) */
+.form fieldset legend {
+  color: #3846b4;
+  border-top: 1px solid rgb(58, 20, 20);
+  border-left: 1px solid rgb(58, 20, 20);
+  border-right: 1px solid rgb(58, 20, 20);
+  border-bottom: 1px solid rgb(58, 20, 20);
+  border-radius: 5px 5px 5px 5px;
+  font-weight: bold;
+  background: rgb(255, 255, 255);
+  font: 'Lucida Sans Unicode';
+  font-size: 24px;
+}
+
+.form input {
+  display: block;
+  border-radius: 3px;
+  border: 1px solid rgb(29, 3, 95);
+  color: #3846b4;
+  font-weight: bold;
+  background: rgb(255, 255, 255);
+  width: auto;
+  float: right;
+}

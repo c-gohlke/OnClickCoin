@@ -18,18 +18,11 @@ class ContractReceipt extends Component {
     super(props);
     const url = String(window.location);
 
-    console.log('url is', url);
-
     const parseName = url.split('tokenname:')[1];
     const parseSupply = url.split('supply:')[1];
 
-    console.log(parseName);
-
     const name = parseName.split('?supply')[0];
     const supply = parseSupply.split('?sendAddr')[0];
-
-    console.log(name);
-    console.log(supply);
 
     this.state = {
       name,
