@@ -10,7 +10,6 @@ body {
     background-color: blue;
     display: none;
   }
-  
   #myProgressBar {
     width: 1%;
     height: 30px;
@@ -20,4 +19,3 @@ body {
     color: white;
     display: none;
   }
-  

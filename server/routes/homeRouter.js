@@ -1,9 +1,9 @@
-var express = require('express');
-var homeRouter = express.Router();
+const express = require('express');
 
-homeRouter.get('/', function(req, res){
-  console.log("homeRouter response ")
-  res.render('home')
+const homeRouter = express.Router();
+
+homeRouter.get('/', (req, res) => {
+  res.render('home');
 });
 
 module.exports = homeRouter;

@@ -1,7 +1,5 @@
 var app = require('../server/server');
 
-console.log("bin/www called")
-
 app.listen(process.env.PORT || 3000, function() {
  console.log('server started');
 });

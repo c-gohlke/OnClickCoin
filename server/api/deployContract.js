@@ -1,130 +1,80 @@
-import { bytecodeERC20, abiConstructorErc20 } from "../../contracts/erc20";
+import { bytecodeERC20, abiConstructorErc20 } from '../../contracts/erc20';
 
-const Web3 = require("web3");
+const Web3 = require('web3');
 
 async function deployContract(symbol, name, decimals, supply) {
-  if (typeof web3 !== "undefined") {
-    // Use Mist/MetaMask's provider.
-    web3 = new Web3(Web3.currentProvider);
-
+  if (typeof web3 !== 'undefined') {
+    window.web3 = new Web3(Web3.currentProvider);
     window.web3 = new Web3(window.ethereum);
 
-    //Create the data for the deploy transaction encoding the arguments of the constructor with the constructor item of the contract ABI
-    var abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiConstructorErc20, [
-      symbol,
-      name,
-      decimals,
-      supply
-    ]);
+    // Create the data for the deploy transaction encoding the
+    // arguments of the constructor with the constructor item of the contract ABI
+    const abiPackedArgs = window.web3.eth.abi.encodeFunctionCall(
+      abiConstructorErc20,
+      [symbol, name, decimals, supply],
+    );
 
-    //remove the function signature (hash of the method signature) so the object can be added directly to the bytecode
-    var removeMethodSignature = abiPackedArgs.substring(10);
+    // remove the function signature (hash of the method signature)
+    // so the object can be added directly to the bytecode
+    const removeMethodSignature = abiPackedArgs.substring(10);
 
-    const bcode = "0x" + bytecodeERC20 + removeMethodSignature;
+    const bcode = `0x${bytecodeERC20}${removeMethodSignature}`;
 
-    //returns an array of the accounts of the metamask user
-    const accounts = await web3.eth.getAccounts(function(err, accounts) {
-      if (err != null) {
-        console.log("error in getAccount");
-        console.log(err);
-      } else if (accounts.length === 0) {
-        console.log("MetaMask is locked");
-        return -1;
-      } else {
-        console.log("MetaMask is unlocked");
-      }
-    });
+    const accounts = await window.ethereum.enable();
 
-    var netname;
+    let netname;
 
-    //returns the id of the ethereum network the client is working on
-    const netID = await web3.eth.net.getId();
+    // returns the id of the ethereum network the client is working on
+    const netID = await window.web3.eth.net.getId();
 
     switch (netID) {
-      case "1":
-        netname = "";
+      case '1':
+        netname = '';
         break;
-      case "2":
-        netname = "morden";
+      case '2':
+        netname = 'morden';
         break;
-      case "3":
-        netname = "ropsten";
+      case '3':
+        netname = 'ropsten';
         break;
       case 4:
-        netname = "rinkeby";
+        netname = 'rinkeby';
         break;
-      case "42":
-        netname = "kovan";
+      case '42':
+        netname = 'kovan';
         break;
       default:
-        netname = "Unknown";
+        netname = 'Unknown';
     }
-
-    var progressBar = document.getElementById("myProgressBar");
-    var fullBar = document.getElementById("myBar");
-
-    //sends the transaction via metamask
-    await web3.eth
+    console.log('about to send transaction');
+    // sends the transaction via metamask
+    await window.web3.eth
       .sendTransaction({
         from: accounts[0],
         value: 0,
         chainId: netID,
-        data: bcode
+        data: bcode,
       })
-      .on("transactionHash", function(hash) {
-        console.log("transaction received, hash is", hash);
-
-        //toggle to show the bars
-        progressBar.style.display = "block";
-        fullBar.style.display = "block";
-
-        //code below makes the progress bar move from 1% to 100%. Percentage point incremental happens every 225 milliseconds
-        var width = 1;
-        var id = setInterval(frame, 225);
-
-        function frame() {
-          console.log("in frame function. width is", width);
-          if (width >= 100) {
-            clearInterval(id);
-          } else {
-            width++;
-            progressBar.style.width = width + "%";
-          }
-        }
+      .on('transactionHash', hash => {
+        console.log('transaction received, hash is', hash);
       })
-      .on("receipt", function(receipt) {
-        //when the transaction receipt is returned by the sendTransaction function,
-        //reroute to the receipt page
-        //on top of rerouting, add netname, contractAddress, name of token, initial supply and account address to the URL so that receipt page can use that info
-        //TODO: Clem: find better/safer way to pass the info to the receipt page
-
-        //toggle to remove progress bar
-        progressBar.style.display = "none";
-        fullBar.style.display = "none";
-
+      .on('confirmation', (confirmationNumber, receipt) => {
+        console.log('transaction has been confirmed');
         window.location.replace(
-          window.location.origin +
-            "/receipt?netname:" +
-            netname +
-            "?address:" +
-            receipt.contractAddress +
-            "?tokenname:" +
-            name +
-            "?supply:" +
-            supply +
-            "?sendAddr:" +
-            accounts[0]
+          `${window.location.origin}/receipt?netname:${netname}?address:${
+            receipt.contractAddress
+          }?tokenname:${name}?supply:${supply}?sendAddr:${accounts[0]}`,
         );
-      });
+      })
+      .on('error', console.error);
   } else {
-    console.log("Client does not have a web3 provider");
+    console.log('Client does not have a web3 provider');
     if (
       window.confirm(
-        "It seems you do not have a web3 provider installed. To be able to safely deploy your smart contracts/create your own ERC-20 token, it is advised you download metamask. Press OK for more information"
+        'It seems you do not have a web3 provider installed. To be able to safely deploy your smart contracts/create your own ERC-20 token, it is advised you download metamask. Press OK for more information',
       )
     ) {
-      //TODO redirect
-      window.location.replace(window.location.origin + "/info?metamask");
+      window.location.replace(`${window.location.origin}/info?metamask`);
     }
   }
 }
