@@ -14,7 +14,7 @@ const Send = () => (
     <Navbar />
     <div className="send">
       <br />
-      <h1>It&aposs Giveaway time!</h1>
+      <h1>It&apos;s Giveaway time!</h1>
       <img src={give} alt="loading" />
       <TransferForm />
       <TransactButton />
