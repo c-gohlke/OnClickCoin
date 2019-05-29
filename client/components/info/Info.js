@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import Navbar from "../navbar/Navbar";
-import Footer from "../footer/Footer";
+import React, { Component } from 'react';
+import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 
 /*
 Defines the send page of the app
 */
 
-console.log("in components/info/Info");
+console.log('in components/info/Info');
 
 class Info extends Component {
   render() {

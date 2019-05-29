@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import TransferForm from "../../components/send/TransactionForm";
-import TransactButton from "../../components/send/TransactionButton";
-import give from "../images/give.gif";
-import Navbar from "../navbar/Navbar";
-import Footer from "../footer/Footer";
+import React, { Component } from 'react';
+import TransferForm from './TransactionForm';
+import TransactButton from './TransactionButton';
+import give from '../images/give.gif';
+import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 
 /*
 Defines the send page of the app
 */
 
-console.log("in components/send/Send");
+console.log('in components/send/Send');
 
 class Send extends Component {
   render() {

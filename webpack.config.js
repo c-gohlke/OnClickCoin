@@ -1,38 +1,38 @@
-//webpack.config.js
-var path = require("path");
-var webpack = require("webpack");
+// webpack.config.js
+const path = require('path');
+
 module.exports = {
-  mode: "development",
-  entry: ["@babel/polyfill", "./client/index.js"],
+  mode: 'development',
+  entry: ['@babel/polyfill', './client/index.js'],
   output: {
-    path: path.join(__dirname, "client"),
-    filename: "bundle.js"
+    path: path.join(__dirname, 'client'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"]
-          }
-        }
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
         test: /\.css$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "style-loader!css-loader"
+        loader: 'style-loader!css-loader',
       },
       {
         test: /\.(png|jpg|gif)$/,
         exclude: [/(node_modules|bower_components)/, /\.ejs$/],
         use: {
-          loader: "file-loader",
-          options: {}
-        }
-      }
-    ]
-  }
+          loader: 'file-loader',
+          options: {},
+        },
+      },
+    ],
+  },
 };

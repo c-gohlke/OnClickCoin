@@ -4,3 +4,4 @@
 test/trial
 build/static/css/*.map
 build/static/js/*.map
+.vscode/npm-debug.log

@@ -1,17 +1,17 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Header extends Component {
   render() {
     return (
-      <div class="navbar">
+      <div className="navbar">
         <a href="#home">Home</a>
         <a href="#news">News</a>
-        <div class="dropdown">
-          <button class="dropbtn">
+        <div className="dropdown">
+          <button className="dropbtn">
             Dropdown
-            <i class="fa fa-caret-down" />
+            <i className="fa fa-caret-down" />
           </button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <a href="#">Link 1</a>
             <a href="#">Link 2</a>
             <a href="#">Link 3</a>
