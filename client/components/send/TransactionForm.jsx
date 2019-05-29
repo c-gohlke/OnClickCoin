@@ -18,40 +18,35 @@ class TransactionForm extends Component {
     pathname /send/: {contractID}
     */
 
-    // this creates an array, with array[0] everything before "send/:", and array[1] everything after "send/:"
+    // this creates an array, with array[0] everything before
+    // "send/:", and array[1] everything after "send/:"
     const parsedInfo = String(window.location.href).split('send?');
     const contractID = String(parsedInfo[1]).split('?')[0];
     this.state = { contractID };
   }
 
   render() {
+    const { contractID } = this.state;
     return (
       <div>
         <form id="TransactionForm">
           <br />
-Enter your contract address
+          Enter your contract address
           <br />
           <br />
-          <input
-            id="contract"
-            placeholder={this.state.contractID}
-          />
+          <input id="contract" placeholder={contractID} />
           <br />
           <br />
-Enter your friend address
+          Enter your friend address
           <br />
           <br />
           <input id="to" placeholder="0xabc123" />
           <br />
           <br />
-How many coins should be sent?
+          How many coins should be sent?
           <br />
           <br />
-          <input
-            id="amount"
-            placeholder="1"
-            type="number"
-          />
+          <input id="amount" placeholder="1" type="number" />
           <br />
         </form>
       </div>

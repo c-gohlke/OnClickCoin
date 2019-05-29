@@ -1,5 +1,5 @@
 import { abiTransferErc20 } from '../../contracts/erc20';
-import getPermission from './getPermission.js';
+import getPermission from './getPermission';
 
 const Web3 = require('web3');
 
@@ -14,9 +14,12 @@ async function transferToken(contractAddress, toAddress, amount) {
 
     // Create the data for the transfer transaction encoding the
     // arguments of the transfer function with the transfer item of the contract ABI
-    const data = web3.eth.abi.encodeFunctionCall(abiTransferErc20, [toAddress, amount]);
+    const data = web3.eth.abi.encodeFunctionCall(abiTransferErc20, [
+      toAddress,
+      amount,
+    ]);
 
-    const accounts = await ethereum.enable();
+    const accounts = await window.ethereum.enable();
 
     // returns the id of the ethereum network the client is working on
     const netID = await web3.eth.net.getId();
@@ -29,10 +32,10 @@ async function transferToken(contractAddress, toAddress, amount) {
         chainId: netID,
         data,
       })
-      .on('transactionHash', (hash) => {
+      .on('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
       })
-      .on('receipt', (receipt) => {
+      .on('receipt', receipt => {
         console.log('receipt info is', receipt);
       });
   } else {

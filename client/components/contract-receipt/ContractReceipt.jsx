@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import LinkButton from './EtherscanLinkButton.js';
-import SendButton from './RerouteSendButton.js';
-import Navbar from '../navbar/Navbar.js';
-import Footer from '../footer/Footer.js';
-
-console.log('in components/contract-receipt/ContractReceipt');
+import LinkButton from './EtherscanLinkButton';
+import SendButton from './RerouteSendButton';
+import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 
 class ContractReceipt extends Component {
   constructor(props) {
-    /*the name and the Supply's information of the token are passed on through the URL.
+    /* the name and the Supply's information of the token are passed on through the URL.
 
     The URL's form is:
-    pathname/receipt/: { name of the net } ? { sender's address } ? { name of the token } ? {initial supply }
+    pathname/receipt/: { name of the net } ?
+    { sender's address } ? { name of the token } ? {initial supply }
 
     This URL is created by deployErc20Contract() function in server/api/deployErc20Contract
     */
@@ -21,33 +20,35 @@ class ContractReceipt extends Component {
 
     console.log('url is', url);
 
-    var parseName = url.split('tokenname:')[1];
-    var parseSupply = url.split('supply:')[1];
+    const parseName = url.split('tokenname:')[1];
+    const parseSupply = url.split('supply:')[1];
 
     console.log(parseName);
 
-    var name = parseName.split('?supply')[0];
-    var supply = parseSupply.split('?sendAddr')[0];
+    const name = parseName.split('?supply')[0];
+    const supply = parseSupply.split('?sendAddr')[0];
 
     console.log(name);
     console.log(supply);
 
     this.state = {
-      name: name,
-      supply: supply,
+      name,
+      supply,
     };
   }
 
-  state = {
-    name: 'default',
-    supply: 'default',
-  };
+  // state = {
+  //   name: 'default',
+  //   supply: 'default',
+  // };
 
   render() {
+    const { name, supply } = this.state;
+    // const { supply } = this.state;
+
     return (
       <div>
         <Navbar />
-
         <div>
           <br />
           <br />
@@ -59,18 +60,19 @@ class ContractReceipt extends Component {
             <tbody>
               <tr>
                 <td>Name:</td>
-                <td> {this.state.name}</td>
+                <td> {name}</td>
               </tr>
               <tr>
                 <td>Current supply:</td>
-                <td> {this.state.supply}</td>
+                <td> {supply}</td>
               </tr>
             </tbody>
           </table>
           <br />
           <div>
             <br />
-            Your contract has been successfully created! Link to your transaction receipt:
+            Your contract has been successfully created! Link to your
+            transaction receipt:
             <br />
             <br />
             <LinkButton />

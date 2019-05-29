@@ -8,7 +8,7 @@ This class creates the DeployButton Component
 */
 
 class DeployButton extends Component {
-  async handleClick(event) {
+  static async handleClick() {
     /*
     fetch constructor information from the contract form
     contract form is defined in server/api/ContractForm
@@ -26,7 +26,11 @@ class DeployButton extends Component {
 
   render() {
     return (
-      <button className="ContractButton" onClick={this.handleClick.bind(this)}>
+      <button
+        type="button"
+        className="ContractButton"
+        onClick={this.handleClick.bind(this)}
+      >
         Click here to create your coin!
       </button>
     );

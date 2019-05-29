@@ -3,11 +3,12 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: ['@babel/polyfill', './client/index.js'],
+  entry: ['@babel/polyfill', './client/index.jsx'],
   output: {
     path: path.join(__dirname, 'client'),
     filename: 'bundle.js',
   },
+  resolve: { extensions: ['.js', '.jsx'] },
   module: {
     rules: [
       {

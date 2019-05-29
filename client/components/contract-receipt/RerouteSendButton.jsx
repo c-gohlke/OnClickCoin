@@ -5,8 +5,8 @@ This class creates the Button that redirects to the Send page
 */
 
 class RerouteSendButton extends Component {
-  async handleClick(event) {
-    const url = (String(window.location));
+  static async handleClick() {
+    const url = String(window.location);
     const parseContractAddress = url.split('address:')[1];
     const contractAddress = parseContractAddress.split('?tokenname')[0];
 
@@ -18,7 +18,9 @@ class RerouteSendButton extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick.bind(this)}>Send it!</button>
+        <button type="button" onClick={this.handleClick.bind(this)}>
+          Send it!
+        </button>
         <br />
         <br />
       </div>
