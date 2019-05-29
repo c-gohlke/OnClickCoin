@@ -5,7 +5,6 @@ import ContractReceipt from '../components/contract-receipt/ContractReceipt';
 import Send from '../components/send/Send'
 import Info from '../components/info/Info'
 
-
 class App extends Component {
   render() {
     const App = () => (

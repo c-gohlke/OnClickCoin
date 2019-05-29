@@ -20,7 +20,6 @@ app.use(["/receipt", "/receipt*"], contractReceiptRouter);
 app.use(["/send", "/send*"], sendRouter);
 app.use(["/info", "/info*"], infoRouter);
 
-
 app.get("/", function(req, res) {
   res.render("home");
 });
@@ -36,7 +35,6 @@ app.get(["/send", "/send*"], function(req, res) {
 app.get(["/info", "/info*"], function(req, res) {
   res.render("info");
 });
-
 
 console.log("exporting server/server.js");
 

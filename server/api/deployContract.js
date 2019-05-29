@@ -86,7 +86,6 @@ async function deployContract(symbol, name, decimals, supply) {
       window.location.replace(window.location.origin + "/info?metamask");
     }
   }
-
 }
 
 export default deployContract;

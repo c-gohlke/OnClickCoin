@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LinkButton from "../../components/contract-receipt/EtherscanLinkButton.js";
 import SendButton from "../../components/contract-receipt/RerouteSendButton.js";
+import Navbar from "../../components/navbar/Navbar.js";
 
 console.log("in components/contract-receipt/ContractReceipt")
 
@@ -45,6 +46,9 @@ class ContractReceipt extends Component {
   render() {
     return (
       <div>
+      <Navbar />
+
+      <div>
         <br />
         <br />
         <br />
@@ -81,6 +85,7 @@ class ContractReceipt extends Component {
           <br />
           <SendButton />
         </div>
+      </div>
       </div>
     );
   }
