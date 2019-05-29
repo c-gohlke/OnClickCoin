@@ -4,20 +4,14 @@
     margin: auto
   }
 
+  /* span (e.g Name of your coin) */
   .form label {
-    display: flex;
+    display: inline-block;
     text-align: left;
-    margin-bottom: 20px;
-  }
-
-  /* label lext (e.g Name of your coin) */
-  .form label > span {
-    display: center;
     width: 50%;
     color: #3846b4;
     font-weight: bold;
     font-size: 15px;
-    text-align: left
   }
 
   /* full surruounding form */
@@ -42,7 +36,7 @@
     font-size: 24px;
   }
 
-  .form input[type="text"] {
+  .form input{
     border-radius: 3px;
     border: 1px solid rgb(29, 3, 95);
     color: #3846b4;

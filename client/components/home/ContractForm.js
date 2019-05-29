@@ -21,17 +21,19 @@ Supply refers to the initial supply of the coin
 class ContractForm extends Component {
     render(){
         return(
-            <div >
-                <h3 >your coin parameters</h3>
+            <div className = "form">
                 <form id="ContractForm">
-                    <br></br>Ticker Symbol of your coin <br/><br/>
-                    <input id= "symbol" defaultValue="BCC"/><br/>
-                    <br></br>Name your coin <br/><br/>
-                    <input id= "name" defaultValue="Bitconnect"/><br/>
-                    <br></br>Divisibility of the coin. (0 for atomic coins, 2 for maximal 2 decimals (e.g. Euros, USD etc.)<br/><br/>
-                    <input id= "decimals" defaultValue="2"/><br/>
-                    <br></br>How many coins should be created?<br/><br/>
-                    <input id="supply" defaultValue="21000000" type="number"/><br/>
+                    <fieldset>
+                        <legend>Your Coin Parameters</legend>
+                    <label htmlFor="symbol">Ticker Symbol of your coin </label>
+                    <input id= "symbol" defaultValue="BCC"/><br/><br/>
+                    <label htmlFor="name">Name your coin</label>
+                    <input id= "name" defaultValue="Bitconnect"/><br/><br/>
+                    <label htmlFor="decimals">Divisibility</label>
+                    <input id= "decimals" defaultValue="2"/><br/><br/>
+                    <label htmlFor="supply">How many coins should be created?</label>
+                    <input id="supply" defaultValue="21000000" type="number"/><br/><br/>
+                    </fieldset>
                 </form>
             </div>
         );

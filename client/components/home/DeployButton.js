@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import deployContract from "../../../server/api/deployContract";
 import getPermission from "../../../server/api/getPermission";
+import "./DeployButton.css"
 
 /*
 This class creates the DeployButton Component
@@ -12,11 +13,10 @@ class DeployButton extends Component {
     fetch constructor information from the contract form
     contract form is defined in server/api/ContractForm
     */
-    const formInfo = document.getElementById("ContractForm");
-    const symbol = formInfo[0].value;
-    const name = formInfo[1].value;
-    const decimals = formInfo[2].value;
-    const supply = formInfo[3].value;
+    const symbol =  document.getElementById("symbol").value;
+    const name =  document.getElementById("name").value;
+    const decimals =  document.getElementById("decimals").value;
+    const supply =  document.getElementById("supply").value;
 
     //gets permission from metamask to access accounts and other info
     await getPermission()
@@ -26,7 +26,7 @@ class DeployButton extends Component {
 
   render() {
     return (
-      <button onClick={this.handleClick.bind(this)}>
+      <button className = "ContractButton" onClick={this.handleClick.bind(this)}>
         Click here to create your coin!
       </button>
     );

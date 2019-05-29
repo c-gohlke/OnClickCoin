@@ -30,6 +30,7 @@ class Home extends Component {
           <div>
             <ContractForm />
           </div>
+          <br />
           <DeployButton />
           <br />
           <div id="myBar">
