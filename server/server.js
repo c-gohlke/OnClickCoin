@@ -12,7 +12,7 @@ const infoRouter = require('./routes/infoRouter.js');
 const app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../app'));
+app.set('views', path.join(__dirname, '../app/views'));
 app.use(express.static(path.join(__dirname, '../app')));
 
 app.use('/', homeRouter);
