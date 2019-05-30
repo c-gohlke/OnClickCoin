@@ -36,4 +36,6 @@ app.get(['/info', '/info*'], (req, res) => {
   res.render('info');
 });
 
-module.exports = app;
+app.listen(process.env.PORT || 3000, function() {
+  console.log('server started');
+});

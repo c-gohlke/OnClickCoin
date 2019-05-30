@@ -29,7 +29,7 @@
     "webpack-cli": "^3.2.3"
   },
   "scripts": {
-    "start": "npm run webpack && nodemon --exec babel-node -- bin/www",
+    "start": "npm run webpack && nodemon --exec babel-node -- server/server",
     "clean": "rm -rf node_modules && rm -rf build && npm install",
     "webpack": "webpack",
     "lint": "eslint '**/*.{js,jsx}' --fix"
