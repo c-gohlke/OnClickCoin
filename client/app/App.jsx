@@ -5,6 +5,7 @@ import ContractReceipt from '../components/contract-receipt/ContractReceipt';
 import Send from '../components/send/Send';
 import Info from '../components/info/Info';
 
+
 const App = () => (
   <div>
     <Switch>
