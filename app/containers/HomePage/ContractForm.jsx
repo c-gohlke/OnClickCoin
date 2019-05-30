@@ -1,5 +1,12 @@
 import React from 'react';
 import './ContractForm.css';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import DeployButton from './DeployButton';
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -19,6 +26,40 @@ Supply refers to the initial supply of the coin
 
 const ContractForm = () => (
   <div className="form">
+    <Container>
+      <Row>
+        <Col />
+        <Col>
+          <Card style={{ width: '30rem', background: 'grey' }}>
+            <Card.Body>
+              <Card.Title>Parameters</Card.Title>
+              <Form>
+                <Form.Group id="symbol">
+                  <Form.Label>Symbol</Form.Label>
+                  <Form.Control type="text" placeholder="ABC" />
+                </Form.Group>
+                <Form.Group id="name">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control type="text" placeholder="JohnDoeCoin" />
+                </Form.Group>
+                <Form.Group id="decimals">
+                  <Form.Label>Decimals</Form.Label>
+                  <Form.Control type="number" placeholder="2" />
+                </Form.Group>
+                <Form.Group id="totalSupply">
+                  <Form.Label>Total Supply</Form.Label>
+                  <Form.Control type="number" placeholder="1000" />
+                </Form.Group>
+                <DeployButton />
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col />
+      </Row>
+    </Container>
+
+    {/*
     <form id="ContractForm">
       <fieldset>
         <legend>Your Coin Parameters</legend>
@@ -47,7 +88,7 @@ const ContractForm = () => (
         <br />
         <br />
       </fieldset>
-    </form>
+    </form> */}
   </div>
 );
 
