@@ -1,8 +1,8 @@
 import React from 'react';
 import ContractForm from './ContractForm';
-import coin from '../images/coins.gif';
-import Navbar from '../navbar/Navbar';
-import Footer from '../footer/Footer';
+import coin from '../../images/coins.gif';
+import Navbar from '../../components/Header/Navbar';
+import Footer from '../../components/Footer/Footer';
 import './Home.css';
 import DeployButton from './DeployButton';
 

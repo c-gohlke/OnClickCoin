@@ -1,9 +1,9 @@
 import React from 'react';
 import TransferForm from './TransactionForm';
 import TransactButton from './TransactionButton';
-import give from '../images/give.gif';
-import Navbar from '../navbar/Navbar';
-import Footer from '../footer/Footer';
+import give from '../../images/give.gif';
+import Navbar from '../../components/Header/Navbar';
+import Footer from '../../components/Footer/Footer';
 
 /*
 Defines the send page of the app

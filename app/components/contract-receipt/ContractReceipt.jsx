@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import LinkButton from './EtherscanLinkButton';
 import SendButton from './RerouteSendButton';
-import Navbar from '../navbar/Navbar';
-import Footer from '../footer/Footer';
+import Navbar from '../../components/Header/Navbar';
+import Footer from '../Footer/Footer';
 
 class ContractReceipt extends Component {
   constructor(props) {

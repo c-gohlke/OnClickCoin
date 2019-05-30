@@ -12,8 +12,8 @@ const infoRouter = require('./routes/infoRouter.js');
 const app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../client'));
-app.use(express.static(path.join(__dirname, '../client')));
+app.set('views', path.join(__dirname, '../app'));
+app.use(express.static(path.join(__dirname, '../app')));
 
 app.use('/', homeRouter);
 app.use(['/receipt', '/receipt*'], contractReceiptRouter);

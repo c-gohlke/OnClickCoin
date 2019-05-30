@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../navbar/Navbar';
-import Footer from '../footer/Footer';
+import Navbar from '../../components/Header/Navbar';
+import Footer from '../Footer/Footer';
 
 /*
 Defines the send page of the app
