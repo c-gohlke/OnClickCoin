@@ -21,7 +21,7 @@ class RerouteSendButton extends Component {
       <div>
         <Button variant="dark" onClick={this.handleClick.bind(this)}>
           Send to someone
-      </ Button>
+        </Button>
         <br />
         <br />
       </div>

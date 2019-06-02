@@ -33,8 +33,7 @@ class TransactionForm extends Component {
   render() {
     const { contractID } = this.state;
     return (
-      <div>
-        <form id="TransactionForm"></form>
+      <div className="TransactionForm">
         <Row></Row>
         <Row>
           <Col></Col>
@@ -50,15 +49,11 @@ class TransactionForm extends Component {
                     </Form.Group>
                     <Form.Group>
                       <Form.Label>To</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="to"
-                        placeholder="0x5678"
-                      />
+                      <Form.Control type="text" id="to" placeholder="0x5678" />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label>Numbers</Form.Label>
-                      <Form.Control type="number" id="amount" placeholder="10" />
+                      <Form.Label>Number of coins to send (will send smallest unit)</Form.Label>
+                      <Form.Control type="number" id="amount" placeholder="10*decimals" />
                     </Form.Group>
                     <TransactButton />
                   </Form>

@@ -20,20 +20,20 @@ const Home = () => (
     <Row>
       <Col></Col>
       <Col>
-        <Container style={{ fontFamily: 'Helvetica-Bold' }}>
+        <Container style={{ fontFamily: 'Helvetica-Bold' }} fluid>
           <h1>On Click Coin</h1>
           <h2>Deploy your cryptocurrency token in one click!</h2>
           <Row>
           </Row>
           <Row>
             <Col></Col>
-            <Col><Image src={coin} /></Col>
+            <Col><Image src={coin} fluid /></Col>
             <Col></Col>
           </Row>
           <Row>
           </Row>
         </Container>
-        <Container style={{ fontFamily: 'Helvetica-Bold' }}>
+        <Container style={{ fontFamily: 'Helvetica-Bold' }} fluid>
           <ContractForm />
         </Container>
 
@@ -43,7 +43,7 @@ const Home = () => (
     <Row>
     </Row>
 
-  </div>
+  </div >
 );
 
 export default Home;
