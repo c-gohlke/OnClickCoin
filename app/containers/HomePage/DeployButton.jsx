@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import deployContract from '../../../server/api/deployContract';
 import getPermission from '../../../server/api/getPermission';
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 /*
 This class creates the DeployButton Component
 */
 
 class DeployButton extends Component {
+
   async handleClick() {
     /*
     fetch constructor information from the contract form
@@ -19,19 +22,19 @@ class DeployButton extends Component {
 
     // gets permission from metamask to access accounts and other info
     await getPermission();
-
     deployContract(symbol, name, decimals, supply);
   }
 
   render() {
     return (
-      <button
-        type="button"
-        className="ContractButton"
-        onClick={this.handleClick.bind(this)}
-      >
-        Click here to create your coin!
-      </button>
+      <>
+        <Button variant="dark" className="ContractButton" onClick={this.handleClick.bind(this)}>
+          Click here to create your coin
+      </ Button>
+
+      </>
+
+
     );
   }
 }

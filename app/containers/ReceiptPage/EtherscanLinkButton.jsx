@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
 
 /*
 This class creates the EtherscanLinkButton Component
@@ -23,9 +24,10 @@ class EtherscanLinkButton extends Component {
 
   render() {
     return (
-      <button type="button" onClick={this.handleClick.bind(this)}>
-        Find your transaction receipt!
-      </button>
+      <Button variant="dark" onClick={this.handleClick.bind(this)}>
+        See your coin page
+      </ Button>
+
     );
   }
 }

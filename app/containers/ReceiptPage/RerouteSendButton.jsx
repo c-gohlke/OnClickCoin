@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
 
 /*
 This class creates the Button that redirects to the Send page
@@ -18,9 +19,9 @@ class RerouteSendButton extends Component {
   render() {
     return (
       <div>
-        <button type="button" onClick={this.handleClick.bind(this)}>
-          Send it!
-        </button>
+        <Button variant="dark" onClick={this.handleClick.bind(this)}>
+          Send to someone
+      </ Button>
         <br />
         <br />
       </div>
