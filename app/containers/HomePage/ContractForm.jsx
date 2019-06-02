@@ -1,5 +1,4 @@
 import React from 'react';
-import './ContractForm.css';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -25,17 +24,18 @@ Supply refers to the initial supply of the coin
 
 const ContractForm = () => (
   <div className="form">
-    <Container>
-      <Row>
-        <Col />
-        <Col>
-          <Card style={{ width: '30rem', background: 'grey' }}>
+    <Row></Row>
+    <Row>
+      <Col></Col>
+      <Col>
+        <Container>
+          <Card style={{ width: '30rem', background: 'white' }}>
             <Card.Body>
               <Card.Title>Parameters</Card.Title>
               <Form>
                 <Form.Group>
                   <Form.Label>Symbol</Form.Label>
-                  <Form.Control type="text" id="symbol" placeholder="ABC" />
+                  <Form.Control type="text" id="symbol" placeholder="BTC" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Name</Form.Label>
@@ -57,10 +57,12 @@ const ContractForm = () => (
               </Form>
             </Card.Body>
           </Card>
-        </Col>
-        <Col />
-      </Row>
-    </Container>
+        </Container>
+      </Col>
+      <Col></Col>
+    </Row>
+    <Row></Row>
+
   </div>
 );
 

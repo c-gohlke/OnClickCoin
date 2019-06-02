@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import deployContract from '../../../server/api/deployContract';
 import getPermission from '../../../server/api/getPermission';
-import './DeployButton.css';
 
 /*
 This class creates the DeployButton Component
