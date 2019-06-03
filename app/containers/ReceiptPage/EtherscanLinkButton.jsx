@@ -26,8 +26,7 @@ class EtherscanLinkButton extends Component {
     return (
       <Button variant="dark" onClick={this.handleClick.bind(this)}>
         See your coin page
-      </ Button>
-
+      </Button>
     );
   }
 }

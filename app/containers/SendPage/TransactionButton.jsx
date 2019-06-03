@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import transferToken from '../../../server/api/transferToken';
 import Button from 'react-bootstrap/Button';
+import transferToken from '../../../server/api/transferToken';
 
 /*
 This class creates the TransactionButton Component for the send page
@@ -21,8 +21,7 @@ class TransactionButton extends Component {
     return (
       <Button variant="dark" onClick={this.handleClick.bind()}>
         Click here to send your coin
-      </ Button>
-
+      </Button>
     );
   }
 }

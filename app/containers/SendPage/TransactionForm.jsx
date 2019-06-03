@@ -34,10 +34,10 @@ class TransactionForm extends Component {
     const { contractID } = this.state;
     return (
       <div>
-        <form id="TransactionForm"></form>
-        <Row></Row>
+        <form id="TransactionForm" />
+        <Row />
         <Row>
-          <Col></Col>
+          <Col />
           <Col>
             <Container>
               <Card style={{ width: '30rem', background: 'white' }}>
@@ -46,19 +46,23 @@ class TransactionForm extends Component {
                   <Form>
                     <Form.Group>
                       <Form.Label>Contract Address</Form.Label>
-                      <Form.Control type="text" id="contract" placeholder="0x123abc" />
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.Label>To</Form.Label>
                       <Form.Control
                         type="text"
-                        id="to"
-                        placeholder="0x5678"
+                        id="contract"
+                        placeholder="0x123abc"
                       />
                     </Form.Group>
                     <Form.Group>
+                      <Form.Label>To</Form.Label>
+                      <Form.Control type="text" id="to" placeholder="0x5678" />
+                    </Form.Group>
+                    <Form.Group>
                       <Form.Label>Numbers</Form.Label>
-                      <Form.Control type="number" id="amount" placeholder="10" />
+                      <Form.Control
+                        type="number"
+                        id="amount"
+                        placeholder="10"
+                      />
                     </Form.Group>
                     <TransactButton />
                   </Form>
@@ -66,18 +70,16 @@ class TransactionForm extends Component {
               </Card>
             </Container>
           </Col>
-          <Col></Col>
+          <Col />
         </Row>
-        <Row></Row>
+        <Row />
       </div>
-
-
-
     );
   }
 }
 
-{/*
+{
+  /*
               <div>
         <form id="TransactionForm">
           <br />
@@ -102,5 +104,6 @@ class TransactionForm extends Component {
       </div>
       
       
-      */}
+      */
+}
 export default TransactionForm;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import LinkButton from './EtherscanLinkButton';
-import SendButton from './RerouteSendButton';
-import Navbar from '../../components/Header/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Navbar from '../../components/Header/Navbar';
+import SendButton from './RerouteSendButton';
+import LinkButton from './EtherscanLinkButton';
 import Footer from '../../components/Footer/Footer';
 
 class ContractReceipt extends Component {
@@ -41,18 +41,17 @@ class ContractReceipt extends Component {
       <>
         <div>
           <Navbar />
-          <div className="receipt"></div>
-          <Row></Row>
+          <div className="receipt" />
+          <Row />
           <Row>
-            <Col></Col>
+            <Col />
             <Col>
               <Card style={{ background: 'white' }}>
                 <Card.Img />
                 <Card.Header>Your new coin : {name}</Card.Header>
                 <Card.Body>
                   <Card.Title>Your coin was successfully created</Card.Title>
-                  <Card.Text>
-                  </Card.Text>
+                  <Card.Text />
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   <ListGroupItem>Name: {name}</ListGroupItem>
@@ -60,26 +59,28 @@ class ContractReceipt extends Component {
                 </ListGroup>
                 <Card.Body>
                   <Row>
-                    <Col><SendButton /></Col>
-                    <Col><LinkButton /></Col>
+                    <Col>
+                      <SendButton />
+                    </Col>
+                    <Col>
+                      <LinkButton />
+                    </Col>
                     <Col>Sell your coin?</Col>
                   </Row>
                 </Card.Body>
               </Card>
             </Col>
-            <Col></Col>
+            <Col />
           </Row>
-          <Row></Row>
-
+          <Row />
         </div>
-
       </>
     );
   }
 }
 
-
-{/*
+{
+  /*
                   <div>
             <br />
             <br />
@@ -122,6 +123,7 @@ class ContractReceipt extends Component {
       </div>
         
         
-        */}
+        */
+}
 
 export default ContractReceipt;

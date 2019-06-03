@@ -24,9 +24,9 @@ Supply refers to the initial supply of the coin
 
 const ContractForm = () => (
   <div className="form">
-    <Row></Row>
+    <Row />
     <Row>
-      <Col></Col>
+      <Col />
       <Col>
         <Container>
           <Card style={{ width: '30rem', background: 'white' }}>
@@ -59,10 +59,9 @@ const ContractForm = () => (
           </Card>
         </Container>
       </Col>
-      <Col></Col>
+      <Col />
     </Row>
-    <Row></Row>
-
+    <Row />
   </div>
 );
 

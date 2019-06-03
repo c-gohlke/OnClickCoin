@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import deployContract from '../../../server/api/deployContract';
-import getPermission from '../../../server/api/getPermission';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import deployContract from '../../../server/api/deployContract';
+import getPermission from '../../../server/api/getPermission';
 
 /*
 This class creates the DeployButton Component
 */
 
 class DeployButton extends Component {
-
   async handleClick() {
     /*
     fetch constructor information from the contract form
@@ -28,13 +27,14 @@ class DeployButton extends Component {
   render() {
     return (
       <>
-        <Button variant="dark" className="ContractButton" onClick={this.handleClick.bind(this)}>
+        <Button
+          variant="dark"
+          className="ContractButton"
+          onClick={this.handleClick.bind(this)}
+        >
           Click here to create your coin
-      </ Button>
-
+        </Button>
       </>
-
-
     );
   }
 }

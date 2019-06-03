@@ -1,6 +1,6 @@
 .idea
 .DS_Store
 /node_modules
-test/trial
 .vscode/
 npm-debug.log
+/dist

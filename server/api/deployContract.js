@@ -57,13 +57,13 @@ async function deployContract(symbol, name, decimals, supply) {
       })
       .on('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
-        alert("This will take a minute please be patient");
+        alert('This will take a minute please be patient');
       })
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
         window.location.replace(
           `${window.location.origin}/receipt?netname:${netname}?address:${
-          receipt.contractAddress
+            receipt.contractAddress
           }?tokenname:${name}?supply:${supply}?sendAddr:${accounts[0]}`,
         );
       })
