@@ -50,7 +50,7 @@ class ContractReceipt extends Component {
                 <Card.Img />
                 <Card.Header>Your new coin : {name}</Card.Header>
                 <Card.Body>
-                  <Card.Title>Your coin was successfully created</Card.Title>
+                  <Card.Title>Your coin was successfully created  🎉🎉🎉</Card.Title>
                   <Card.Text>
                   </Card.Text>
                 </Card.Body>
