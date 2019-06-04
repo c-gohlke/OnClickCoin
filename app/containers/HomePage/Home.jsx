@@ -13,7 +13,7 @@ Defines the Homepage of the App
 const Home = () => (
   <div>
     <Navbar />
-    <Container style={{ fontFamily: 'Courier', textAlign: 'center' }}>
+    <Container style={{ fontFamily: 'Open Sans', textAlign: 'center' }}>
       <h1>On Click Coin</h1>
       <h2>Deploy your cryptocurrency token in one click!</h2>
       <Col>
