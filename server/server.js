@@ -1,7 +1,4 @@
 // server/server.js
-
-console.log('initializing server');
-
 const express = require('express');
 const path = require('path');
 const homeRouter = require('./routes/homeRouter.js');

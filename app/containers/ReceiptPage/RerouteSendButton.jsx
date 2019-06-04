@@ -19,7 +19,7 @@ class RerouteSendButton extends Component {
   render() {
     return (
       <div>
-        <Button variant="dark" onClick={this.handleClick.bind(this)}>
+        <Button variant="dark" onClick={this.handleClick}>
           Send to someone
         </Button>
         <br />

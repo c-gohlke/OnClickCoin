@@ -45,7 +45,6 @@ async function deployContract(symbol, name, decimals, supply) {
       default:
         netname = 'Unknown';
     }
-    console.log('about to send transaction');
 
     // sends the transaction via metamask
     await window.web3.eth

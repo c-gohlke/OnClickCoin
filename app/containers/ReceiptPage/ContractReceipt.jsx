@@ -7,7 +7,6 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Navbar from '../../components/Header/Navbar';
 import SendButton from './RerouteSendButton';
 import LinkButton from './EtherscanLinkButton';
-import Footer from '../../components/Footer/Footer';
 
 class ContractReceipt extends Component {
   constructor(props) {
@@ -19,9 +18,6 @@ class ContractReceipt extends Component {
 
     const name = parseName.split('?supply')[0];
     const supply = parseSupply.split('?sendAddr')[0];
-
-    console.log('name is', name);
-    console.log('supply is', supply);
 
     this.state = {
       name,
@@ -44,7 +40,12 @@ class ContractReceipt extends Component {
                 <Card.Img />
                 <Card.Header>Your new coin : {name}</Card.Header>
                 <Card.Body>
-                  <Card.Title>Your coin was successfully created</Card.Title>
+                  <Card.Title>
+                    Your coin was successfully created{' '}
+                    <span role="img" aria-label="Party">
+                      🎉🎉🎉
+                    </span>
+                  </Card.Title>
                   <Card.Text />
                 </Card.Body>
                 <ListGroup className="list-group-flush">

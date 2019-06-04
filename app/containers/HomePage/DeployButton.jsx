@@ -20,9 +20,6 @@ class DeployButton extends Component {
 
     // gets permission from metamask to access accounts and other info
     await getPermission();
-    console.log('name is in DeployButton', name);
-    console.log('supply is in DeployButton', supply);
-
     deployContract(symbol, name, decimals, supply);
   }
 
