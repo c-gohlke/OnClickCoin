@@ -19,12 +19,6 @@ class TransactionForm extends Component {
   constructor(props) {
     super(props);
 
-    /* The URL of the send page is of the form:
-    pathname /send/: {contractID}
-    */
-
-    // this creates an array, with array[0] everything before
-    // "send/:", and array[1] everything after "send/:"
     const parsedInfo = String(window.location.href).split('send?');
     const contractID = String(parsedInfo[1]).split('?')[0];
     this.state = { contractID };
@@ -33,8 +27,7 @@ class TransactionForm extends Component {
   render() {
     const { contractID } = this.state;
     return (
-      <div>
-        <form id="TransactionForm" />
+      <div className="TransactionForm">
         <Row />
         <Row>
           <Col />
@@ -49,19 +42,25 @@ class TransactionForm extends Component {
                       <Form.Control
                         type="text"
                         id="contract"
-                        placeholder="0x123abc"
+                        defaultValue={contractID}
                       />
                     </Form.Group>
                     <Form.Group>
                       <Form.Label>To</Form.Label>
-                      <Form.Control type="text" id="to" placeholder="0x5678" />
+                      <Form.Control
+                        type="text"
+                        id="to"
+                        defaultValue="0xfb16FF8087fefbD54cD398e14967dCC72DE5ACf9"
+                      />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label>Numbers</Form.Label>
+                      <Form.Label>
+                        Number of coins to send (will send X * smallest unit)
+                      </Form.Label>
                       <Form.Control
                         type="number"
                         id="amount"
-                        placeholder="10"
+                        defaultValue="10"
                       />
                     </Form.Group>
                     <TransactButton />
@@ -78,32 +77,4 @@ class TransactionForm extends Component {
   }
 }
 
-{
-  /*
-              <div>
-        <form id="TransactionForm">
-          <br />
-          Enter your contract address
-          <br />
-          <br />
-          <input id="contract" placeholder={contractID} />
-          <br />
-          <br />
-          Enter your friend address
-          <br />
-          <br />
-          <input id="to" placeholder="0xabc123" />
-          <br />
-          <br />
-          How many coins should be sent?
-          <br />
-          <br />
-          <input id="amount" placeholder="1" type="number" />
-          <br />
-        </form>
-      </div>
-      
-      
-      */
-}
 export default TransactionForm;

@@ -8,18 +8,15 @@ This class creates the TransactionButton Component for the send page
 
 class TransactionButton extends Component {
   handleClick() {
-    // fetch the information that has been filled in the
-    // TransactionFrom, defined in client/components/send/TransactionForm
-    const formInfo = document.getElementById('TransactionForm');
-    const contractAddress = formInfo[0].value;
-    const recipientAddress = formInfo[1].value;
-    const amount = formInfo[2].value;
+    const contractAddress = document.getElementById('contract').value;
+    const recipientAddress = document.getElementById('to').value;
+    const amount = document.getElementById('amount').value;
     transferToken(contractAddress, recipientAddress, amount);
   }
 
   render() {
     return (
-      <Button variant="dark" onClick={this.handleClick.bind()}>
+      <Button variant="dark" onClick={this.handleClick}>
         Click here to send your coin
       </Button>
     );

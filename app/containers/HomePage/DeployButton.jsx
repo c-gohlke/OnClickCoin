@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
 import deployContract from '../../../server/api/deployContract';
 import getPermission from '../../../server/api/getPermission';
 
@@ -21,6 +20,9 @@ class DeployButton extends Component {
 
     // gets permission from metamask to access accounts and other info
     await getPermission();
+    console.log('name is in DeployButton', name);
+    console.log('supply is in DeployButton', supply);
+
     deployContract(symbol, name, decimals, supply);
   }
 
@@ -30,7 +32,7 @@ class DeployButton extends Component {
         <Button
           variant="dark"
           className="ContractButton"
-          onClick={this.handleClick.bind(this)}
+          onClick={this.handleClick}
         >
           Click here to create your coin
         </Button>

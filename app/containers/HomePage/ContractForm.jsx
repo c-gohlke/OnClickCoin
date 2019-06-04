@@ -35,23 +35,23 @@ const ContractForm = () => (
               <Form>
                 <Form.Group>
                   <Form.Label>Symbol</Form.Label>
-                  <Form.Control type="text" id="symbol" placeholder="BTC" />
+                  <Form.Control type="text" id="symbol" defaultValue="BTC" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
                     id="name"
-                    placeholder="JohnDoeCoin"
+                    defaultValue="JohnDoeCoin"
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Decimals</Form.Label>
-                  <Form.Control type="number" id="decimals" placeholder="2" />
+                  <Form.Control type="number" id="decimals" defaultValue="2" />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Total Supply</Form.Label>
-                  <Form.Control type="number" id="supply" placeholder="1000" />
+                  <Form.Control type="number" id="supply" defaultValue="1000" />
                 </Form.Group>
                 <DeployButton />
               </Form>
