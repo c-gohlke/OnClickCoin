@@ -12,7 +12,7 @@ Defines the send page of the app
 const Send = () => (
   <div>
     <Navbar />
-    <Container style={{ fontFamily: 'Courier', textAlign: 'center' }}>
+    <Container style={{ fontFamily: 'Open Sans', textAlign: 'center' }}>
       <h1>It&apos;s Giveaway time!</h1>
       <Image src={give} rounded />
       <br />

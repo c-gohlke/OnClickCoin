@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
 import Navbar from '../../components/Header/Navbar';
 
 /*
@@ -12,7 +13,7 @@ const Info = () => (
     <Navbar />
     <Row />
     <Row>
-      <Container>
+      <Container style={{ fontFamily: 'Open Sans' }}>
         <h1>A free open-source Ethereum based token generator</h1>
         <h2>What is this?</h2>
         This is a proof of concept application to showcase the ease with which
