@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "npm run webpack && nodemon --exec babel-node -- server/server",
-    "clean": "rm -rf node_modules && rm -rf build && npm install",
+    "clean": "rm -rf node_modules && rm -rf dist && npm install",
     "webpack": "webpack",
     "lint": "eslint '**/*.{js,jsx}' --fix"
   },
