@@ -1,5 +1,6 @@
 // webpack.config.js
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -32,9 +33,10 @@ module.exports = {
         exclude: [/(node_modules|bower_components)/, /\.ejs$/],
         use: {
           loader: 'file-loader',
-          options: {},
+          options: { name: '[name].[ext]' },
         },
       },
     ],
   },
+  plugins: [new CopyPlugin([{ from: './app/images/favicon.ico' }])],
 };
