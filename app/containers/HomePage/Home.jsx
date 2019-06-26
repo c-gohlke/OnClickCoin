@@ -4,16 +4,12 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import ContractForm from './ContractForm';
 import coin from '../../images/coins.gif';
-import Background from '../../images/98.jpg';
 import BackgroundAlt from '../../images/background_alt.jpg';
 import Navbar from '../../components/Header/Navbar';
 
 /*
 Defines the Homepage of the App
 */
-const sectionStyle = {
-  backgroundImage: `url(${Background})`,
-};
 
 const formStyle = {
   backgroundImage: `url(${BackgroundAlt})`,
