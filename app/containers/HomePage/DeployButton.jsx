@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import deployContract from '../../../server/api/deployContract';
-import getPermission from '../../../server/api/getPermission';
 
 /*
 This class creates the DeployButton Component
@@ -29,7 +28,6 @@ class DeployButton extends Component {
     }
 
     // gets permission from metamask to access accounts and other info
-    await getPermission();
     deployContract(symbolValue, nameValue, decimalsValue, supplyValue);
   }
 

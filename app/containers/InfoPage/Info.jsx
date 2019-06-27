@@ -22,7 +22,7 @@ const Info = () => (
               This is a proof of concept application to showcase the ease with
               which you can create a token using the ethereum blockchain. It is
               also nice to be able to tell that you can create your own
-              %quot;cryptocurrency%quot; in less than a minute and less than
+              &quot;cryptocurrency&quot; in less than a minute and less than
               three clicks.
             </Card.Text>
           </Card.Body>
@@ -89,7 +89,7 @@ const Info = () => (
             <Card.Text>
               <span role="img" aria-label="Star">
                 ⭐
-              </span>
+              </span>{' '}
               or submit a pull request{' '}
               <a href="https://github.com/clement2705/OnClickCoin">
                 @project-code

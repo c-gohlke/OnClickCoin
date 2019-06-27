@@ -1,9 +1,12 @@
 import { bytecodeERC20, abiConstructorErc20 } from '../../contracts/erc20';
+import getPermission from './getPermission';
+const axios = require('axios');
 
 const Web3 = require('web3');
 
 async function deployContract(symbol, name, decimals, supply) {
   if (typeof web3 !== 'undefined') {
+    await getPermission();
     window.web3 = new Web3(window.ethereum);
 
     // Create the data for the deploy transaction encoding the
@@ -60,6 +63,7 @@ async function deployContract(symbol, name, decimals, supply) {
       })
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
+        $;
         window.location.replace(
           `${window.location.origin}/receipt?netname:${netname}?address:${
             receipt.contractAddress
@@ -67,15 +71,28 @@ async function deployContract(symbol, name, decimals, supply) {
         );
       })
       .on('error', console.error);
-  } else {
+  }
+  // when the client does not have metamask, go through infura http provider
+  // TODO: right now, sends a transaction, obviously not what we want
+  else {
     console.log('Client does not have a web3 provider');
-    if (
-      window.confirm(
-        'It seems you do not have a web3 provider installed. To be able to safely deploy your smart contracts/create your own ERC-20 token, it is advised you download metamask. Press OK for more information',
-      )
-    ) {
-      window.location.replace(`${window.location.origin}/info?metamask`);
-    }
+    window.alert(
+      'It seems you do not have a web3 provider installed. It is recommended you download metamask if you want to take cryptocurrencies seriously. Visit info page for more information',
+    );
+
+    axios
+      .post('/deploy-contract', {
+        symbol,
+        name,
+        decimals,
+        supply,
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 }
 
