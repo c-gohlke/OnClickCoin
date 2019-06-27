@@ -5,6 +5,7 @@ const axios = require('axios');
 const Web3 = require('web3');
 
 async function deployContract(symbol, name, decimals, supply) {
+  // TODO: move folder somewhere else. This happens client-side
   if (typeof web3 !== 'undefined') {
     await getPermission();
     window.web3 = new Web3(window.ethereum);
@@ -63,7 +64,6 @@ async function deployContract(symbol, name, decimals, supply) {
       })
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
-        $;
         window.location.replace(
           `${window.location.origin}/receipt?netname:${netname}?address:${
             receipt.contractAddress
@@ -73,25 +73,31 @@ async function deployContract(symbol, name, decimals, supply) {
       .on('error', console.error);
   }
   // when the client does not have metamask, go through infura http provider
-  // TODO: right now, sends a transaction, obviously not what we want
   else {
     console.log('Client does not have a web3 provider');
     window.alert(
       'It seems you do not have a web3 provider installed. It is recommended you download metamask if you want to take cryptocurrencies seriously. Visit info page for more information',
     );
-
+    // TODO: remove hardcoded rinkeby
+    const netname = 'rinkeby';
     axios
       .post('/deploy-contract', {
         symbol,
         name,
         decimals,
         supply,
+        netname,
       })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
+      .then(function redirect(response) {
+        console.log('transaction confirmed');
+        console.log('response is', response.data);
+        window.location.replace(
+          `${window.location.origin}/receipt?netname:${netname}?address:${
+            response.data.contractAddr
+          }?tokenname:${name}?supply:${supply}?sendAddr:${
+            response.data.account
+          }`,
+        );
       });
   }
 }
