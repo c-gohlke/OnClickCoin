@@ -8,7 +8,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const Web3 = require('web3');
-const EthTx = require('ethereumjs-tx');
+const EthereumTx = require('ethereumjs-tx').Transaction;
 const homeRouter = require('./routes/homeRouter.js');
 const contractReceiptRouter = require('./routes/receiptRouter.js');
 const sendRouter = require('./routes/sendRouter.js');
@@ -66,8 +66,6 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
   const value = 0;
   const privateKeyFromBuffer = Buffer.from(sendPrivKey, 'hex');
 
-  const chainId = web3.utils.toHex(4);
-
   const abiPackedArgs = web3.eth.abi.encodeFunctionCall(abiConstructorErc20, [
     req.body.symbol,
     req.body.name,
@@ -85,11 +83,10 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
     gasPrice,
     gasLimit,
     value,
-    chainId,
     data,
   };
 
-  const tx = new EthTx(txParams);
+  const tx = new EthereumTx(txParams, { chain: netname });
 
   tx.sign(privateKeyFromBuffer);
   const serializedTx = tx.serialize();
@@ -103,8 +100,6 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
     .once('confirmation', (confirmationNumber, receipt) => {
       console.log('in deploy contract server, transaction has been confirmed');
       contractAddr = receipt.contractAddress;
-      console.log('receipt is', receipt);
-      console.log('contractAddr is', contractAddr);
     });
   console.log('contractAddr is', contractAddr);
 
@@ -135,8 +130,6 @@ app.post('/transfer-token', async function deploycontract(req, res) {
 
   const privateKeyFromBuffer = Buffer.from(sendPrivKey, 'hex');
 
-  const chainId = web3.utils.toHex(4);
-
   const value = 0;
   const data = web3.eth.abi.encodeFunctionCall(abiTransferErc20, [
     req.body.receiveAddr,
@@ -144,16 +137,16 @@ app.post('/transfer-token', async function deploycontract(req, res) {
   ]);
 
   const nonce = await web3.eth.getTransactionCount(sendAddr, 'pending');
-
-  const tx = await new EthTx({
+  const txParams = {
     nonce,
     gasPrice,
     gasLimit,
     to: req.body.contractAddr,
     value,
-    chainId,
     data,
-  });
+  };
+
+  const tx = new EthereumTx(txParams, { chain: netname });
 
   tx.sign(privateKeyFromBuffer);
   const serializedTx = tx.serialize();
