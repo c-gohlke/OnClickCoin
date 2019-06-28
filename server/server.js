@@ -56,7 +56,6 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
   const sendPrivKey = process.env.PRIVATE_KEY;
   const { netname } = req.body;
   const endpoint = `https://${netname}.infura.io/v3/${apiKey}`;
-
   const web3 = new Web3(new Web3.providers.HttpProvider(endpoint), null, {
     transactionConfirmationBlocks: 1,
   });
@@ -113,7 +112,7 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
 app.post('/transfer-token', async function deploycontract(req, res) {
   // TODO: find way to make synchronous. If many clients use website and deploy tokens at the same time,
   // huge bottleneck happening here, waiting for each individual contract to get confirmed one-at-a-time
-  console.log('Deploying contract post request received');
+  console.log('Transfer token post request received');
 
   const apiKey = process.env.INFURA_API_KEY;
   const sendAddr = process.env.ADDRESS;
@@ -156,7 +155,7 @@ app.post('/transfer-token', async function deploycontract(req, res) {
       console.log('transaction received, hash is', hash);
     });
 
-  res.end('transaction confirmed');
+  // res.end('transaction confirmed');
 });
 
 app.listen(process.env.PORT || 3000, function() {

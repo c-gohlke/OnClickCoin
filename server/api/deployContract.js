@@ -75,9 +75,8 @@ async function deployContract(symbol, name, decimals, supply) {
   // when the client does not have metamask, go through infura http provider
   else {
     console.log('Client does not have a web3 provider');
-    window.alert(
-      'It seems you do not have a web3 provider installed. It is recommended you download metamask if you want to take cryptocurrencies seriously. Visit info page for more information',
-    );
+    window.alert('This will take a minute please be patient');
+
     // TODO: remove hardcoded rinkeby
     const netname = 'rinkeby';
     axios
