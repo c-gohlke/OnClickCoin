@@ -1,11 +1,12 @@
 # On Click Coin
 
-This is a proof of concept application to showcase the ease with which you can create a token using the ethereum blockchain. It is also nice to be able to tell that you can create your own "cryptocurrency" in less than a minute and less than three clicks.
+This is a proof of concept application to showcase the ease with which you can create a token using the ethereum blockchain. It is also nice to be able to tell that you can create your own "cryptocurrency" in less than a minute and less than three clicks. For a more specific documentation visit our [official docs](https://github.com/clement2705/OnClickCoin/blob/master/docs/docs.md)
 
 Have a look at [OnClickCoin](onclickcoin.herokuappp.com) 
            
 ## Getting Started
 ![alt text](https://github.com/clement2705/OnClickCoin/blob/assets/Homepage.png)
+
 Simlpy fill in the parameters of your token and Press on "Click here to create your coin". You will then have to wait ~15 seconds (confirmation time for one ethereum transactions). You will then get redirected to your receipt page of your token.
 
 ### Prerequisites
