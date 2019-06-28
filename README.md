@@ -5,8 +5,7 @@ This is a proof of concept application to showcase the ease with which you can c
 Have a look at [OnClickCoin](onclickcoin.herokuappp.com) 
            
 ## Getting Started
-
-
+![alt text](https://github.com/clement2705/OnClickCoin/blob/assets/Homepage.png)
 
 ### Prerequisites
 
