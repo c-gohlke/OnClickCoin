@@ -11,6 +11,7 @@ import Navbar from '../../components/Header/Navbar';
 Defines the Homepage of the App
 */
 
+// TODO: this doesn't function
 const formStyle = {
   backgroundImage: `url(${BackgroundAlt})`,
 };

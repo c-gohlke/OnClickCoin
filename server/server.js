@@ -155,7 +155,7 @@ app.post('/transfer-token', async function deploycontract(req, res) {
       console.log('transaction received, hash is', hash);
     });
 
-  // res.end('transaction confirmed');
+  res.end('transaction confirmed');
 });
 
 app.listen(process.env.PORT || 3000, function() {
