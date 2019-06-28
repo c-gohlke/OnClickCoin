@@ -10,10 +10,12 @@ Have a look at [OnClickCoin](onclickcoin.herokuappp.com)
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Before starting with the installation, you must have Node.js and NPM installed. You can download them from the [Node.js website](https://nodejs.org/en/)
 
+To check whether you currently have node or npm installed, type the following which will output version you own, if installed
 ```
-Give examples
+node -v
+npm -v
 ```
 
 ### Installing
@@ -29,14 +31,14 @@ cd OnClickCoin
 npm install
 ```
 
-Replace the .env file with your credentials. The current values, being public on github are obviously compromised.
-The account specified in the .env file will be the one used to deploy the contract if the client does not have a web3 provider, so you are advised to not hold any mainnet tokens on that account.
+Replace the .env file with your credentials. The values below, being public on github, are obviously compromised.
+The account specified in the .env file will be the one used to deploy the contract if the client does not have a web3 provider, so you are advised to hold no mainnet tokens on that account.
 ```
 INFURA_API_KEY=eb949230c4d64a3c8e951a64a1c3b20b
 ADDRESS=0x8244Df0ACF6d2Dac25699A4F21E54f561C54Ed69
 PRIVATE_KEY=220B66D89BEFC1CC3B8C1049A694A838B42A1F53CA8081F6C99F9CA4BD5FCBF5
 ```
-If the client has a web3 provider (i.e. the [Metamask](https://metamask.io/) extention), the client's credentials will be used to sign the transaction
+If the client has a web3 provider (e.g the [Metamask](https://metamask.io/) extention), the client's credentials will be used to sign the transaction.
 
 Run the server, then visit http://localhost:3000/
 ```
@@ -59,7 +61,7 @@ Before submitting a pull request, make sure to run
 ```
 npm run lint
 ```
-This way the whole project will keep the same coding style, and the commit log will be more readable as previous work won't be overwritten by someone else's linting.
+This way the whole project will keep the same coding style, and the commit log will be more readable, as previous work won't be overwritten by someone else's linting.
 
 
 ## Authors
