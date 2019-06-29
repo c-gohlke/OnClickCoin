@@ -83,7 +83,7 @@ class ContractForm extends React.Component {
                         size="sm"
                         onClick={() => this.toggleHidden()}
                       >
-                        advanced settings
+                        advanced settings (recommended)
                       </Button>
                       {!this.state.isHidden && <Advanced />}
                     </Form.Group>

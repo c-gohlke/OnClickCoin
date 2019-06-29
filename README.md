@@ -1,13 +1,13 @@
 # On Click Coin
 
-This is a proof of concept application to showcase the ease with which you can create a token using the ethereum blockchain. It is also nice to be able to tell that you can create your own "cryptocurrency" in less than a minute and less than three clicks. For a more specific documentation visit our [official docs](https://github.com/clement2705/OnClickCoin/blob/master/docs/docs.md)
+This is a proof of concept application to showcase the ease with which you can create a token using the Ethereum blockchain. It is also nice to be able to tell that you can create your own "cryptocurrency" in less than a minute and less than three clicks. For a more specific documentation visit our [official docs](https://github.com/clement2705/OnClickCoin/blob/master/docs/docs.md)
 
-Have a look at [OnClickCoin](onclickcoin.herokuappp.com) 
+Take a look at [OnClickCoin](https://onclickcoin.herokuapp.com/) 
            
 ## Getting Started
 ![alt text](https://github.com/clement2705/OnClickCoin/blob/assets/Homepage.png)
 
-Simlpy fill in the parameters of your token and Press on "Click here to create your coin". You will then have to wait ~15 seconds (confirmation time for one ethereum transactions). You will then get redirected to your receipt page of your token.
+Simply fill in the parameters of your token and Press on "Click here to create your coin". You will then have to wait ~15 seconds (time for one Ethereum block). You will then get redirected to your receipt page of your token.
 
 ### Prerequisites
 
@@ -34,6 +34,7 @@ npm install
 
 Replace the .env file with your credentials. The values below, being public on github, are obviously compromised.
 The account specified in the .env file will be the one used to deploy the contract if the client does not have a web3 provider, so you are advised to hold no mainnet tokens on that account.
+
 ```
 INFURA_API_KEY=eb949230c4d64a3c8e951a64a1c3b20b
 ADDRESS=0x8244Df0ACF6d2Dac25699A4F21E54f561C54Ed69

@@ -13,6 +13,7 @@ const homeRouter = require('./routes/homeRouter.js');
 const contractReceiptRouter = require('./routes/receiptRouter.js');
 const sendRouter = require('./routes/sendRouter.js');
 const infoRouter = require('./routes/infoRouter.js');
+const icoRouter = require('./routes/icoRouter.js')
 
 require('dotenv').config();
 
@@ -25,7 +26,9 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/', homeRouter);
 app.use(['/receipt', '/receipt*'], contractReceiptRouter);
 app.use(['/send', '/send*'], sendRouter);
+app.use(['/ico', '/ico*'], icoRouter);
 app.use(['/info', '/info*'], infoRouter);
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -44,6 +47,10 @@ app.get(['/send', '/send*'], (req, res) => {
 
 app.get(['/info', '/info*'], (req, res) => {
   res.render('info');
+});
+
+app.get(['/ico', '/ico*'], (req, res) => {
+  res.render('ico');
 });
 
 app.post('/deploy-contract', async function deploycontract(req, res) {
@@ -158,6 +165,6 @@ app.post('/transfer-token', async function deploycontract(req, res) {
   res.end('transaction confirmed');
 });
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || 3000, function () {
   console.log('server started');
 });
