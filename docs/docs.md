@@ -122,5 +122,5 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 
 ## Markdown
 
-to skip to the next line, add 2 spaces at the end of the previous line
-to add a blank line, type "```&nbsp;```" followed by a blank
+* to skip to the next line, add 2 spaces at the end of the previous line  
+* to add a blank line, type "```&nbsp;```" followed by a blank
