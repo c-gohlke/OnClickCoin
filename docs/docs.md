@@ -8,10 +8,12 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 ### File structure:
 
 >**app**:
+
 >_front-end of the application_
 >>**components**:
 >
 >>**containers**:
+
 >>_Containers are very similar to components, the only difference is that containers are aware of application state. If part of your webpage is only used for displaying data (dumb) then make it a component._
 > 
 >>**images**:
