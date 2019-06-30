@@ -27,7 +27,7 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 >>**app.jsx**:  
 >>_the entry point to the front-end part of the app_
 &nbsp;
-&nbsp;
+
 &nbsp;
 
 >**contracts**:  
