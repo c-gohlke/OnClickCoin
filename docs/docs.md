@@ -35,7 +35,7 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 >_built by webpack, check out webpack documentation for more info_
 
 >**node_modules**
->_where all the packages are located, use Node Packet Manager to add/remove/upgrade packages_
+_where all the packages are located, use Node Packet Manager to add/remove/upgrade packages_
 
 >**server**
 >>**api**
