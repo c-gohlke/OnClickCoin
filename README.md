@@ -7,7 +7,7 @@ Have a look at [OnClickCoin](onclickcoin.herokuappp.com)
 ## Getting Started
 ![alt text](https://github.com/clement2705/OnClickCoin/blob/assets/Homepage.png)
 
-Simlpy fill in the parameters of your token and Press on "Click here to create your coin". You will then have to wait ~15 seconds (confirmation time for one ethereum transactions). You will then get redirected to your receipt page of your token.
+Simply fill in the parameters of your token and Press on "Click here to create your coin". You will then have to wait ~15 seconds (confirmation time for one ethereum transactions). You will then get redirected to your receipt page of your token.
 
 ### Prerequisites
 
