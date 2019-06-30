@@ -71,7 +71,7 @@ _where all the packages are located, use Node Packet Manager to add/remove/upgra
  >**webpack.config.json**  
 >_configuration file for webpack, which bundles (most) of the app into the single ~/dist/bundle.js file._
 
-### API of our app
+# API of our app
 
 ## GET/POST Requests
 
@@ -93,7 +93,7 @@ _responds with res.end("transaction confirmed")
 _request body with netname, name, symbols, decimals, supply_  
 _responds with netname, contractAddress, and account's address
 
-### Frequently used functions Cheat Sheet
+# Frequently used functions Cheat Sheet
 
 ## Markdown
 
