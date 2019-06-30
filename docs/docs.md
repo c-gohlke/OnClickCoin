@@ -96,9 +96,9 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 > **webpack.config.json**  
 > _configuration file for webpack, which bundles (most) of the app into the single ~/dist/bundle.js file._
 
-# API of our app
+## API of our app
 
-## GET/POST Requests
+### GET/POST Requests
 
 - get(/)
 - get(/receipt')
@@ -117,10 +117,18 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 - post(/deploy-contract)  
   _request body with {netname, name, symbols, decimals, supply}_  
   _responds with netname, contractAddress, and account's address_
+  
+### Document element IDs
 
-# Frequently used functions Cheat Sheet
+* Deploy Contract Form  
+{symbol, name, supply, decimals}
 
-## Markdown
+* TransactionButton (Send Form)  
+{contract, to, amount}
+
+## Frequently used functions Cheat Sheet
+
+### Markdown
 
 * to skip to the next line, add 2 spaces at the end of the previous line  
 * to add a blank line, type "```&nbsp;```" followed by a blank
