@@ -11,14 +11,13 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 >_front-end of the application_
 >>**components**:
 >
->>**containers**:
-
+>>**containers**:  
 >>_Containers are very similar to components, the only difference is that containers are aware of application state. If part of your webpage is only used for displaying data (dumb) then make it a component._
 > 
->>**images**:
+>>**images**:  
 >>_where we put the front-end-related images_
 >
->>**views**:
+>>**views**:  
 >>_this folder contains the pages that will be served from the server. They are all very similar, specifically because of the line_ 
 >>```
 >><script  src="bundle.js"></script>
