@@ -1,62 +1,126 @@
-//TODO: nicer formatting
+# OnClickCoin documentation
 
-Overall work flow of the app:
+## Overall work flow of the app:
 
 As specified in ~/package.json, the application launches by running "npm start" in the terminal, which will call server/server.js
 The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 
+### File structure:
 
-File structure:
-/app: front-end of the application
-    /components:
-    /containers: 
-        Containers are very similar to components, the only difference is that containers are aware of application state. If part of your webpage is only used for displaying data (dumb) then make it a component.
-    /images: 
-        where we put the front-end-related images
-    /views: 
-        this folder contains the pages that will be served from the server. They are all very similar, specifically because of the line 
-        ```
-        <script src="bundle.js"></script>
-        ```
-        webpack bundles all of our app into a same folder for better performance. After running the "npm run build" or "npm start" commands, you will find a dist folder in the root directory. The bundle.js file holds most of the app information and is the one being referred to by the above line
-    app.jsx:
-        the entry point of the front-end part of the app
+> **app**:  
+> _front-end of the application_
+>
+> > **components**:
+>
+> > **containers**:  
+> > _Containers are very similar to components, the only difference is that containers are aware of application state. If part of your webpage is only used for displaying data (dumb) then make it a component._
+>
+> > **images**:  
+> > _where we put the front-end-related images_
+>
+> > **views**:  
+> > _this folder contains the pages that will be served from the server. They are all very similar, specifically because of the line_
+> >
+> > ```
+> > <script  src="bundle.js"></script>
+> > ```
+> >
+> > _webpack bundles all of our app into a same folder for better performance. After running the "npm run build" or "npm start" commands, you will find a dist folder in the root directory. The dist/bundle.js file holds most of the app information and is the one being referred to by the above line_
+>
+> > **app.jsx**:  
+> > _the entry point to the front-end part of the app_ > > &nbsp;
 
-/contracts:
-    where most of the code related to smart contracts is located
+&nbsp;
 
-/dist
-    built by webpack, check out webpack doc for more info
+> **contracts**:  
+> _where most of the code related to smart contracts is located_ > &nbsp;
 
-/node_modules
-    where all the packages are located, use Node Packet Manager to add/remove/upgrade packages
+&nbsp;
 
-/server
-    /api
-        deployContract
-        getPermission
-        transferToken
-    /routes
-    server.js
+> **dist**  
+> _built by webpack, check out webpack documentation for more info_ > &nbsp;
 
-.env
-    holds the Environment variables (private key, address and infura api token to be used to deply contracts in case the client does not have a web3 provider installed (e.g. metamask)). To stay safe of potential accidents, do not hold any mainnet tokens on this account. While this folder is in .gitignore and changes made to it will not be uploaded, we advise you to use the already compromised account, or for you to create a new account specifically for the development of this app to prevent potential losses
+&nbsp;
 
-.eslintrc.js
-    holds the configurations with which eslint should be run with. Use "npm run lint" to call eslint
+> **node_modules**  
+> _where all the packages are located, use Node Packet Manager to add/remove/upgrade packages_ > &nbsp;
 
-nodemon.json
-     nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when files change. nodemon.json holds the (non-default) configurations for nodemon. We specify to ignore the app folder, as changes made to the app folder will cause the server to restart, however changes in the app folder are not reflected on the webpage directly. Instead, webpack watches for changes in the app folder and, when some occur, will automatically rebuild/rebundle the app. Those changes will be incorporated in the /dist folder. Once the build is completed, nodemon will capture the changes in the dist folder and restart the server
+&nbsp;
 
-package.json
-    package.json is a central repository of configuration for all tools used within the project
-    dependencies:
-        specifies the packages, and versions of, the app is using. Calling "npm install" will install all dependencies specified in package.json
-    scripts:
-        defines how to interact with the project via the terminal
-        "npm run something" will executed the script "something" specified in the scripts part
+> **server**
+>
+> > **api**
+> >
+> > > **deployContract**  
+> > > **getPermission**  
+> > > **transferToken**
+>
+> > **routes**
+>
+> > **server.js** > > &nbsp;
 
-webpack.config.json
-    configuration file for webpack, which bundles (most) of the app into the single ~/dist/bundle.js file.
+&nbsp;
 
-    This file is the source of most problems :)
+> **.env**  
+> _holds the Environment variables (private key, address and infura api token to be used to deploy contracts in case the client does not have a web3 provider installed (e.g. metamask)). To stay safe of potential accidents, do not hold any mainnet tokens on this account. While this folder is in .gitignore and changes made to it will not be uploaded, we advise you to use the already compromised account, or for you to create a new account specifically for the development of this app to prevent potential losses_ > &nbsp;
+
+&nbsp;
+
+> **.eslintrc.js**  
+> _holds the configurations with which eslint should be run with. Use "npm run lint" to call eslint_ > &nbsp;
+
+&nbsp;
+
+> **nodemon.json**  
+> _nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when files change. nodemon.json holds the (non-default) configurations for nodemon. We specify to ignore the app folder, as changes made to the app folder will cause the server to restart, however changes in the app folder are not reflected on the webpage directly. Instead, webpack watches for changes in the app folder and, when some occur, will automatically rebuild/rebundle the app. Those changes will be incorporated in the /dist folder. Once the build is completed, nodemon will capture the changes in the dist folder and restart the server_ > &nbsp;
+
+&nbsp;
+
+> **package.json**  
+> _package.json is a central repository of configuration for all tools used within the project_
+>
+> > **dependencies:**  
+> > _specifies the packages, and versions of, the app is using. Calling "npm install" will install all dependencies specified in package.json_
+>
+> > **scripts:**  
+> > _defines how to interact with the project via the terminal_
+> >
+> > ```
+> > npm run something
+> > ```
+> >
+> > _will execute the script "something" specified in the scripts part_ > > &nbsp;
+
+&nbsp;
+
+> **webpack.config.json**  
+> _configuration file for webpack, which bundles (most) of the app into the single ~/dist/bundle.js file._
+
+# API of our app
+
+## GET/POST Requests
+
+- get(/)
+- get(/receipt')
+- get(/receipt\*)
+- get(/send')
+- get(/send\*)
+- get(/info')
+- get(/info\*)
+- get(/ico)
+- get(/ico\*)
+
+- post(/transfer-token)  
+  _requests body with {netname, receiveAmount, sendAddr, contractAddr}_  
+  _responds with res.end("transaction confirmed")_
+
+- post(/deploy-contract)  
+  _request body with {netname, name, symbols, decimals, supply}_  
+  _responds with netname, contractAddress, and account's address_
+
+# Frequently used functions Cheat Sheet
+
+## Markdown
+
+to skip to the next line, add 2 spaces at the end of the previous line
+to add a blank line, type &nbsp; followed by a blank
