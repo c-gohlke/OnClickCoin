@@ -87,11 +87,11 @@ _where all the packages are located, use Node Packet Manager to add/remove/upgra
 
 * post(/transfer-token)  
 _request body with netname, receiveAmount, sendAddr, contractAddr_  
-_responds with res.end("transaction confirmed")
+_responds with res.end("transaction confirmed")_
 
 * post(/deploy-contract)  
 _request body with netname, name, symbols, decimals, supply_  
-_responds with netname, contractAddress, and account's address
+_responds with netname, contractAddress, and account's address_
 
 # Frequently used functions Cheat Sheet
 
