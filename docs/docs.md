@@ -7,8 +7,7 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 
 ### File structure:
 
->**app**:
-
+>**app**:  
 >_front-end of the application_
 >>**components**:
 >
