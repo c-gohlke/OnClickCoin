@@ -46,7 +46,7 @@ app.get(['/info', '/info*'], (req, res) => {
   res.render('info');
 });
 
-app.post('/deploy-contract', async function deploycontract(req, res) {
+app.post('/deploy-contract', async function deployContract(req, res) {
   // TODO: find way to make synchronous. If many clients use website and deploy tokens at the same time,
   // huge bottleneck happening here, waiting for each individual contract to get confirmed one-at-a-time
   console.log('Deploying contract post request received');
@@ -109,7 +109,7 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
   });
 });
 
-app.post('/transfer-token', async function deploycontract(req, res) {
+app.post('/transfer-token', async function transferToken(req, res) {
   // TODO: find way to make synchronous. If many clients use website and deploy tokens at the same time,
   // huge bottleneck happening here, waiting for each individual contract to get confirmed one-at-a-time
   console.log('Transfer token post request received');
