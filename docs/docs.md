@@ -27,6 +27,8 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 >>**app.jsx**:  
 >>_the entry point to the front-end part of the app_
 &nbsp;
+&nbsp;
+&nbsp;
 
 >**contracts**:  
 >_where most of the code related to smart contracts is located_
@@ -72,12 +74,11 @@ _where all the packages are located, use Node Packet Manager to add/remove/upgra
 >>```
 >>npm run something
 >>```
->>_will executed the script "something" specified in the scripts part_
+>>_will execute the script "something" specified in the scripts part_
 &nbsp;
 
  >**webpack.config.json**  
 >_configuration file for webpack, which bundles (most) of the app into the single ~/dist/bundle.js file._
-&nbsp;
 
 # API of our app
 
@@ -94,12 +95,14 @@ _where all the packages are located, use Node Packet Manager to add/remove/upgra
 * get(/ico*)
 &nbsp;
 
+&nbsp;
+
 * post(/transfer-token)  
-_request body with netname, receiveAmount, sendAddr, contractAddr_  
+_requests body with {netname, receiveAmount, sendAddr, contractAddr}_  
 _responds with res.end("transaction confirmed")_  
 
 * post(/deploy-contract)  
-_request body with netname, name, symbols, decimals, supply_  
+_request body with {netname, name, symbols, decimals, supply}_  
 _responds with netname, contractAddress, and account's address_  
 
 # Frequently used functions Cheat Sheet
