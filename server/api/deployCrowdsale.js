@@ -1,22 +1,24 @@
-import { bytecodeCrowdsale, abiCrowdsale } from '../../contracts/ICO/crowdsale';
+import { bytecodeCrowdsale, abiConstructorCrowdwsale, abiCrowdsale } from '../../contracts/ICO/crowdsale';
 import getPermission from './getPermission';
 const axios = require('axios');
 
 const Web3 = require('web3');
 
 
-async function deployCrowdsale(symbol, name, decimals, supply) {
+async function deployCrowdsale(rate, wallet, ierc20) {
     // TODO: move folder somewhere else. This happens client-side
     if (typeof web3 !== 'undefined') {
         await getPermission();
         window.web3 = new Web3(window.ethereum);
-
         // Create the data for the deploy transaction encoding the
         // arguments of the constructor with the constructor item of the contract ABI
+        console.log("hello", rate, wallet, ierc20)
+        console.log("constructor crowdsale", abiConstructorCrowdwsale)
         const abiPackedArgs = window.web3.eth.abi.encodeFunctionCall(
-            abiCrowdsale,
+            abiConstructorCrowdwsale,
             [rate, wallet, ierc20],
         );
+        console.log("abi packed args", abiPackedArgs)
 
         // remove the function signature (hash of the method signature)
         // so the object can be added directly to the bytecode
@@ -63,42 +65,11 @@ async function deployCrowdsale(symbol, name, decimals, supply) {
                 console.log('transaction received, hash is', hash);
                 alert('This will take a minute please be patient');
             })
-            .on('confirmation', (confirmationNumber, receipt) => {
-                console.log('transaction has been confirmed');
-                window.location.replace(
-                    `${window.location.origin}/receipt?netname:${netname}?address:${
-                    receipt.contractAddress
-                    }?tokenname:${name}?supply:${supply}?sendAddr:${accounts[0]}`,
-                );
-            })
             .on('error', console.error);
     }
-    // when the client does not have metamask, go through infura http provider
     else {
         console.log('Client does not have a web3 provider');
-        window.alert('This will take a minute please be patient');
-
-        // TODO: remove hardcoded rinkeby
-        const netname = 'rinkeby';
-        axios
-            .post('/deploy-contract', {
-                symbol,
-                name,
-                decimals,
-                supply,
-                netname,
-            })
-            .then(function redirect(response) {
-                console.log('transaction confirmed');
-                console.log('response is', response.data);
-                window.location.replace(
-                    `${window.location.origin}/receipt?netname:${netname}?address:${
-                    response.data.contractAddr
-                    }?tokenname:${name}?supply:${supply}?sendAddr:${
-                    response.data.account
-                    }`,
-                );
-            });
+        window.alert('Please install metamask for the ICO, otherwise all funds would go to us');
     }
 }
 

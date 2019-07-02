@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import deployContract from '../../../server/api/deployContract';
-import deployICO from '../../../server/api/deployIco';
+import deployCrowdsale from '../../../server/api/deployCrowdsale';
 
 /*
 This class creates the DeployButton Component
@@ -17,10 +16,8 @@ class DeployICOButton extends Component {
         const walletValue = document.getElementById('wallet').value;
         const ierc20Value = document.getElementById('ierc20').value;
         console.log("got values", rateValue, walletValue, ierc20Value)
-
-
-        // gets permission from metamask to access accounts and other info
-        deployICO(rateValue, walletValue, ierc20Value)
+        // gets permission from metamask to access accountsand other info
+        deployCrowdsale(rateValue, walletValue, ierc20Value)
     }
 
     render() {
