@@ -13,6 +13,7 @@ const homeRouter = require('./routes/homeRouter.js');
 const contractReceiptRouter = require('./routes/receiptRouter.js');
 const sendRouter = require('./routes/sendRouter.js');
 const infoRouter = require('./routes/infoRouter.js');
+const icoRouter = require('./routes/icoRouter.js');
 
 require('dotenv').config();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/', homeRouter);
 app.use(['/receipt', '/receipt*'], contractReceiptRouter);
 app.use(['/send', '/send*'], sendRouter);
+app.use(['/ico', '/ico*'], icoRouter);
 app.use(['/info', '/info*'], infoRouter);
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -46,7 +48,11 @@ app.get(['/info', '/info*'], (req, res) => {
   res.render('info');
 });
 
-app.post('/deploy-contract', async function deployContract(req, res) {
+app.get(['/ico', '/ico*'], (req, res) => {
+  res.render('ico');
+});
+
+app.post('/deploy-contract', async function deploycontract(req, res) {
   // TODO: find way to make synchronous. If many clients use website and deploy tokens at the same time,
   // huge bottleneck happening here, waiting for each individual contract to get confirmed one-at-a-time
   console.log('Deploying contract post request received');

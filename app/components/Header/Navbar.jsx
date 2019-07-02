@@ -10,6 +10,9 @@ const Navbar = () => (
       <Nav.Link href="/Send">Send</Nav.Link>
     </Nav.Item>
     <Nav.Item>
+      <Nav.Link href="/ico">On click ICO!</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
       <Nav.Link href="info?metamask">Info</Nav.Link>
     </Nav.Item>
   </Nav>
