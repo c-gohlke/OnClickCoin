@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import deployContract from '../../../server/api/deployContract';
 
@@ -6,7 +6,7 @@ import deployContract from '../../../server/api/deployContract';
 This class creates the DeployButton Component
 */
 
-class DeployButton extends Component {
+class DeployButton extends React.Component {
   async handleClick() {
     /*
     fetch constructor information from the contract form
@@ -32,12 +32,17 @@ class DeployButton extends Component {
   }
 
   render() {
+    const { handleToUpdate } = this.props;
+    const { handleClick } = this;
     return (
       <>
         <Button
           variant="dark"
           className="ContractButton"
-          onClick={this.handleClick}
+          onClick={() => {
+            handleClick();
+            handleToUpdate();
+          }}
         >
           Click here to create your coin
         </Button>

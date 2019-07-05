@@ -36,13 +36,27 @@ const Advanced = () => (
   </Form.Group>
 );
 
+const Deploying = () => (
+  <Card>
+    <Card.Body>
+      Your Token is being deployed on the blockchain. Please wait about 15
+      seconds until the transaction is confirmed.
+    </Card.Body>
+  </Card>
+);
+
 class ContractForm extends React.Component {
   constructor() {
     super();
     this.state = {
       isHidden: true,
+      isDeploying: false,
     };
   }
+
+  handleToUpdate = () => {
+    this.setState({ isDeploying: true });
+  };
 
   toggleHidden() {
     this.setState(prevState => ({ isHidden: !prevState.isHidden }));
@@ -50,52 +64,57 @@ class ContractForm extends React.Component {
 
   render() {
     return (
-      <div className="form">
-        <Row />
-        <Row>
-          <Col />
-          <Col>
-            <Container>
-              <Card style={{ width: '30rem', background: 'white' }}>
-                <Card.Body>
-                  <Card.Title>Parameters</Card.Title>
-                  <Form>
-                    <Form.Group>
-                      <Form.Label>Symbol</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="symbol"
-                        defaultValue="BTC"
-                      />
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="name"
-                        defaultValue="JohnDoeCoin"
-                      />
-                    </Form.Group>
-                    <Form.Group>
-                      <Button
-                        variant="link"
-                        className="ContractButton"
-                        size="sm"
-                        onClick={() => this.toggleHidden()}
-                      >
-                        advanced settings (recommended)
-                      </Button>
-                      {!this.state.isHidden && <Advanced />}
-                    </Form.Group>
-                    <DeployButton />
-                  </Form>
-                </Card.Body>
-              </Card>
-            </Container>
-          </Col>
-          <Col />
-        </Row>
-        <Row />
+      <div>
+        <div className="form">
+          <Row />
+          <Row>
+            <Col />
+            <Col>
+              <Container>
+                <Card style={{ width: '30rem', background: 'white' }}>
+                  <Card.Body>
+                    <Card.Title>Parameters</Card.Title>
+                    <Form>
+                      <Form.Group>
+                        <Form.Label>Symbol</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="symbol"
+                          defaultValue="BTC"
+                        />
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="name"
+                          defaultValue="JohnDoeCoin"
+                        />
+                      </Form.Group>
+                      <Form.Group>
+                        <Button
+                          variant="link"
+                          className="ContractButton"
+                          size="sm"
+                          onClick={() => {
+                            this.toggleHidden();
+                          }}
+                        >
+                          advanced settings (recommended)
+                        </Button>
+                        {!this.state.isHidden && <Advanced />}
+                      </Form.Group>
+                      <DeployButton handleToUpdate={this.handleToUpdate} />
+                    </Form>
+                  </Card.Body>
+                </Card>
+                {this.state.isDeploying && <Deploying />}
+              </Container>
+            </Col>
+            <Col />
+          </Row>
+          <Row />
+        </div>
       </div>
     );
   }
