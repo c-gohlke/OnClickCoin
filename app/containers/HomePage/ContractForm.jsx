@@ -5,7 +5,9 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 import DeployButton from './DeployButton';
+import loading from '../../images/loading.gif';
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -37,12 +39,15 @@ const Advanced = () => (
 );
 
 const Deploying = () => (
-  <Card>
-    <Card.Body>
-      Your Token is being deployed on the blockchain. Please wait about 15
-      seconds until the transaction is confirmed.
-    </Card.Body>
-  </Card>
+  <div>
+    <Card>
+      <Card.Body>
+        Your Token is being deployed on the blockchain. Please wait about 15
+        seconds until the transaction is confirmed.
+      </Card.Body>
+    </Card>
+    <Image src={loading} />
+  </div>
 );
 
 class ContractForm extends React.Component {

@@ -7,6 +7,8 @@ const Web3 = require('web3');
 async function deployContract(symbol, name, decimals, supply) {
   // TODO: move folder somewhere else. This happens client-side
   if (typeof web3 !== 'undefined') {
+    // TODO: add db entries
+
     await getPermission();
     window.web3 = new Web3(window.ethereum);
 

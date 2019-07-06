@@ -117,18 +117,29 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 - post(/deploy-contract)  
   _request body with {netname, name, symbols, decimals, supply}_  
   _responds with netname, contractAddress, and account's address_
-  
+
 ### Document element IDs
 
-* Deploy Contract Form  
-{symbol, name, supply, decimals}
+- Deploy Contract Form  
+  {symbol, name, supply, decimals}
 
-* TransactionButton (Send Form)  
-{contract, to, amount}
+- TransactionButton (Send Form)  
+  {contract, to, amount}
+
+## Database used
+
+We are using the mongoose version of MongoDB, and the database is saved on the MongoLAB Cloud. For development purposes, the endpoint is, as defined in .env.default,
+
+```script
+mongodb+srv://compromisedUserName:compromisedPassword@mongotest-brllv.mongodb.net/test?retryWrites=true&w=majority
+```
+
+In production, use another client to access the database. It can be overwritten by specifying a value in .env file (not public as in .gitignore). The Schemas for the collections are defined in api/models/.
+To add, delete or get information, make get/post requests to the server, as defined in server.js.
 
 ## Frequently used functions Cheat Sheet
 
 ### Markdown
 
-* to skip to the next line, add 2 spaces at the end of the previous line  
-* to add a blank line, type "```&nbsp;```" followed by a blank
+- to skip to the next line, add 2 spaces at the end of the previous line
+- to add a blank line, type "`&nbsp;`" followed by a blank

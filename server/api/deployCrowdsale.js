@@ -8,9 +8,13 @@ const axios = require('axios');
 
 const Web3 = require('web3');
 
+// TODO: add db entries
+
 async function deployCrowdsale(rate, wallet, ierc20) {
   // TODO: move folder somewhere else. This happens client-side
   if (typeof web3 !== 'undefined') {
+    // TODO: add db entries
+
     await getPermission();
     window.web3 = new Web3(window.ethereum);
     // Create the data for the deploy transaction encoding the
