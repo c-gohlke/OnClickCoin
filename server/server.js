@@ -15,14 +15,20 @@ const Web3 = require('web3');
 const EthereumTx = require('ethereumjs-tx').Transaction;
 const mongoose = require('mongoose');
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+const flash = require('connect-flash');
 const homeRouter = require('./routes/homeRouter.js');
 const contractReceiptRouter = require('./routes/receiptRouter.js');
 const sendRouter = require('./routes/sendRouter.js');
 const infoRouter = require('./routes/infoRouter.js');
 const icoRouter = require('./routes/icoRouter.js');
+
 require('dotenv').config();
 
 const app = express();
+
+app.use(flash());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../app/views'));
@@ -39,19 +45,91 @@ const MongoURI = process.env.MONGOLAB_URI;
 mongoose.connect(MongoURI, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function logDBConnection() {
   console.log('mongoose connected');
 });
 
+/*
+
+
+
+TODO: remove
+Test code here
+
+
+*/
+
 // TODO: finish making login function according to passport documentation
+app.use(require('serve-static')(`${__dirname}/../../public`));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(
+  require('express-session')({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+  }),
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.post(
   '/login',
   passport.authenticate('local', {
+    // TODO: flash message not functioning
     successRedirect: '/',
     failureRedirect: '/login',
+    successFlash: 'Welcome!',
     failureFlash: true,
   }),
 );
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+const User = mongoose.model('User');
+
+passport.use(
+  new LocalStrategy(function(username, password, done) {
+    User.findOne({ username }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false);
+      }
+      if (!user.validatePassword(password)) {
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  }),
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+/*  
+
+
+
+
+
+to here
+
+
+
+
+
+*/
 
 app.get('/', (req, res) => {
   res.render('home');

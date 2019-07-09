@@ -50,12 +50,39 @@ const Deploying = () => (
   </div>
 );
 
+const LoginButton = () => (
+  <div>
+    Log in: &nbsp;
+    <form action="/login" method="post">
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username" />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" />
+      </div>
+      <div>
+        <input type="submit" value="Log In" />
+      </div>
+    </form>
+    {/* <Button
+      inline="true"
+      className="LoginButton"
+      onClick={() => {
+        // TDOD: log in method
+      }}
+    ></Button> */}
+  </div>
+);
+
 class ContractForm extends React.Component {
   constructor() {
     super();
     this.state = {
       isHidden: true,
       isDeploying: false,
+      isAnonymous: true,
     };
   }
 
@@ -65,6 +92,10 @@ class ContractForm extends React.Component {
 
   toggleHidden() {
     this.setState(prevState => ({ isHidden: !prevState.isHidden }));
+  }
+
+  toggleAnonymous() {
+    this.setState(prevState => ({ isAnonymous: !prevState.isAnonymous }));
   }
 
   render() {
@@ -95,6 +126,21 @@ class ContractForm extends React.Component {
                           id="name"
                           defaultValue="JohnDoeCoin"
                         />
+                      </Form.Group>
+                      <Form.Group inline="true" controlId="formBasicChecbox">
+                        <Form.Label inline="true">
+                          Stay anonymous&nbsp;{' '}
+                        </Form.Label>
+                        <Form.Check
+                          inline="true"
+                          type="checkbox"
+                          defaultChecked="true"
+                          id="anonymous"
+                          onClick={() => {
+                            this.toggleAnonymous();
+                          }}
+                        />
+                        {!this.state.isAnonymous && <LoginButton />}
                       </Form.Group>
                       <Form.Group>
                         <Button
