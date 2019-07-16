@@ -91,16 +91,13 @@ class ICOForm extends React.Component {
     if (typeof web3 !== 'undefined') {
       window.web3 = new Web3(window.ethereum);
       const contractInstance = new web3.eth.Contract(abiERC20, contractAddress);
-      console.log(contractInstance.address);
-      console.log('hello');
       const foundSupply = await contractInstance.methods.totalSupply().call();
       const foundName = await contractInstance.methods.name.call();
       const foundSymbol = await contractInstance.methods.symbol.call();
       const foundDecimals = await contractInstance.methods.decimals.call();
-      console.log(foundSupply);
 
       const correctSupply = foundSupply / Math.pow(10, foundDecimals);
-      console.log(correctSupply);
+
       this.setState({ supply: correctSupply });
       this.setState({ name: foundName });
       this.setState({ symbol: foundSymbol });
@@ -113,17 +110,12 @@ class ICOForm extends React.Component {
   async handleChangeRate() {
     this.setState({ rateSet: true });
     const dollarsInput = document.getElementById('rate').value;
-    console.log(dollarsInput);
     const res = await ky
       .get('https://api.cryptonator.com/api/ticker/eth-usd')
       .json();
-    console.log(res.ticker.price);
     const oneUsdInWei = Math.pow(10, 18) / res.ticker.price;
     const rate =
       Math.pow(10, this.state.decimals) / (oneUsdInWei * dollarsInput);
-    console.log(this.state.decimals);
-    console.log('rate', rate);
-    console.log(oneUsdInWei);
     const amountRaisedTotal = dollarsInput * this.state.supply;
     this.setState({ totalRaised: amountRaisedTotal });
   }

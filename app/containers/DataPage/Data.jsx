@@ -7,23 +7,41 @@ import Navigationbar from '../../components/Header/Navigationbar';
 Defines the data page of the app
 */
 
+async function asyncForEach(array, callback) {
+  // TODO: find better solution
+  for (let index = 0; index < array.length; index += 1) {
+    await callback(array[index], index, array);
+  }
+}
+
+async function addUsernames(transactions) {
+  const txs = [];
+  await asyncForEach(transactions, async transaction => {
+    const res = await axios.get(`/username/${transaction.userID}`);
+
+    transaction.username = res.data;
+
+    txs.push(transaction);
+  });
+
+  return Promise.resolve(txs);
+}
+
 class Data extends React.Component {
   constructor() {
     super();
     this.state = {
       transactions: [],
       isLoading: true,
-      errors: null,
     };
   }
 
   async getTransactions() {
-    // TODO: Don't fetch all txs, bottleneck if many txs in db
     const response = await axios.get('/transactions');
-    console.log('transactions being fetched:', response.data);
+    const txs = await addUsernames(response.data);
 
     this.setState({
-      transactions: response.data,
+      transactions: txs,
       isLoading: false,
     });
   }
@@ -32,45 +50,43 @@ class Data extends React.Component {
     this.getTransactions();
   }
 
-  // TODO: better table formatting
   render() {
     const { isLoading, transactions } = this.state;
     return (
       <div>
         <Navigationbar />
         <React.Fragment>
-          <h2>Past txs</h2>
-          <div>
-            {!isLoading ? (
-              <div>
+          {!isLoading ? (
+            <Card>
+              <Card.Body>
+                <Card.Title>Most recent transactions</Card.Title>
                 <Table striped bordered variant="dark">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>userID</th>
+                      <th>username</th>
                       <th>transactionHash</th>
+                      <th>netname</th>
+                      <th>createdAt</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {transactions.map(transaction => {
-                      const { name, username, transactionHash } = transaction;
-                      return (
-                        <tr>
-                          <div key={transactionHash}>
-                            <td>{name}</td>
-                            <td>{username}</td>
-                            <td>{transactionHash}</td>
-                          </div>
-                        </tr>
-                      );
-                    })}
+                    {transactions.map(transaction => (
+                      <tr key={transaction.transactionHash}>
+                        <td>{transaction.name}</td>
+                        <td>{transaction.username}</td>
+                        <td>{transaction.transactionHash}</td>
+                        <td>{transaction.netname}</td>
+                        <td>{transaction.createdAt}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
-              </div>
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
+              </Card.Body>
+            </Card>
+          ) : (
+            <p>Loading...</p>
+          )}
         </React.Fragment>
       </div>
     );

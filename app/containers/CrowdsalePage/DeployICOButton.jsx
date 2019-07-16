@@ -15,7 +15,6 @@ class DeployICOButton extends Component {
     const rateValue = document.getElementById('rate').value;
     const walletValue = document.getElementById('wallet').value;
     const ierc20Value = document.getElementById('ierc20').value;
-    console.log('got values', rateValue, walletValue, ierc20Value);
     // gets permission from metamask to access accountsand other info
     deployCrowdsale(rateValue, walletValue, ierc20Value);
   }

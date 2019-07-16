@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
+import axios from 'axios';
 import DeployButton from './DeployButton';
+import LoggedIn from './LoggedIn';
 import loading from '../../images/loading.gif';
-// import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
-import LoginForm from '../../components/LoginForm/LoginForm.jsx';
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -44,6 +44,15 @@ const Deploying = () => (
   </div>
 );
 
+const Anonymous = () => (
+  <div>
+    You&apos;re currently anonymous. Log in for more features&nbsp;
+    <Button size="sm" href="/login">
+      Login/Register
+    </Button>
+  </div>
+);
+
 class ContractForm extends React.Component {
   constructor() {
     super();
@@ -51,7 +60,17 @@ class ContractForm extends React.Component {
       isHidden: true,
       isDeploying: false,
       isAnonymous: true,
+      username: 'anonymous',
     };
+  }
+
+  // TODO: use redux to store app states
+  async getUsername() {
+    const response = await axios.get('/currentUser');
+    this.setState({
+      isAnonymous: response.data === 'anonymous',
+      username: response.data,
+    });
   }
 
   handleToUpdate = () => {
@@ -64,6 +83,10 @@ class ContractForm extends React.Component {
 
   toggleAnonymous() {
     this.setState(prevState => ({ isAnonymous: !prevState.isAnonymous }));
+  }
+
+  componentDidMount() {
+    this.getUsername();
   }
 
   render() {
@@ -95,21 +118,6 @@ class ContractForm extends React.Component {
                           defaultValue="JohnDoeCoin"
                         />
                       </Form.Group>
-                      <Form.Group inline="true" controlId="formBasicChecbox">
-                        <Form.Label inline="true">
-                          Stay anonymous&nbsp;{' '}
-                        </Form.Label>
-                        <Form.Check
-                          inline="true"
-                          type="checkbox"
-                          defaultChecked="true"
-                          id="anonymous"
-                          onClick={() => {
-                            this.toggleAnonymous();
-                          }}
-                        />
-                        {!this.state.isAnonymous && <LoginForm />}
-                      </Form.Group>
                       <Form.Group>
                         <Button
                           variant="link"
@@ -122,6 +130,12 @@ class ContractForm extends React.Component {
                           advanced settings (recommended)
                         </Button>
                         {!this.state.isHidden && <Advanced />}
+                      </Form.Group>
+                      <Form.Group>
+                        {this.state.isAnonymous && <Anonymous />}
+                        {!this.state.isAnonymous && (
+                          <LoggedIn username={this.state.username} />
+                        )}
                       </Form.Group>
                       <DeployButton handleToUpdate={this.handleToUpdate} />
                     </Form>

@@ -89,7 +89,6 @@ async function deployContract(symbol, name, decimals, supply) {
       })
       .then(function redirect(response) {
         console.log('transaction confirmed');
-        console.log('response is', response.data);
         window.location.replace(
           `${window.location.origin}/receipt?netname:${netname}?address:${response.data.contractAddr}?tokenname:${name}?supply:${supply}?sendAddr:${response.data.account}`,
         );

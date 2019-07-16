@@ -56,8 +56,8 @@ db.once('open', function logDBConnection() {
 const User = require('../app/models/UserModel');
 
 passport.use(
-  new LocalStrategy(function(username, password, done) {
-    User.findOne({ username }, function(err, user) {
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ username }, (err, user) => {
       if (err) {
         return done(err);
       }
@@ -84,16 +84,13 @@ app.use(passport.session());
 
 app.post(
   '/login',
-  passport.authenticate('local', { failureFlash: true }),
-  function login(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    console.log('successfully logged in. req.user:', req.user);
-    res.redirect(`/login?${req.user.username}`);
-  },
+  passport.authenticate('local', {
+    successRedirect: 'login',
+    failureFlash: true,
+  }),
 );
 
-app.post('/register', async function register(request, response) {
+app.post('/register', async request => {
   // Creates and saves a new user with a salt and hashed password
 
   const user = new UserSchema({ username: request.body.username });
@@ -123,7 +120,6 @@ app.delete('/user/:id', async (request, response) => {
 });
 
 app.get('/', (req, res) => {
-  // res.render('home', { username: req.user.username }); how to extract when using webpack?
   res.render('home');
 });
 
@@ -192,9 +188,7 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
 
   let userID;
   if (req.user) {
-    console.log('user is ', req.user);
     userID = req.user._id;
-    console.log('username is ', req.user.username);
   }
 
   let contractAddr;
@@ -204,10 +198,9 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
       console.log('transaction hash is', hash);
     })
     .once('confirmation', (confirmationNumber, receipt) => {
-      console.log('in deploy contract server, transaction has been confirmed');
+      console.log('transaction has been confirmed');
       contractAddr = receipt.contractAddress;
-      const TransactionModel = mongoose.model('Transaction', TransactionSchema);
-      const transaction = new TransactionModel({
+      const transaction = new TransactionSchema({
         name: req.body.name,
         symbol: req.body.symbol,
         decimals: req.body.decimals,
@@ -216,6 +209,7 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
         receiver: receipt.to,
         transactionHash: receipt.transactionHash,
         contractAddress: receipt.contractAddress,
+        netname,
         userID,
       });
 
@@ -233,7 +227,6 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
 app.post('/transfer-token', async function transferToken(req, res) {
   // TODO: find way to make synchronous. If many clients use website and deploy tokens at the same time,
   // huge bottleneck happening here, waiting for each individual contract to get confirmed one-at-a-time
-  console.log('Transfer token post request received');
 
   const apiKey = process.env.INFURA_API_KEY;
   const sendAddr = process.env.ADDRESS;
@@ -280,14 +273,14 @@ app.post('/transfer-token', async function transferToken(req, res) {
     .on('transactionHash', hash => {
       console.log('transaction received, hash is', hash);
 
-      const TransactionModel = mongoose.model('Transaction', TransactionSchema);
-      const transaction = new TransactionModel({
+      const transaction = new TransactionSchema({
         name: '',
         symbol: '',
         decimals: -1,
         supply: -1,
         transactionHash: hash,
         contractAddress: -1,
+        netname,
         userID,
       });
 
@@ -303,32 +296,39 @@ app.post('/transaction', async (request, response) => {
   response.end('transaction stored');
 });
 
+app.get('/transactions/:uid', async (request, response) => {
+  response.send(
+    await TransactionSchema.find({ userID: request.params.uid }).exec(),
+  );
+});
+
 app.get('/transactions', async (request, response) => {
-  const transactions = await TransactionSchema.find().exec();
-
-  // add username field before returning list
-  transactions.forEach(async transaction => {
-    try {
-      transaction.username = await UserSchema.findOne(transaction.userID).exec()
-        .username;
-    } catch (error) {
-      transaction.username = 'anonymous';
-      console.error(error);
-    }
-  });
-  response.send(transactions);
+  response.send(
+    await TransactionSchema.find()
+      .sort({ createdAt: -1 })
+      .limit(20)
+      .exec(),
+  );
 });
 
-app.get('/username', async (request, response) => {
-  // TODO: remove this get function. Here for testing
-  if (!request.user) {
-    console.log('calling /username, request.user not defined');
-    response.send('not logged in');
+app.get('/username/:uid', async (request, response) => {
+  try {
+    const creator = await UserSchema.findOne({ _id: request.params.uid });
+    response.send(creator.username);
+  } catch {
+    // no user found, most likely because no userID was specified or because corresponding user was deleted
+    response.send('anonymous');
   }
-  console.log('calling /username, request.user is:', request.user);
-  response.send(request.user.username);
 });
 
-app.listen(process.env.PORT || 3000, function() {
+app.get('/currentUser', async (request, response) => {
+  if (!request.user) {
+    response.send('anonymous');
+  } else {
+    response.send(request.user.username);
+  }
+});
+
+app.listen(process.env.PORT || 3000, () => {
   console.log('server started');
 });

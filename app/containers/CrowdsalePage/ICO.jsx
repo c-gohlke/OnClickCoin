@@ -4,7 +4,6 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import coin from '../../images/coins.gif';
 import piggy from '../../images/piggy.gif';
-import BackgroundAlt from '../../images/background_alt.jpg';
 import Navigationbar from '../../components/Header/Navigationbar';
 import ICOForm from './ICOForm';
 

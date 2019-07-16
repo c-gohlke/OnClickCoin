@@ -1,10 +1,8 @@
 import {
   bytecodeCrowdsale,
   abiConstructorCrowdwsale,
-  abiCrowdsale,
 } from '../../contracts/ICO/crowdsale';
 import getPermission from './getPermission';
-const axios = require('axios');
 
 const Web3 = require('web3');
 
@@ -19,46 +17,19 @@ async function deployCrowdsale(rate, wallet, ierc20) {
     window.web3 = new Web3(window.ethereum);
     // Create the data for the deploy transaction encoding the
     // arguments of the constructor with the constructor item of the contract ABI
-    console.log('hello', rate, wallet, ierc20);
-    console.log('constructor crowdsale', abiConstructorCrowdwsale);
     const abiPackedArgs = window.web3.eth.abi.encodeFunctionCall(
       abiConstructorCrowdwsale,
       [rate, wallet, ierc20],
     );
-    console.log('abi packed args', abiPackedArgs);
 
     // remove the function signature (hash of the method signature)
     // so the object can be added directly to the bytecode
     const removeMethodSignature = abiPackedArgs.substring(10);
-
     const bcode = `0x${bytecodeCrowdsale}${removeMethodSignature}`;
-
     const accounts = await window.ethereum.enable();
-
-    let netname;
 
     // returns the id of the ethereum network the client is working on
     const netID = await window.web3.eth.net.getId();
-
-    switch (netID) {
-      case '1':
-        netname = '';
-        break;
-      case '2':
-        netname = 'morden';
-        break;
-      case '3':
-        netname = 'ropsten';
-        break;
-      case 4:
-        netname = 'rinkeby';
-        break;
-      case '42':
-        netname = 'kovan';
-        break;
-      default:
-        netname = 'Unknown';
-    }
 
     // sends the transaction via metamask
     await window.web3.eth

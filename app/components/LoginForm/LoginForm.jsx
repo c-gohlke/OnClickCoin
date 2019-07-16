@@ -6,7 +6,6 @@ class LoginForm extends React.Component {
   register() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    console.log('about to register, username is ', username, password);
     axios.post('/register', {
       username,
       password,
@@ -16,7 +15,6 @@ class LoginForm extends React.Component {
   login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    console.log('about to login, username is ', username, password);
 
     axios.post('/login', {
       username,

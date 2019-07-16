@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Card, Table, Button } from 'react-bootstrap';
 import Navigationbar from '../../components/Header/Navigationbar';
 import LoginForm from '../../components/LoginForm/LoginForm.jsx';
 
@@ -12,24 +11,14 @@ class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: 'anon',
+      username: 'anonymous',
     };
   }
 
-  // TODO: remove function
+  // TODO: use redux to store username
   async getUsername() {
-    const response = await axios.get('/username');
-    console.log('username being fetched: response is', response);
-    console.log('response.data is', response.data);
-
+    const response = await axios.get('/currentUser');
     this.setState({ username: response.data });
-  }
-
-  // TODO: remove function
-  async reloadUsername() {
-    const response = await axios.get('/username');
-    console.log('username being fetched:', response);
-    this.setState({ username: response });
   }
 
   componentDidMount() {
@@ -41,13 +30,6 @@ class Login extends React.Component {
       <div>
         <Navigationbar />
         <LoginForm />
-        <Button
-          variant="dark"
-          className="ContractButton"
-          onClick={this.reloadUsername}
-        >
-          Find Username
-        </Button>
         <p>current username is {this.state.username}</p>
       </div>
     );
