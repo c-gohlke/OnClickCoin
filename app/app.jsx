@@ -6,6 +6,8 @@ import ContractReceipt from './containers/ReceiptPage/ContractReceipt';
 import Send from './containers/SendPage/Send';
 import Info from './containers/InfoPage/Info';
 import ICO from './containers/CrowdsalePage/ICO';
+import Data from './containers/DataPage/Data';
+import Login from './containers/LoginPage/Login';
 
 const App = () => (
   <BrowserRouter>
@@ -16,6 +18,8 @@ const App = () => (
         <Route exact path="/send" component={Send} />
         <Route exact path="/info" component={Info} />
         <Route exact path="/ico" component={ICO} />
+        <Route exact path="/data" component={Data} />
+        <Route exact path="/login" component={Login} />
       </Switch>
     </div>
   </BrowserRouter>

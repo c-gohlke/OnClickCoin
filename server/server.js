@@ -5,8 +5,8 @@ import {
   abiTransferErc20,
 } from '../contracts/erc20';
 
-import UserSchema from '../app/models/UserModel';
 import TransactionSchema from '../app/models/TransactionModel';
+import UserSchema from '../app/models/UserModel';
 
 const express = require('express');
 const path = require('path');
@@ -22,7 +22,9 @@ const homeRouter = require('./routes/homeRouter.js');
 const contractReceiptRouter = require('./routes/receiptRouter.js');
 const sendRouter = require('./routes/sendRouter.js');
 const infoRouter = require('./routes/infoRouter.js');
+const dataRouter = require('./routes/dataRouter.js');
 const icoRouter = require('./routes/icoRouter.js');
+const loginRouter = require('./routes/loginRouter.js');
 
 require('dotenv').config();
 
@@ -35,9 +37,11 @@ app.set('views', path.join(__dirname, '../app/views'));
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/', homeRouter);
 app.use(['/receipt', '/receipt*'], contractReceiptRouter);
+app.use(['/data', '/data*'], dataRouter);
 app.use(['/send', '/send*'], sendRouter);
 app.use(['/ico', '/ico*'], icoRouter);
 app.use(['/info', '/info*'], infoRouter);
+app.use(['/login', '/login/*'], loginRouter);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -49,50 +53,7 @@ db.once('open', function logDBConnection() {
   console.log('mongoose connected');
 });
 
-/*
-
-
-
-TODO: remove
-Test code here
-
-
-*/
-
-// TODO: finish making login function according to passport documentation
-app.use(require('serve-static')(`${__dirname}/../../public`));
-app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(
-  require('express-session')({
-    secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true,
-  }),
-);
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.post(
-  '/login',
-  passport.authenticate('local', {
-    // TODO: flash message not functioning
-    successRedirect: '/',
-    failureRedirect: '/login',
-    successFlash: 'Welcome!',
-    failureFlash: true,
-  }),
-);
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
-const User = mongoose.model('User');
+const User = require('../app/models/UserModel');
 
 passport.use(
   new LocalStrategy(function(username, password, done) {
@@ -101,39 +62,71 @@ passport.use(
         return done(err);
       }
       if (!user) {
-        return done(null, false);
+        return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validatePassword(password)) {
-        return done(null, false);
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
     });
   }),
 );
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(session({ secret: 'cats' }));
+app.use(express.urlencoded({ extended: true })); // express body-parser
 app.use(passport.initialize());
+
 app.use(passport.session());
 
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
+app.post(
+  '/login',
+  passport.authenticate('local', { failureFlash: true }),
+  function login(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    console.log('successfully logged in. req.user:', req.user);
+    res.redirect(`/login?${req.user.username}`);
+  },
+);
+
+app.post('/register', async function register(request, response) {
+  // Creates and saves a new user with a salt and hashed password
+
+  const user = new UserSchema({ username: request.body.username });
+  await user.setPassword(request.body.password);
+  await user.save();
+
+  passport.authenticate('local', {
+    successRedirect: `/`,
+    failureRedirect: '/login',
+  });
 });
-/*  
 
+app.get('/logout', (request, response) => {
+  request.logout();
+  response.redirect('/');
+});
 
-
-
-
-to here
-
-
-
-
-
-*/
+app.delete('/user/:id', async (request, response) => {
+  try {
+    const result = await UserSchema.deleteOne({
+      _id: request.params.id,
+    }).exec();
+    response.send(result);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
 
 app.get('/', (req, res) => {
+  // res.render('home', { username: req.user.username }); how to extract when using webpack?
   res.render('home');
 });
+
 app.get(['/receipt', '/receipt*'], (req, res) => {
   res.render('receipt');
 });
@@ -145,6 +138,12 @@ app.get(['/info', '/info*'], (req, res) => {
 });
 app.get(['/ico', '/ico*'], (req, res) => {
   res.render('ico');
+});
+app.get(['/data', '/data*'], (req, res) => {
+  res.render('data');
+});
+app.get(['/login'], (req, res) => {
+  res.render('login');
 });
 
 app.post('/deploy-contract', async function deploycontract(req, res) {
@@ -191,6 +190,13 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
   tx.sign(privateKeyFromBuffer);
   const serializedTx = tx.serialize();
 
+  let userID;
+  if (req.user) {
+    console.log('user is ', req.user);
+    userID = req.user._id;
+    console.log('username is ', req.user.username);
+  }
+
   let contractAddr;
   await web3.eth
     .sendSignedTransaction(`0x${serializedTx.toString('hex')}`)
@@ -210,7 +216,7 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
         receiver: receipt.to,
         transactionHash: receipt.transactionHash,
         contractAddress: receipt.contractAddress,
-        userID: '5d1fa0e7f7647c7f0804abc5', // TODO: change hardcoded
+        userID,
       });
 
       transaction.save();
@@ -264,6 +270,11 @@ app.post('/transfer-token', async function transferToken(req, res) {
 
   tx.sign(privateKeyFromBuffer);
   const serializedTx = tx.serialize();
+
+  let userID = null;
+  if (req.user) {
+    userID = req.user._id;
+  }
   web3.eth
     .sendSignedTransaction(`0x${serializedTx.toString('hex')}`)
     .on('transactionHash', hash => {
@@ -277,23 +288,13 @@ app.post('/transfer-token', async function transferToken(req, res) {
         supply: -1,
         transactionHash: hash,
         contractAddress: -1,
-        userID: '5d1fa0e7f7647c7f0804abc5', // TODO: change hardcoded
+        userID,
       });
 
       transaction.save();
     });
 
   res.end('transaction confirmed');
-});
-
-app.post('/signup', async (request, response) => {
-  try {
-    const person = new UserSchema(request.body);
-    const result = await person.save();
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
-  }
 });
 
 app.post('/transaction', async (request, response) => {
@@ -304,18 +305,28 @@ app.post('/transaction', async (request, response) => {
 
 app.get('/transactions', async (request, response) => {
   const transactions = await TransactionSchema.find().exec();
+
+  // add username field before returning list
+  transactions.forEach(async transaction => {
+    try {
+      transaction.username = await UserSchema.findOne(transaction.userID).exec()
+        .username;
+    } catch (error) {
+      transaction.username = 'anonymous';
+      console.error(error);
+    }
+  });
   response.send(transactions);
 });
 
-app.delete('/user/:id', async (request, response) => {
-  try {
-    const result = await UserSchema.deleteOne({
-      _id: request.params.id,
-    }).exec();
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
+app.get('/username', async (request, response) => {
+  // TODO: remove this get function. Here for testing
+  if (!request.user) {
+    console.log('calling /username, request.user not defined');
+    response.send('not logged in');
   }
+  console.log('calling /username, request.user is:', request.user);
+  response.send(request.user.username);
 });
 
 app.listen(process.env.PORT || 3000, function() {

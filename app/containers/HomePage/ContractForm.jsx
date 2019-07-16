@@ -8,14 +8,8 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import DeployButton from './DeployButton';
 import loading from '../../images/loading.gif';
-
-/*
-This class creates the form to define the constructor of the new ERC-20 token
-Ticker Symbol refers to the abbreviation of the coin
-Name refers to the name of the coin
-Decimals refers to if the coin is atomic and if not to how many decimals it should be divisible.
-Supply refers to the initial supply of the coin
-*/
+// import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
+import LoginForm from '../../components/LoginForm/LoginForm.jsx';
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -50,32 +44,6 @@ const Deploying = () => (
   </div>
 );
 
-const LoginButton = () => (
-  <div>
-    Log in: &nbsp;
-    <form action="/login" method="post">
-      <div>
-        <label>Username:</label>
-        <input type="text" name="username" />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" name="password" />
-      </div>
-      <div>
-        <input type="submit" value="Log In" />
-      </div>
-    </form>
-    {/* <Button
-      inline="true"
-      className="LoginButton"
-      onClick={() => {
-        // TDOD: log in method
-      }}
-    ></Button> */}
-  </div>
-);
-
 class ContractForm extends React.Component {
   constructor() {
     super();
@@ -107,7 +75,7 @@ class ContractForm extends React.Component {
             <Col />
             <Col>
               <Container>
-                <Card style={{ width: '30rem', background: 'white' }}>
+                <Card style={{ width: '40rem', background: 'white' }}>
                   <Card.Body>
                     <Card.Title>Parameters</Card.Title>
                     <Form>
@@ -140,7 +108,7 @@ class ContractForm extends React.Component {
                             this.toggleAnonymous();
                           }}
                         />
-                        {!this.state.isAnonymous && <LoginButton />}
+                        {!this.state.isAnonymous && <LoginForm />}
                       </Form.Group>
                       <Form.Group>
                         <Button

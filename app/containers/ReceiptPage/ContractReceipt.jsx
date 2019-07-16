@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import Navbar from '../../components/Header/Navbar';
+import Navigationbar from '../../components/Header/Navigationbar';
 import SendButton from './RerouteSendButton';
 import LinkButton from './EtherscanLinkButton';
 
@@ -30,7 +30,7 @@ class ContractReceipt extends Component {
     return (
       <>
         <div>
-          <Navbar />
+          <Navigationbar />
           <div className="receipt" />
           <Row />
           <Row>

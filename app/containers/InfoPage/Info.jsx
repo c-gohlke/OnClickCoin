@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import Navbar from '../../components/Header/Navbar';
+import Navigationbar from '../../components/Header/Navigationbar';
 
 /*
 Defines the send page of the app
@@ -10,7 +10,7 @@ Defines the send page of the app
 
 const Info = () => (
   <div>
-    <Navbar />
+    <Navigationbar />
     <Row />
     <Row>
       <Container style={{ fontFamily: 'Open Sans' }}>

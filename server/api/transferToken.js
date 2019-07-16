@@ -48,7 +48,7 @@ async function transferToken(contractAddr, receiveAddr, sendAmount) {
     window.alert(
       'It seems you do not have a web3 provider installed. To be able to safely deploy your smart contracts/create your own ERC-20 token, it is recommended you download metamask. Visit info page for more information',
     );
-    // TODO: don't hardcode
+    // TODO: don't hardcode rinkeby
     const netname = 'rinkeby';
 
     axios.post('/transfer-token', {
