@@ -46,8 +46,8 @@ app.use(bodyParser.json());
 
 app.use(
   session({
-    secret: 'keyboard cat',
-    resave: false,
+    secret: 'somethingverysecret',
+    resave: true,
     saveUninitialized: true,
   }),
 );
@@ -231,7 +231,6 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
 
       transaction.save();
     });
-  console.log('contractAddr is', contractAddr);
 
   res.send({
     netname,
@@ -294,9 +293,10 @@ app.post('/transfer-token', async function transferToken(req, res) {
       console.log('transaction received, hash is', hash);
 
       const transaction = new TransactionSchema({
-        name: '',
-        symbol: '',
+        name: 'sendTransaction',
+        symbol: 'sendTransaction',
         decimals: -1,
+        sender: sendAddr,
         supply: -1,
         transactionHash: hash,
         contractAddress: req.body.contractAddr,

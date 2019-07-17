@@ -87,8 +87,6 @@ async function deployContract(symbol, name, decimals, supply, netID) {
   else {
     console.log('Client does not have a web3 provider');
     let netname;
-    console.log(netID);
-    console.log(typeof netID);
     switch (netID) {
       case 1:
         netname = 'mainnet';

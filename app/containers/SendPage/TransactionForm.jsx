@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
+import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap';
 import TransactButton from './TransactionButton';
 /*
 This class creates the TransactionForm Component for the send page
@@ -15,13 +11,35 @@ Defaulted to the address of the contract that has been created from the Home Pag
 - the amount of tokens to be sent
 */
 
+const Advanced = () => (
+  <Form.Group>
+    <Form.Group as={Col}>
+      <Form.Label>Network Name</Form.Label>
+      <Form.Control as="select" id="netID" defaultValue="4">
+        <option value="1">mainnet</option>
+        <option value="4">rinkeby (recommended)</option>
+        <option value="42">kovan</option>
+        <option value="2">morden</option>
+        <option value="3">ropsten</option>
+      </Form.Control>
+    </Form.Group>
+  </Form.Group>
+);
+
 class TransactionForm extends Component {
   constructor(props) {
     super(props);
 
     const parsedInfo = String(window.location.href).split('send?');
     const contractID = String(parsedInfo[1]).split('?')[0];
-    this.state = { contractID };
+    this.state = {
+      isHidden: true,
+      contractID,
+    };
+  }
+
+  toggleHidden() {
+    this.setState(prevState => ({ isHidden: !prevState.isHidden }));
   }
 
   render() {
@@ -62,6 +80,19 @@ class TransactionForm extends Component {
                         id="amount"
                         defaultValue="10"
                       />
+                    </Form.Group>
+                    <Form.Group>
+                      <Button
+                        variant="link"
+                        className="ContractButton"
+                        size="sm"
+                        onClick={() => {
+                          this.toggleHidden();
+                        }}
+                      >
+                        advanced settings (recommended)
+                      </Button>
+                      {!this.state.isHidden && <Advanced />}
                     </Form.Group>
                     <TransactButton />
                   </Form>

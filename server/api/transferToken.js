@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const Web3 = require('web3');
 
-async function transferToken(contractAddr, receiveAddr, sendAmount) {
+async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
   // TODO: move folder somewhere else. This happens client-side
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider.
@@ -23,10 +23,10 @@ async function transferToken(contractAddr, receiveAddr, sendAmount) {
     const accounts = await window.ethereum.enable();
 
     // returns the id of the ethereum network the client is working on
-    const netID = await window.web3.eth.net.getId();
+    const networkID = await window.web3.eth.net.getId();
 
     let netname;
-    switch (netID) {
+    switch (networkID) {
       case '1':
         netname = 'mainnet';
         break;
@@ -52,25 +52,22 @@ async function transferToken(contractAddr, receiveAddr, sendAmount) {
         from: accounts[0],
         to: contractAddr,
         value: 0,
-        chainId: netID,
+        chainId: networkID,
         data,
       })
       .on('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
         txHash = hash;
-      })
-      .on('receipt', receipt => {
-        console.log('receipt info is', receipt);
 
         axios.post('/transaction', {
-          name: '',
-          symbol: '',
+          name: 'sendTransaction',
+          symbol: 'sendTransaction',
           decimals: -1,
           supply: -1,
           sender: accounts[0],
           receiver: receiveAddr,
           transactionHash: txHash,
-          contractAddress: receipt.contractAddr,
+          contractAddress: contractAddr,
           netname,
         });
       });
@@ -81,9 +78,26 @@ async function transferToken(contractAddr, receiveAddr, sendAmount) {
     window.alert(
       'It seems you do not have a web3 provider installed. To be able to safely deploy your smart contracts/create your own ERC-20 token, it is recommended you download metamask. Visit info page for more information',
     );
-    // TODO: don't hardcode rinkeby
-    const netname = 'rinkeby';
-
+    let netname;
+    switch (netID) {
+      case 1:
+        netname = 'mainnet';
+        break;
+      case 2:
+        netname = 'morden';
+        break;
+      case 3:
+        netname = 'ropsten';
+        break;
+      case 4:
+        netname = 'rinkeby';
+        break;
+      case 42:
+        netname = 'kovan';
+        break;
+      default:
+        netname = 'Unknown';
+    }
     axios.post('/transfer-token', {
       contractAddr,
       receiveAddr,
