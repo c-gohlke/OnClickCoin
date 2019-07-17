@@ -16,10 +16,16 @@ class DeployButton extends React.Component {
     const nameValue = document.getElementById('name').value;
     const supply = document.getElementById('supply');
     const decimals = document.getElementById('decimals');
+    const netID = document.getElementById('netID');
 
     let decimalsValue = 2; // if advanced settings undefined, use default value of 2
     if (decimals) {
       decimalsValue = decimals.value;
+    }
+
+    let netIDValue = 4; // if advanced settings undefined, use default value of 2
+    if (netID) {
+      netIDValue = parseInt(document.getElementById('netID').value, 10);
     }
 
     let supplyValue = 10000; // if advanced settings undefined, use default value of 10000
@@ -28,7 +34,13 @@ class DeployButton extends React.Component {
     }
 
     // gets permission from metamask to access accounts and other info
-    deployContract(symbolValue, nameValue, decimalsValue, supplyValue);
+    deployContract(
+      symbolValue,
+      nameValue,
+      decimalsValue,
+      supplyValue,
+      netIDValue,
+    );
   }
 
   render() {

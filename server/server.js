@@ -17,6 +17,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
+
 const flash = require('connect-flash');
 const homeRouter = require('./routes/homeRouter.js');
 const contractReceiptRouter = require('./routes/receiptRouter.js');
@@ -27,9 +28,7 @@ const icoRouter = require('./routes/icoRouter.js');
 const loginRouter = require('./routes/loginRouter.js');
 
 require('dotenv').config();
-
 const app = express();
-
 app.use(flash());
 
 app.set('view engine', 'ejs');
@@ -44,6 +43,14 @@ app.use(['/info', '/info*'], infoRouter);
 app.use(['/login', '/login/*'], loginRouter);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
 
 const MongoURI = process.env.MONGOLAB_URI;
 mongoose.connect(MongoURI, { useNewUrlParser: true });
@@ -72,15 +79,15 @@ passport.use(
   }),
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(session({ secret: 'cats' }));
-app.use(express.urlencoded({ extended: true })); // express body-parser
-app.use(passport.initialize());
-
-app.use(passport.session());
+app.use(express.urlencoded({ extended: true }));
 
 app.post(
   '/login',
@@ -90,17 +97,21 @@ app.post(
   }),
 );
 
-app.post('/register', async request => {
-  // Creates and saves a new user with a salt and hashed password
-
-  const user = new UserSchema({ username: request.body.username });
-  await user.setPassword(request.body.password);
-  await user.save();
-
-  passport.authenticate('local', {
-    successRedirect: `/`,
-    failureRedirect: '/login',
-  });
+app.post('/register', function register(req, res) {
+  User.register(
+    new User({ username: req.body.username }),
+    req.body.password,
+    err => {
+      if (err) {
+        console.log(err);
+        return res.render('register');
+      }
+      passport.authenticate('local')(req, res, function redirect() {
+        return res.redirect('/');
+      });
+      return res.end();
+    },
+  );
 });
 
 app.get('/logout', (request, response) => {
@@ -156,8 +167,13 @@ app.post('/deploy-contract', async function deploycontract(req, res) {
     transactionConfirmationBlocks: 1,
   });
 
-  const gasPrice = 2500000000;
-  const gasLimit = 4000000; // TODO: not hardcoded
+  const gasPrice = parseInt(await Promise.resolve(web3.eth.getGasPrice()), 10);
+  console.log('gasPrice used is ', gasPrice);
+
+  // Sometimes transactions times super slow if gasLimit too high (yes I know it's weird and makes little sense)
+  // if transactions not going through, deploy contract with metamask and check gas values used by it
+  const gasLimit = 2574111;
+
   const value = 0;
   const privateKeyFromBuffer = Buffer.from(sendPrivKey, 'hex');
 
@@ -238,8 +254,12 @@ app.post('/transfer-token', async function transferToken(req, res) {
     transactionConfirmationBlocks: 1,
   });
 
-  const gasPrice = 2500000000;
-  const gasLimit = 4000000; // TODO: not harcoded
+  const gasPrice = parseInt(await Promise.resolve(web3.eth.getGasPrice()), 10);
+  console.log('gasPrice used is ', gasPrice);
+
+  // Sometimes transactions times super slow if gasLimit too high (yes I know it's weird and makes little sense)
+  // if transactions not going through, deploy contract with metamask and check gas values used by it
+  const gasLimit = 2574111;
 
   const privateKeyFromBuffer = Buffer.from(sendPrivKey, 'hex');
 
@@ -279,7 +299,7 @@ app.post('/transfer-token', async function transferToken(req, res) {
         decimals: -1,
         supply: -1,
         transactionHash: hash,
-        contractAddress: -1,
+        contractAddress: req.body.contractAddr,
         netname,
         userID,
       });
@@ -291,7 +311,26 @@ app.post('/transfer-token', async function transferToken(req, res) {
 });
 
 app.post('/transaction', async (request, response) => {
-  const transaction = new TransactionSchema(request.body);
+  let userID = null;
+  if (request.user) {
+    userID = request.user._id;
+  }
+
+  console.log('request to save tx, request.body is ', request.body);
+
+  const transaction = new TransactionSchema({
+    transactionHash: request.body.transactionHash,
+    name: request.body.name,
+    symbol: request.body.symbol,
+    decimals: request.body.decimals,
+    supply: request.body.supply,
+    sender: request.body.sender,
+    receiver: request.body.receiver,
+    contractAddress: request.body.contractAddress,
+    netname: request.body.netname,
+    userID,
+  });
+
   transaction.save();
   response.end('transaction stored');
 });

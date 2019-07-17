@@ -8,7 +8,7 @@ Defines the data page of the app
 */
 
 async function asyncForEach(array, callback) {
-  // TODO: find better solution
+  // TODO: find more elegant solution
   for (let index = 0; index < array.length; index += 1) {
     await callback(array[index], index, array);
   }

@@ -19,6 +19,7 @@ Decimals refers to if the coin is atomic and if not to how many decimals it shou
 Supply refers to the initial supply of the coin
 */
 
+// TODO: can't choose network when web3 provider. Impossible to force change IMO, provide better UI (no dropdown if web3 provider available)
 const Advanced = () => (
   <Form.Group>
     <Form.Group>
@@ -28,6 +29,16 @@ const Advanced = () => (
     <Form.Group>
       <Form.Label>Total Supply</Form.Label>
       <Form.Control type="number" id="supply" defaultValue="1000" />
+    </Form.Group>
+    <Form.Group as={Col}>
+      <Form.Label>Network Name</Form.Label>
+      <Form.Control as="select" id="netID" defaultValue="4">
+        <option value="1">mainnet</option>
+        <option value="4">rinkeby (recommended)</option>
+        <option value="42">kovan</option>
+        <option value="2">morden</option>
+        <option value="3">ropsten</option>
+      </Form.Control>
     </Form.Group>
   </Form.Group>
 );

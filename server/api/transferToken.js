@@ -7,8 +7,6 @@ const Web3 = require('web3');
 async function transferToken(contractAddr, receiveAddr, sendAmount) {
   // TODO: move folder somewhere else. This happens client-side
   if (typeof web3 !== 'undefined') {
-    // TODO: add db entries
-
     // Use Mist/MetaMask's provider.
     window.web3 = new Web3(window.ethereum);
 
@@ -27,6 +25,28 @@ async function transferToken(contractAddr, receiveAddr, sendAmount) {
     // returns the id of the ethereum network the client is working on
     const netID = await window.web3.eth.net.getId();
 
+    let netname;
+    switch (netID) {
+      case '1':
+        netname = 'mainnet';
+        break;
+      case '2':
+        netname = 'morden';
+        break;
+      case '3':
+        netname = 'ropsten';
+        break;
+      case 4:
+        netname = 'rinkeby';
+        break;
+      case '42':
+        netname = 'kovan';
+        break;
+      default:
+        netname = 'Unknown';
+    }
+
+    let txHash;
     await window.web3.eth
       .sendTransaction({
         from: accounts[0],
@@ -37,9 +57,22 @@ async function transferToken(contractAddr, receiveAddr, sendAmount) {
       })
       .on('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
+        txHash = hash;
       })
       .on('receipt', receipt => {
         console.log('receipt info is', receipt);
+
+        axios.post('/transaction', {
+          name: '',
+          symbol: '',
+          decimals: -1,
+          supply: -1,
+          sender: accounts[0],
+          receiver: receiveAddr,
+          transactionHash: txHash,
+          contractAddress: receipt.contractAddr,
+          netname,
+        });
       });
   }
   // when the client does not have metamask, go through infura http provider

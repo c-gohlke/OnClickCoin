@@ -4,11 +4,9 @@ const axios = require('axios');
 
 const Web3 = require('web3');
 
-async function deployContract(symbol, name, decimals, supply) {
+async function deployContract(symbol, name, decimals, supply, netID) {
   // TODO: move folder somewhere else. This happens client-side
   if (typeof web3 !== 'undefined') {
-    // TODO: add db entries
-
     await getPermission();
     window.web3 = new Web3(window.ethereum);
 
@@ -26,26 +24,23 @@ async function deployContract(symbol, name, decimals, supply) {
     const bcode = `0x${bytecodeERC20}${removeMethodSignature}`;
 
     const accounts = await window.ethereum.enable();
+    const networkID = await window.web3.eth.net.getId();
 
     let netname;
-
-    // returns the id of the ethereum network the client is working on
-    const netID = await window.web3.eth.net.getId();
-
-    switch (netID) {
-      case '1':
-        netname = '';
+    switch (networkID) {
+      case 1:
+        netname = 'mainnet';
         break;
-      case '2':
+      case 2:
         netname = 'morden';
         break;
-      case '3':
+      case 3:
         netname = 'ropsten';
         break;
       case 4:
         netname = 'rinkeby';
         break;
-      case '42':
+      case 42:
         netname = 'kovan';
         break;
       default:
@@ -53,6 +48,7 @@ async function deployContract(symbol, name, decimals, supply) {
     }
 
     // sends the transaction via metamask
+    let txHash;
     await window.web3.eth
       .sendTransaction({
         from: accounts[0],
@@ -62,9 +58,23 @@ async function deployContract(symbol, name, decimals, supply) {
       })
       .on('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
+        txHash = hash;
       })
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
+
+        axios.post('/transaction', {
+          name,
+          symbol,
+          decimals,
+          supply,
+          sender: accounts[0],
+          receiver: '-1',
+          transactionHash: txHash,
+          contractAddress: receipt.contractAddr,
+          netname,
+        });
+
         window.location.replace(
           `${window.location.origin}/receipt?netname:${netname}?address:${
             receipt.contractAddress
@@ -76,9 +86,28 @@ async function deployContract(symbol, name, decimals, supply) {
   // when the client does not have metamask, go through infura http provider
   else {
     console.log('Client does not have a web3 provider');
-
-    // TODO: remove hardcoded rinkeby
-    const netname = 'rinkeby';
+    let netname;
+    console.log(netID);
+    console.log(typeof netID);
+    switch (netID) {
+      case 1:
+        netname = 'mainnet';
+        break;
+      case 2:
+        netname = 'morden';
+        break;
+      case 3:
+        netname = 'ropsten';
+        break;
+      case 4:
+        netname = 'rinkeby';
+        break;
+      case 42:
+        netname = 'kovan';
+        break;
+      default:
+        netname = 'Unknown';
+    }
     axios
       .post('/deploy-contract', {
         symbol,
