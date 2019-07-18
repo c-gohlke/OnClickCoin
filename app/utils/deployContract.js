@@ -1,7 +1,8 @@
-import { bytecodeERC20, abiConstructorErc20 } from '../../../contracts/erc20';
-import getPermission from '../../utils/getPermission';
-const axios = require('axios');
+import { bytecodeERC20, abiConstructorErc20 } from '../../contracts/erc20';
+import getPermission from './getPermission';
+import netIDtoName from './netIDtoName';
 
+const axios = require('axios');
 const Web3 = require('web3');
 
 async function deployContract(symbol, name, decimals, supply, netID) {
@@ -24,27 +25,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
 
     const accounts = await window.ethereum.enable();
     const networkID = await window.web3.eth.net.getId();
-
-    let netname;
-    switch (networkID) {
-      case 1:
-        netname = 'mainnet';
-        break;
-      case 2:
-        netname = 'morden';
-        break;
-      case 3:
-        netname = 'ropsten';
-        break;
-      case 4:
-        netname = 'rinkeby';
-        break;
-      case 42:
-        netname = 'kovan';
-        break;
-      default:
-        netname = 'Unknown';
-    }
+    const netname = netIDtoName(networkID);
 
     // sends the transaction via metamask
     let txHash;
@@ -74,7 +55,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
           netname,
         });
 
-        window.location.replace(
+        window.location.assign(
           `${window.location.origin}/receipt?netname:${netname}?address:${
             receipt.contractAddress
           }?tokenname:${name}?supply:${supply}?sendAddr:${accounts[0]}`,
@@ -85,26 +66,8 @@ async function deployContract(symbol, name, decimals, supply, netID) {
   // when the client does not have metamask, go through infura http provider
   else {
     console.log('Client does not have a web3 provider');
-    let netname;
-    switch (netID) {
-      case 1:
-        netname = 'mainnet';
-        break;
-      case 2:
-        netname = 'morden';
-        break;
-      case 3:
-        netname = 'ropsten';
-        break;
-      case 4:
-        netname = 'rinkeby';
-        break;
-      case 42:
-        netname = 'kovan';
-        break;
-      default:
-        netname = 'Unknown';
-    }
+    const netname = netIDtoName(netID);
+
     axios
       .post('/deploy-contract', {
         symbol,
@@ -115,7 +78,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
       })
       .then(function redirect(response) {
         console.log('transaction confirmed');
-        window.location.replace(
+        window.location.assign(
           `${window.location.origin}/receipt?netname:${netname}?address:${response.data.contractAddr}?tokenname:${name}?supply:${supply}?sendAddr:${response.data.account}`,
         );
       });

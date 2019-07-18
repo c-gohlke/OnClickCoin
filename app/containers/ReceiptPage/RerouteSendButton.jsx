@@ -11,9 +11,8 @@ class RerouteSendButton extends Component {
     const parseContractAddress = url.split('address:')[1];
     const contractAddress = parseContractAddress.split('?tokenname')[0];
 
-    window.location.replace(
-      `${window.location.origin}/send?${contractAddress}`,
-    );
+    const link = `${window.location.origin}/send?${contractAddress}`;
+    window.open(link);
   }
 
   render() {

@@ -11,6 +11,7 @@ Defaulted to the address of the contract that has been created from the Home Pag
 - the amount of tokens to be sent
 */
 
+// TODO: file restructure
 const Advanced = () => (
   <Form.Group>
     <Form.Group as={Col}>

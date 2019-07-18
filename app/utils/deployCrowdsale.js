@@ -1,10 +1,11 @@
 import {
   bytecodeCrowdsale,
   abiConstructorCrowdwsale,
-} from '../../../contracts/ICO/crowdsale';
-import getPermission from '../../utils/getPermission';
-const axios = require('axios');
+} from '../../contracts/ICO/crowdsale';
+import getPermission from './getPermission';
+import netIDtoName from './netIDtoName';
 
+const axios = require('axios');
 const Web3 = require('web3');
 
 async function deployCrowdsale(rate, wallet, ierc20) {
@@ -26,27 +27,7 @@ async function deployCrowdsale(rate, wallet, ierc20) {
 
     // returns the id of the ethereum network the client is working on
     const netID = await window.web3.eth.net.getId();
-
-    let netname;
-    switch (netID) {
-      case '1':
-        netname = 'mainnet';
-        break;
-      case '2':
-        netname = 'morden';
-        break;
-      case '3':
-        netname = 'ropsten';
-        break;
-      case 4:
-        netname = 'rinkeby';
-        break;
-      case '42':
-        netname = 'kovan';
-        break;
-      default:
-        netname = 'Unknown';
-    }
+    const netname = netIDtoName(netID);
 
     // sends the transaction via metamask
     let txHash;
@@ -60,7 +41,7 @@ async function deployCrowdsale(rate, wallet, ierc20) {
       .on('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
         txHash = hash;
-        alert('This will take a minute please be patient');
+        window.alert('This will take a minute please be patient');
       })
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');

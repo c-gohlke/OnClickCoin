@@ -18,7 +18,6 @@ class EtherscanLinkButton extends Component {
     const accID = addrinfo.split('?')[0];
 
     const link = `https://${netname}.etherscan.io/token/${accID}`;
-
     window.open(link);
   }
 

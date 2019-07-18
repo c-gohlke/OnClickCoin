@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import deployContract from './deployContract';
+import deployContract from '../../utils/deployContract';
 
 /*
 This class creates the DeployButton Component

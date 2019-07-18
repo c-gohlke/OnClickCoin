@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { render } from 'react-dom';
-import Home from './containers/HomePage/Home';
-import ContractReceipt from './containers/ReceiptPage/ContractReceipt';
-import Send from './containers/SendPage/Send';
-import Info from './containers/InfoPage/Info';
-import ICO from './containers/CrowdsalePage/ICO';
-import Data from './containers/DataPage/Data';
-import Login from './containers/LoginPage/Login';
+import Home from './containers/HomePage/index';
+import ContractReceipt from './containers/ReceiptPage/index';
+import Send from './containers/SendPage/index';
+import Info from './containers/InfoPage/index';
+import ICO from './containers/CrowdsalePage/index';
+import Data from './containers/DataPage/index';
+import Login from './containers/LoginPage/index';
 
 const App = () => (
   <BrowserRouter>

@@ -7,6 +7,7 @@ import Navigationbar from '../../components/Header/Navigationbar';
 Defines the data page of the app
 */
 
+// TODO: change functions file structure
 async function asyncForEach(array, callback) {
   // TODO: find more elegant solution
   for (let index = 0; index < array.length; index += 1) {

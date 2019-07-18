@@ -19,6 +19,7 @@ Decimals refers to if the coin is atomic and if not to how many decimals it shou
 Supply refers to the initial supply of the coin
 */
 
+// TODO: file restructure
 // TODO: can't choose network when web3 provider. Impossible to force change IMO, provide better UI (no dropdown if web3 provider available)
 const Advanced = () => (
   <Form.Group>
