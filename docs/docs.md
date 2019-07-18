@@ -50,10 +50,6 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 > **server**
 >
 > > **api**
-> >
-> > > **deployContract**  
-> > > **getPermission**  
-> > > **transferToken**
 >
 > > **routes**
 >

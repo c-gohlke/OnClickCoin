@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import transferToken from '../../../server/api/transferToken';
+import transferToken from './transferToken';
 
 /*
 This class creates the TransactionButton Component for the send page

@@ -316,8 +316,6 @@ app.post('/transaction', async (request, response) => {
     userID = request.user._id;
   }
 
-  console.log('request to save tx, request.body is ', request.body);
-
   const transaction = new TransactionSchema({
     transactionHash: request.body.transactionHash,
     name: request.body.name,

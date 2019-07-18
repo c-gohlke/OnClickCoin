@@ -1,11 +1,10 @@
-import { abiTransferErc20 } from '../../contracts/erc20';
-import getPermission from './getPermission';
+import { abiTransferErc20 } from '../../../contracts/erc20';
+import getPermission from '../../utils/getPermission';
 const axios = require('axios');
 
 const Web3 = require('web3');
 
 async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
-  // TODO: move folder somewhere else. This happens client-side
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider.
     window.web3 = new Web3(window.ethereum);
@@ -59,6 +58,7 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
         console.log('transaction received, hash is', hash);
         txHash = hash;
 
+        // todo: remove hardcoded name
         axios.post('/transaction', {
           name: 'sendTransaction',
           symbol: 'sendTransaction',

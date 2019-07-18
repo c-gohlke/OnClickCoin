@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import deployCrowdsale from '../../../server/api/deployCrowdsale';
+import deployCrowdsale from './deployCrowdsale';
 
 /*
 This class creates the DeployButton Component
