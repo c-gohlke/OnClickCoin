@@ -39,7 +39,9 @@
     "react": "^16.8.2",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.2",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.4",
     "style-loader": "^0.23.1",
     "web3": "^1.0.0-beta.55",
     "webpack": "^4.29.5",
@@ -47,7 +49,6 @@
   },
   "scripts": {
     "start": "npm-run-all -p nodemon webpack",
-    "build": "rm -rf dist && webpack",
     "nodemon": "nodemon --exec babel-node server/server",
     "clean": "rm -rf node_modules && rm -rf dist && npm install",
     "webpack": "webpack --watch",

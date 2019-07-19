@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store/store';
+
 import Home from './containers/HomePage/index';
 import ContractReceipt from './containers/ReceiptPage/index';
 import Send from './containers/SendPage/index';
@@ -26,8 +29,10 @@ const App = () => (
 );
 
 render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root'),
 );

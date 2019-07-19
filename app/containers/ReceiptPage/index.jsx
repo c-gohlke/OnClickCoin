@@ -37,7 +37,6 @@ class ContractReceipt extends Component {
             <Col />
             <Col>
               <Card style={{ background: 'white' }}>
-                <Card.Img />
                 <Card.Header>Your new coin : {name}</Card.Header>
                 <Card.Body>
                   <Card.Title>
