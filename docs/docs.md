@@ -1,11 +1,11 @@
 # OnClickCoin documentation
 
-## Overall work flow of the app:
+## Overall work flow of the app
 
 As specified in ~/package.json, the application launches by running "npm start" in the terminal, which will call server/server.js
 The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 
-### File structure:
+### File structure
 
 > **app**:  
 > _front-end of the application_
@@ -27,8 +27,24 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 > >
 > > _webpack bundles all of our app into a same folder for better performance. After running the "npm run build" or "npm start" commands, you will find a dist folder in the root directory. The dist/bundle.js file holds most of the app information and is the one being referred to by the above line_
 >
+> > **redux**:
+> >
+> > > **actions**:
+> > > _where the actions are defined_
+> >
+> > > **reducers**:
+> > > _defines how to update the store based on the dispatched actions_
+> >
+> > > **reducers**:
+> > > _defines how to update the store based on the dispatched actions_
+> >
+> > > **reducers**:
+> > > _defines how to update the store based on the dispatched actions_
+> >
+> > > **store**:
+> > > _defines the initialisation of the store_
 > > **app.jsx**:  
-> > _the entry point to the front-end part of the app_ > > &nbsp;
+> > > _the entry point to the front-end part of the app_ > > &nbsp;
 
 &nbsp;
 

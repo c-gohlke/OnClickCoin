@@ -4,7 +4,6 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import ContractForm from './ContractForm';
 import coin from '../../images/coins.gif';
-import Navigationbar from '../../components/Header/Navigationbar';
 
 /*
 Defines the Homepage of the App
@@ -12,7 +11,6 @@ Defines the Homepage of the App
 
 const Home = () => (
   <div>
-    <Navigationbar />
     <Container>
       <Container style={{ fontFamily: 'Open Sans', textAlign: 'center' }}>
         <h1>On Click Coin</h1>

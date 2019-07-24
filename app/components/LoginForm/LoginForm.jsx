@@ -1,14 +1,13 @@
 import React from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { LOGIN } from '../../redux/actions/actionTypes';
+import PropTypes from 'prop-types';
+import login from '../../redux/actions/login';
 
 const axios = require('axios');
 
 const mapDispatchToProps = dispatch => ({
-  login: username => {
-    dispatch({ type: LOGIN, username });
-  },
+  login: username => dispatch(login(username)),
 });
 
 class LoginForm extends React.Component {
@@ -28,6 +27,8 @@ class LoginForm extends React.Component {
       username,
       password,
     });
+
+    this.props.login(username);
   }
 
   render() {
@@ -71,9 +72,11 @@ class LoginForm extends React.Component {
   }
 }
 
-connect(
+LoginForm.propTypes = {
+  login: PropTypes.func,
+};
+
+export default connect(
   null,
   mapDispatchToProps,
 )(LoginForm);
-
-export default LoginForm;

@@ -1,5 +1,4 @@
 import { Router } from 'express';
-const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const express = require('express');

@@ -4,7 +4,6 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import coin from '../../images/coins.gif';
 import piggy from '../../images/piggy.gif';
-import Navigationbar from '../../components/Header/Navigationbar';
 import ICOForm from './ICOForm';
 
 /*
@@ -13,7 +12,6 @@ Defines the Homepage of the App
 
 const ICO = () => (
   <div>
-    <Navigationbar />
     <Container>
       <Container style={{ fontFamily: 'Open Sans', textAlign: 'center' }}>
         <h1>Sell your coins</h1>

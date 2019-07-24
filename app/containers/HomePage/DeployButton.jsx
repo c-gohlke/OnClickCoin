@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import PropTypes from 'prop-types';
 import deployContract from '../../utils/deployContract';
 
 /*
@@ -62,5 +63,9 @@ class DeployButton extends React.Component {
     );
   }
 }
+
+DeployButton.propTypes = {
+  handleToUpdate: PropTypes.func,
+};
 
 export default DeployButton;
