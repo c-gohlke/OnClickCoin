@@ -1,6 +1,15 @@
 import React from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { LOGIN } from '../../redux/actions/actionTypes';
+
 const axios = require('axios');
+
+const mapDispatchToProps = dispatch => ({
+  login: username => {
+    dispatch({ type: LOGIN, username });
+  },
+});
 
 class LoginForm extends React.Component {
   register() {
@@ -12,8 +21,7 @@ class LoginForm extends React.Component {
     });
   }
 
-  login() {
-    const username = document.getElementById('username').value;
+  login(username) {
     const password = document.getElementById('password').value;
 
     axios.post('/login', {
@@ -40,7 +48,7 @@ class LoginForm extends React.Component {
               variant="dark"
               className="LoginButton"
               onClick={() => {
-                this.login();
+                this.login(document.getElementById('username').value);
               }}
             >
               Log in
@@ -62,5 +70,10 @@ class LoginForm extends React.Component {
     );
   }
 }
+
+connect(
+  null,
+  mapDispatchToProps,
+)(LoginForm);
 
 export default LoginForm;

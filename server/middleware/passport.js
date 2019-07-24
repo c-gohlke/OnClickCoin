@@ -7,6 +7,8 @@ const User = require('../../app/models/UserModel');
 export default () => {
   const app = Router();
 
+  console.log('passport middleware initializing');
+
   passport.use(
     new LocalStrategy((username, password, done) => {
       User.findOne({ username }, (err, user) => {
@@ -24,9 +26,6 @@ export default () => {
     }),
   );
 
-  app.use(passport.initialize());
-  app.use(passport.session());
-
   passport.use(User.createStrategy());
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
@@ -38,5 +37,9 @@ export default () => {
       saveUninitialized: true,
     }),
   );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   return app;
 };

@@ -133,6 +133,10 @@ mongodb+srv://compromisedUserName:compromisedPassword@mongotest-brllv.mongodb.ne
 In production, use another client to access the database. It can be overwritten by specifying a value in .env file (not public as in .gitignore). The Schemas for the collections are defined in api/models/.
 To add, delete or get information, make get/post requests to the server, as defined in server.js.
 
+## Redux Tutorial
+
+TODO:
+
 ## Frequently used functions Cheat Sheet
 
 ### Markdown
