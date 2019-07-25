@@ -4,7 +4,7 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Particles from 'react-particles-js';
 import ContractForm from './ContractForm';
-import coin from '../../images/coins_old.gif';
+import coin from '../../images/coins.gif';
 import Navigationbar from '../../components/Header/Navigationbar';
 import paramObject from './particlesConfig';
 
