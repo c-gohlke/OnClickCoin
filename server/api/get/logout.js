@@ -5,7 +5,7 @@ export default () => {
 
   app.get('/logout', (request, response) => {
     request.logout();
-    response.redirect('/');
+    response.send('/');
   });
 
   return app;

@@ -42,8 +42,7 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 > > > _defines how to update the store based on the dispatched actions_
 > >
 > > > **store**:
-> > > _defines the initialisation of the store_
-> > **app.jsx**:  
+> > > _defines the initialisation of the store_ > > **app.jsx**:  
 > > > _the entry point to the front-end part of the app_ > > &nbsp;
 
 &nbsp;
@@ -151,7 +150,7 @@ To add, delete or get information, make get/post requests to the server, as defi
 
 ## Redux Tutorial
 
-TODO:
+hrefs resets the store to initial state
 
 ## Frequently used functions Cheat Sheet
 

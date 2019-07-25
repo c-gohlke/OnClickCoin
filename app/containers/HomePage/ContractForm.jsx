@@ -1,11 +1,13 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
+import {
+  Button,
+  Form,
+  Card,
+  Container,
+  Row,
+  Col,
+  Image,
+} from 'react-bootstrap';
 import axios from 'axios';
 import DeployButton from './DeployButton';
 import LoggedIn from './LoggedIn';

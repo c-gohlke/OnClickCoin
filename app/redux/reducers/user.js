@@ -18,11 +18,11 @@ export default function(state = initialState, action) {
       console.log('reducing LOGOUT action');
       return {
         ...state,
-        username: initialState,
+        username: initialState.username,
       };
     }
     default:
       console.log('in user reducer, returning default');
-      return state;
+      return { ...state };
   }
 }
