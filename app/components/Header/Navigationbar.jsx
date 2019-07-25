@@ -15,11 +15,11 @@ const Navigationbar = () => (
         <FormControl type="text" placeholder="Search" />
         &nbsp;&nbsp;&nbsp;
       </Form>
-      <Button variant="outline-primary" href="/login">
-        Login/Register
+      <Button variant="light" href="/login">
+      Login/Register
       </Button>
       &nbsp;
-      <Button variant="outline-primary" href="/logout">
+      <Button variant="light" href="/logout">
         Logout
       </Button>
     </Navbar>
