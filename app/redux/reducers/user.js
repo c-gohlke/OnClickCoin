@@ -10,15 +10,13 @@ export default function(state = initialState, action) {
     case LOGIN: {
       console.log('reducing LOGIN action');
       const { username } = action.payload;
-      const returningState = { ...state, username };
-      console.log('returning state is ', returningState);
-      return returningState;
+      return { ...state, username };
     }
     case LOGOUT: {
       console.log('reducing LOGOUT action');
       return {
         ...state,
-        username: initialState.username,
+        username: initialState,
       };
     }
     default:

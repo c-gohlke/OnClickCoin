@@ -1,5 +1,4 @@
 import React from 'react';
-import './Navigationbar.css';
 import {
   Navbar,
   Nav,
@@ -7,6 +6,8 @@ import {
   FormControl,
   Image,
   NavDropdown,
+  DropdownButton,
+  Dropdown,
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,6 +15,7 @@ import axios from 'axios';
 import anon from '../../images/anon.jpg';
 import history from '../../utils/history';
 import logout from '../../redux/actions/logout';
+import logo from '../../images/logo.png';
 
 import { getUser } from '../../redux/selectors/selectors';
 
@@ -74,12 +76,16 @@ class Navigationbar extends React.Component {
             >
               Data
             </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                history.push('feedback');
+              }}
+            >
+              Feedback
+            </Nav.Link>
           </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" />
-            &nbsp;&nbsp;&nbsp;
-          </Form>
           <Nav>
+            {' '}
             <NavDropdown
               title={
                 <Image
@@ -91,9 +97,15 @@ class Navigationbar extends React.Component {
                   alt="Profile"
                 />
               }
-              id="nav-dropdown"
+              className="nav-dropdown"
             >
-              <NavDropdown.Item>{this.props.user.username}</NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={() => {
+                  history.push('dashboard');
+                }}
+              >
+                {this.props.user.username}
+              </NavDropdown.Item>
               <NavDropdown.Item
                 onClick={() => {
                   history.push('login');
@@ -110,6 +122,9 @@ class Navigationbar extends React.Component {
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
+            {/* TODO: need to pad right-hand side because react-boilerplate doesn't allow to open the dropdown to the left, build custom dropdown without relying on react-bootstrap to fix */}
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
           </Nav>
         </Navbar>
       </>
