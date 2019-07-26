@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import PropTypes from 'prop-types';
 import deployContract from '../../utils/deployContract';
 
 /*
@@ -12,12 +13,21 @@ class DeployButton extends React.Component {
     fetch constructor information from the contract form
     contract form is defined in server/api/ContractForm
     */
-    const symbolValue = document.getElementById('symbol').value;
-    const nameValue = document.getElementById('name').value;
+    const symbol = document.getElementById('symbol');
+    const name = document.getElementById('name');
     const supply = document.getElementById('supply');
     const decimals = document.getElementById('decimals');
     const netID = document.getElementById('netID');
 
+    let nameValue = 'BATman Coin'; // if advanced settings undefined, use default value of "BATman Coin"
+    if (name.value) {
+      nameValue = name.value;
+    }
+
+    let symbolValue = 'BAT'; // if advanced settings undefined, use default value of "BAT"
+    if (symbol.value) {
+      symbolValue = symbol.value;
+    }
     let decimalsValue = 2; // if advanced settings undefined, use default value of 2
     if (decimals) {
       decimalsValue = decimals.value;
@@ -33,7 +43,6 @@ class DeployButton extends React.Component {
       supplyValue = supply.value;
     }
 
-    // gets permission from metamask to access accounts and other info
     deployContract(
       symbolValue,
       nameValue,
@@ -62,5 +71,9 @@ class DeployButton extends React.Component {
     );
   }
 }
+
+DeployButton.propTypes = {
+  handleToUpdate: PropTypes.func,
+};
 
 export default DeployButton;

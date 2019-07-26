@@ -4,12 +4,13 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import Navigationbar from '../../components/Header/Navigationbar';
 import SendButton from './RerouteSendButton';
 import LinkButton from './EtherscanLinkButton';
 
 class ContractReceipt extends Component {
   constructor(props) {
+    // TODO: use redux to store name, supply etc.
+
     super(props);
     const url = String(window.location);
 
@@ -17,6 +18,7 @@ class ContractReceipt extends Component {
     const parseSupply = url.split('supply:')[1];
 
     const name = parseName.split('?supply')[0];
+
     const supply = parseSupply.split('?sendAddr')[0];
 
     this.state = {
@@ -30,14 +32,12 @@ class ContractReceipt extends Component {
     return (
       <>
         <div>
-          <Navigationbar />
           <div className="receipt" />
           <Row />
           <Row>
             <Col />
             <Col>
               <Card style={{ background: 'white' }}>
-                <Card.Img />
                 <Card.Header>Your new coin : {name}</Card.Header>
                 <Card.Body>
                   <Card.Title>

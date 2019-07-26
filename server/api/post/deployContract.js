@@ -66,7 +66,6 @@ export default () => {
       userID = req.user._id;
     }
 
-    let contractAddr;
     await web3.eth
       .sendSignedTransaction(`0x${serializedTx.toString('hex')}`)
       .once('transactionHash', hash => {
@@ -74,7 +73,7 @@ export default () => {
       })
       .once('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
-        contractAddr = receipt.contractAddress;
+
         const transaction = new TransactionSchema({
           name: req.body.name,
           symbol: req.body.symbol,

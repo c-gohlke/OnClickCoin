@@ -1,12 +1,10 @@
 import { Router } from 'express';
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const session = require('express-session');
 const User = require('../../app/models/UserModel');
 
 export default () => {
   const app = Router();
-
   passport.use(
     new LocalStrategy((username, password, done) => {
       User.findOne({ username }, (err, user) => {
@@ -31,12 +29,5 @@ export default () => {
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
 
-  app.use(
-    session({
-      secret: 'somethingverysecret',
-      resave: true,
-      saveUninitialized: true,
-    }),
-  );
   return app;
 };

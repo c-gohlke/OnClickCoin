@@ -51,7 +51,7 @@ class ICOForm extends React.Component {
   }
 
   Display() {
-    console.log("display function",this.state.name)
+    console.log('display function', this.state.name);
     return (
       <Container>
         <h3>Name {this.state.name}</h3>

@@ -1,33 +1,24 @@
+// Import all the third party stuff
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { render } from 'react-dom';
-import Home from './containers/HomePage/index';
-import ContractReceipt from './containers/ReceiptPage/index';
-import Send from './containers/SendPage/index';
-import Info from './containers/InfoPage/index';
-import ICO from './containers/CrowdsalePage/index';
-import Data from './containers/DataPage/index';
-import Login from './containers/LoginPage/index';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
-const App = () => (
-  <BrowserRouter>
-    <div>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/receipt" component={ContractReceipt} />
-        <Route exact path="/send" component={Send} />
-        <Route exact path="/info" component={Info} />
-        <Route exact path="/ico" component={ICO} />
-        <Route exact path="/data" component={Data} />
-        <Route exact path="/login" component={Login} />
-      </Switch>
-    </div>
-  </BrowserRouter>
-);
+import history from './utils/history';
 
-render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root'),
-);
+// Import root app
+import App from './containers/App';
+import store from './redux/store/store';
+
+const render = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>,
+    document.getElementById('root'),
+  );
+};
+
+render();

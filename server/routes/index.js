@@ -6,6 +6,8 @@ const infoRouter = require('./infoRouter.js');
 const dataRouter = require('./dataRouter.js');
 const icoRouter = require('./icoRouter.js');
 const loginRouter = require('./loginRouter.js');
+const dashboardRouter = require('./dashboardRouter.js');
+const feedbackRouter = require('./feedbackRouter.js');
 
 export default () => {
   const app = Router();
@@ -17,6 +19,8 @@ export default () => {
   app.use(icoRouter);
   app.use(infoRouter);
   app.use(loginRouter);
+  app.use(dashboardRouter);
+  app.use(feedbackRouter);
 
   return app;
 };

@@ -11,6 +11,10 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: { extensions: ['.js', '.jsx'] },
+  watch: 'true',
+  watchOptions: {
+    ignored: ['node_modules'],
+  },
   module: {
     rules: [
       {

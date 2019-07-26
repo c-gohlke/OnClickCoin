@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Card, Table } from 'react-bootstrap';
-import Navigationbar from '../../components/Header/Navigationbar';
 
 /*
 Defines the data page of the app
@@ -19,10 +18,7 @@ async function addUsernames(transactions) {
   const txs = [];
   await asyncForEach(transactions, async transaction => {
     const res = await axios.get(`/username/${transaction.userID}`);
-
-    transaction.username = res.data;
-
-    txs.push(transaction);
+    txs.push({ ...transaction, username: res.data });
   });
 
   return Promise.resolve(txs);
@@ -55,7 +51,6 @@ class Data extends React.Component {
     const { isLoading, transactions } = this.state;
     return (
       <div>
-        <Navigationbar />
         <React.Fragment>
           {!isLoading ? (
             <Card>

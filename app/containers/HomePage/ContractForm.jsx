@@ -1,14 +1,14 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import axios from 'axios';
+import {
+  Button,
+  Form,
+  Card,
+  Container,
+  Row,
+  Col,
+  Image,
+} from 'react-bootstrap';
 import DeployButton from './DeployButton';
-import LoggedIn from './LoggedIn';
 import loading from '../../images/loading2.gif';
 
 /*
@@ -24,7 +24,10 @@ Supply refers to the initial supply of the coin
 const Advanced = () => (
   <Form.Group>
     <Form.Group>
-      <Form.Label>Decimals. 0 for whole coins, 1 for tenth of coins, 2 for cents and so on..</Form.Label>
+      <Form.Label>
+        Decimals. 0 for whole coins, 1 for tenth of coins, 2 for cents and so
+        on..
+      </Form.Label>
       <Form.Control type="number" id="decimals" defaultValue="2" />
     </Form.Group>
     <Form.Group>
@@ -45,23 +48,14 @@ const Advanced = () => (
 );
 
 const Deploying = () => (
-  <div >
+  <div>
     <Card>
       <Card.Body>
         Your Token is being deployed on the blockchain. Please wait about 15
         seconds until the transaction is confirmed.
       </Card.Body>
     </Card>
-    <Image src={loading} style={{zIndex: '100'}}/>
-  </div>
-);
-
-const Anonymous = () => (
-  <div>
-    You&apos;re currently anonymous. Log in for more features&nbsp;
-    <Button size="sm" href="/login">
-      Login/Register
-    </Button>
+    <Image src={loading} style={{ zIndex: '100' }} />
   </div>
 );
 
@@ -71,18 +65,7 @@ class ContractForm extends React.Component {
     this.state = {
       isHidden: true,
       isDeploying: false,
-      isAnonymous: true,
-      username: 'anonymous',
     };
-  }
-
-  // TODO: use redux to store app states
-  async getUsername() {
-    const response = await axios.get('/currentUser');
-    this.setState({
-      isAnonymous: response.data === 'anonymous',
-      username: response.data,
-    });
   }
 
   handleToUpdate = () => {
@@ -97,10 +80,6 @@ class ContractForm extends React.Component {
     this.setState(prevState => ({ isAnonymous: !prevState.isAnonymous }));
   }
 
-  componentDidMount() {
-    this.getUsername();
-  }
-
   render() {
     return (
       <div>
@@ -109,55 +88,49 @@ class ContractForm extends React.Component {
           <Row>
             <Col />
             <Col>
-            {this.state.isDeploying && <Deploying />}
+              {this.state.isDeploying && <Deploying />}
               {!this.state.isDeploying && (
                 <>
-                <Container>
-                <Card style={{ width: '40rem', background: 'white' }}>
-                  <Card.Body>
-                    <Card.Title>Parameters</Card.Title>
-                    <Form>
-                      <Form.Group>
-                        <Form.Label>Symbol</Form.Label>
-                        <Form.Control
-                          type="text"
-                          id="symbol"
-                          placeholder="BAT"
-                        />
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                          type="text"
-                          id="name"
-                          placeholder="BATman Coin"
-                        />
-                      </Form.Group>
-                      <Form.Group>
-                        <Button
-                          variant="link"
-                          className="ContractButton"
-                          size="sm"
-                          onClick={() => {
-                            this.toggleHidden();
-                          }}
-                        >
-                          advanced settings (recommended)
-                        </Button>
-                        {!this.state.isHidden && <Advanced />}
-                      </Form.Group>
-                      <Form.Group>
-                        {this.state.isAnonymous && <Anonymous />}
-                        {!this.state.isAnonymous && (
-                          <LoggedIn username={this.state.username} />
-                        )}
-                      </Form.Group>
-                      <DeployButton handleToUpdate={this.handleToUpdate} />
-                    </Form>
-                  </Card.Body>
-                </Card>
-              </Container>   
-              </>
+                  <Container>
+                    <Card style={{ width: '40rem', background: 'white' }}>
+                      <Card.Body>
+                        <Card.Title>Parameters</Card.Title>
+                        <Form>
+                          <Form.Group>
+                            <Form.Label>Symbol</Form.Label>
+                            <Form.Control
+                              type="text"
+                              id="symbol"
+                              placeholder="BAT"
+                            />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                              type="text"
+                              id="name"
+                              placeholder="BATman Coin"
+                            />
+                          </Form.Group>
+                          <Form.Group>
+                            <Button
+                              variant="link"
+                              className="ContractButton"
+                              size="sm"
+                              onClick={() => {
+                                this.toggleHidden();
+                              }}
+                            >
+                              advanced settings (recommended)
+                            </Button>
+                            {!this.state.isHidden && <Advanced />}
+                          </Form.Group>
+                          <DeployButton handleToUpdate={this.handleToUpdate} />
+                        </Form>
+                      </Card.Body>
+                    </Card>
+                  </Container>
+                </>
               )}
             </Col>
             <Col />
