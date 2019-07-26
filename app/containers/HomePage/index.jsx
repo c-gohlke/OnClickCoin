@@ -14,14 +14,14 @@ Defines the Homepage of the App
 
 const Home = () => (
   <div>
-    <Particles params={paramObject} style={{ position: 'absolute' }} />
+    <Particles params={paramObject} style={{ position: 'absolute' , zIndex: '-1'}} />
     <Navigationbar />
     <Container>
       <Container style={{ fontFamily: 'Open Sans', textAlign: 'center' }}>
         <h1>On Click Coin</h1>
         <h2>Deploy your cryptocurrency token in one click!</h2>
         <br />
-        <Container style={{ textAlign: 'center', display: 'inline-block' }}>
+        <Container style={{ textAlign: 'center', display: 'inline-block', zIndex: '1', backgroundColor: 'white' }}>
           <Image src={coin} />
           <Image src={coin} />
           <Image src={coin} />

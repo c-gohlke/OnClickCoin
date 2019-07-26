@@ -11,10 +11,6 @@ const Navigationbar = () => (
         <Nav.Link href="/info">Info</Nav.Link>
         <Nav.Link href="/data">Data</Nav.Link>
       </Nav>
-      <Form inline>
-        <FormControl type="text" placeholder="Search" />
-        &nbsp;&nbsp;&nbsp;
-      </Form>
       <Button variant="light" href="/login">
       Login/Register
       </Button>

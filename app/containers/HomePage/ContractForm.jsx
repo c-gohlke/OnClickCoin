@@ -9,7 +9,7 @@ import Image from 'react-bootstrap/Image';
 import axios from 'axios';
 import DeployButton from './DeployButton';
 import LoggedIn from './LoggedIn';
-import loading from '../../images/loading.gif';
+import loading from '../../images/loading2.gif';
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -24,15 +24,15 @@ Supply refers to the initial supply of the coin
 const Advanced = () => (
   <Form.Group>
     <Form.Group>
-      <Form.Label>Decimals</Form.Label>
+      <Form.Label>Decimals. 0 for whole coins, 1 for tenth of coins, 2 for cents and so on..</Form.Label>
       <Form.Control type="number" id="decimals" defaultValue="2" />
     </Form.Group>
     <Form.Group>
-      <Form.Label>Total Supply</Form.Label>
+      <Form.Label>Total Supply : the number of coins created</Form.Label>
       <Form.Control type="number" id="supply" defaultValue="1000" />
     </Form.Group>
     <Form.Group as={Col}>
-      <Form.Label>Network Name</Form.Label>
+      <Form.Label>Network Name (Advanced)</Form.Label>
       <Form.Control as="select" id="netID" defaultValue="4">
         <option value="1">mainnet</option>
         <option value="4">rinkeby (recommended)</option>
@@ -45,14 +45,14 @@ const Advanced = () => (
 );
 
 const Deploying = () => (
-  <div>
+  <div >
     <Card>
       <Card.Body>
         Your Token is being deployed on the blockchain. Please wait about 15
         seconds until the transaction is confirmed.
       </Card.Body>
     </Card>
-    <Image src={loading} />
+    <Image src={loading} style={{zIndex: '100'}}/>
   </div>
 );
 
@@ -109,7 +109,10 @@ class ContractForm extends React.Component {
           <Row>
             <Col />
             <Col>
-              <Container>
+            {this.state.isDeploying && <Deploying />}
+              {!this.state.isDeploying && (
+                <>
+                <Container>
                 <Card style={{ width: '40rem', background: 'white' }}>
                   <Card.Body>
                     <Card.Title>Parameters</Card.Title>
@@ -119,7 +122,7 @@ class ContractForm extends React.Component {
                         <Form.Control
                           type="text"
                           id="symbol"
-                          defaultValue="BTC"
+                          placeholder="BAT"
                         />
                       </Form.Group>
                       <Form.Group>
@@ -127,7 +130,7 @@ class ContractForm extends React.Component {
                         <Form.Control
                           type="text"
                           id="name"
-                          defaultValue="JohnDoeCoin"
+                          placeholder="BATman Coin"
                         />
                       </Form.Group>
                       <Form.Group>
@@ -153,8 +156,9 @@ class ContractForm extends React.Component {
                     </Form>
                   </Card.Body>
                 </Card>
-                {this.state.isDeploying && <Deploying />}
-              </Container>
+              </Container>   
+              </>
+              )}
             </Col>
             <Col />
           </Row>

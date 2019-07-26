@@ -8,13 +8,13 @@ const particlesConfig = {
       },
     },
     color: {
-      value: '#000000',
+      value: '#ffbb00',
     },
     shape: {
       type: 'circle',
       stroke: {
         width: 0,
-        color: '#ffffff',
+        color: '#c79202',
       },
       polygon: {
         nb_sides: 5,
@@ -43,7 +43,7 @@ const particlesConfig = {
     line_linked: {
       enable: true,
       distance: 150,
-      color: '#000000',
+      color: '#c79202',
       opacity: 0.6,
       width: 1,
     },
@@ -59,45 +59,6 @@ const particlesConfig = {
         enable: false,
         rotateX: 600,
         rotateY: 1200,
-      },
-    },
-  },
-  interactivity: {
-    detect_on: 'canvas',
-    events: {
-      onhover: {
-        enable: true,
-        mode: 'grab',
-      },
-      onclick: {
-        enable: true,
-        mode: 'push',
-      },
-      resize: true,
-    },
-    modes: {
-      grab: {
-        distance: 140,
-        line_linked: {
-          opacity: 1,
-        },
-      },
-      bubble: {
-        distance: 400,
-        size: 40,
-        duration: 2,
-        opacity: 8,
-        speed: 3,
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4,
-      },
-      push: {
-        particles_nb: 4,
-      },
-      remove: {
-        particles_nb: 2,
       },
     },
   },

@@ -33,7 +33,7 @@ class ICOForm extends React.Component {
     this.state = {
       addressSet: false,
       rateSet: false,
-      supply: 0,
+      supply: -1,
       name: '',
       symbol: '',
       _isMounted: false,
@@ -51,6 +51,7 @@ class ICOForm extends React.Component {
   }
 
   Display() {
+    console.log("display function",this.state.name)
     return (
       <Container>
         <h3>Name {this.state.name}</h3>
@@ -92,12 +93,10 @@ class ICOForm extends React.Component {
       window.web3 = new Web3(window.ethereum);
       const contractInstance = new web3.eth.Contract(abiERC20, contractAddress);
       const foundSupply = await contractInstance.methods.totalSupply().call();
-      const foundName = await contractInstance.methods.name.call();
-      const foundSymbol = await contractInstance.methods.symbol.call();
-      const foundDecimals = await contractInstance.methods.decimals.call();
-
+      const foundName = await contractInstance.methods.name().call();
+      const foundSymbol = await contractInstance.methods.symbol().call();
+      const foundDecimals = await contractInstance.methods.decimals().call();
       const correctSupply = foundSupply / Math.pow(10, foundDecimals);
-
       this.setState({ supply: correctSupply });
       this.setState({ name: foundName });
       this.setState({ symbol: foundSymbol });
