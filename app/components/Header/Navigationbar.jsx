@@ -3,7 +3,7 @@ import { Navbar, Nav, Image, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import anon from '../../images/anon.jpg';
+import anon from '../../images/even_better_anon.png';
 import history from '../../utils/history';
 import logout from '../../redux/actions/logout';
 import { getUser } from '../../redux/selectors/selectors';
@@ -53,13 +53,6 @@ class Navigationbar extends React.Component {
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                history.push('info');
-              }}
-            >
-              Info
-            </Nav.Link>
-            <Nav.Link
-              onClick={() => {
                 history.push('data');
               }}
             >
@@ -71,6 +64,13 @@ class Navigationbar extends React.Component {
               }}
             >
               Feedback
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                history.push('info');
+              }}
+            >
+              Info
             </Nav.Link>
           </Nav>
           <Nav>

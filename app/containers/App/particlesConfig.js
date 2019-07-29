@@ -1,20 +1,20 @@
 const particlesConfig = {
   particles: {
     number: {
-      value: 80,
+      value: 100,
       density: {
         enable: true,
         value_area: 700,
       },
     },
     color: {
-      value: '#ffbb00',
+      value: '#000000',
     },
     shape: {
       type: 'circle',
       stroke: {
         width: 0,
-        color: '#c79202',
+        color: '#000000',
       },
       polygon: {
         nb_sides: 5,
@@ -31,7 +31,7 @@ const particlesConfig = {
       },
     },
     size: {
-      value: 5,
+      value: 4,
       random: true,
       anim: {
         enable: false,
@@ -43,7 +43,7 @@ const particlesConfig = {
     line_linked: {
       enable: true,
       distance: 150,
-      color: '#c79202',
+      color: '#000000',
       opacity: 0.6,
       width: 1,
     },

@@ -6,9 +6,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
+import Image from 'react-bootstrap/Image';
 import ky from 'ky';
 import DeployICOButton from './DeployICOButton';
 import { abiERC20 } from '../../../contracts/erc20';
+import loading from '../../images/simple_loading.gif';
 const Web3 = require('web3');
 
 /*
@@ -27,6 +29,20 @@ Decimals refers to if the coin is atomic and if not to how many decimals it shou
 Supply refers to the initial supply of the coin
 */
 
+
+
+const Deploying = () => (
+  <div>
+    <Card>
+      <Card.Body>
+        Your ICO is being deployed on the blockchain. Please wait about 15
+        seconds until the transaction is confirmed.
+      </Card.Body>
+    </Card>
+    <Image src={loading} style={{ zIndex: '100' }} />
+  </div> 
+);
+
 class ICOForm extends React.Component {
   constructor() {
     super();
@@ -40,6 +56,7 @@ class ICOForm extends React.Component {
       decimals: -1,
       rate: -1,
       totalRaised: -1,
+      isDeploying: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.Display = this.Display.bind(this);
@@ -51,7 +68,6 @@ class ICOForm extends React.Component {
   }
 
   Display() {
-    console.log('display function', this.state.name);
     return (
       <Container>
         <h3>Name {this.state.name}</h3>
@@ -77,7 +93,7 @@ class ICOForm extends React.Component {
         </Form>
         <Badge variant="success">Success</Badge>
       </Container>
-    );
+    ); 
   }
 
   async handleChange() {
@@ -127,10 +143,17 @@ class ICOForm extends React.Component {
     this._isMounted = false;
   }
 
+  handleToUpdate = () => {
+    this.setState({ isDeploying: true });
+  };
+
   render() {
     return (
       <div className="form">
-        <Row>
+        {this.state.isDeploying && <Deploying />}
+        {!this.state.isDeploying && (
+          <>
+          <Row>
           <Col>
             <Container>
               <Card style={{ width: '30rem', background: 'white' }}>
@@ -165,7 +188,7 @@ class ICOForm extends React.Component {
                     <Form.Control
                       type="number"
                       id="rate"
-                      defaultValue="1"
+                      defaultValue="0"
                       onChange={this.handleChangeRate}
                     />
                   </Form.Group>
@@ -179,7 +202,9 @@ class ICOForm extends React.Component {
         <br />
         <br />
         <br />
-        <DeployICOButton />
+        <DeployICOButton handleToUpdate={this.handleToUpdate}/>
+        </>
+        )}
       </div>
     );
   }

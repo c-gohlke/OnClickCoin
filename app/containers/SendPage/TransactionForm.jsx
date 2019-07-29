@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap';
 import TransactButton from './TransactionButton';
+import loading from '../../images/simple_loading.gif';
+import Image from 'react-bootstrap/Image';
 /*
 This class creates the TransactionForm Component for the send page
 The form takes 3 inputs:
@@ -27,6 +29,18 @@ const Advanced = () => (
   </Form.Group>
 );
 
+const Sending = () => (
+  <div>
+    <Card>
+    <Card.Body>
+        Your Token is being sent on the blockchain. Please wait about 15
+        seconds until the transaction is confirmed.
+      </Card.Body>
+    </Card>
+    <Image src={loading} style={{ zIndex: '100' }} />
+  </div>
+);
+
 class TransactionForm extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +50,7 @@ class TransactionForm extends Component {
     this.state = {
       isHidden: true,
       contractID,
+      isSending: false,
     };
   }
 
@@ -43,10 +58,18 @@ class TransactionForm extends Component {
     this.setState(prevState => ({ isHidden: !prevState.isHidden }));
   }
 
+  handleToUpdate = () => {
+    console.log("sending")
+    this.setState({ isSending: true });
+  };
+
   render() {
     const { contractID } = this.state;
     return (
       <div className="TransactionForm">
+        {this.state.isSending && <Sending />}
+        {!this.state.isSending && (
+        <>
         <Row />
         <Row>
           <Col />
@@ -61,7 +84,7 @@ class TransactionForm extends Component {
                       <Form.Control
                         type="text"
                         id="contract"
-                        defaultValue={contractID}
+                        placeholder={contractID}
                       />
                     </Form.Group>
                     <Form.Group>
@@ -91,11 +114,11 @@ class TransactionForm extends Component {
                           this.toggleHidden();
                         }}
                       >
-                        advanced settings (recommended)
+                        advanced settings
                       </Button>
                       {!this.state.isHidden && <Advanced />}
                     </Form.Group>
-                    <TransactButton />
+                    <TransactButton handleToUpdate={this.handleToUpdate} />
                   </Form>
                 </Card.Body>
               </Card>
@@ -103,7 +126,9 @@ class TransactionForm extends Component {
           </Col>
           <Col />
         </Row>
-        <Row />
+        <Row />  
+        </>
+        )}
       </div>
     );
   }

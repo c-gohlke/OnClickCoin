@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import {Container, Image, Button} from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import SendButton from './RerouteSendButton';
 import LinkButton from './EtherscanLinkButton';
+import coin from '../../images/coins.gif';
 
 class ContractReceipt extends Component {
   constructor(props) {
@@ -33,11 +35,50 @@ class ContractReceipt extends Component {
       <>
         <div>
           <div className="receipt" />
-          <Row />
-          <Row>
-            <Col />
-            <Col>
-              <Card style={{ background: 'white' }}>
+            <br/>
+            <Container style={{fontFamily: 'Roboto Mono', textAlign: 'center', zIndex: '1', backgroundColor: 'white',}}>
+            <h1>Your coin was successfully created{' '} <span role="img" aria-label="Party">🎉🎉🎉</span></h1>
+            <Container style={{textAlign: 'center'}}>
+              <Image src={coin} />
+              <Image src={coin} />
+              <Image src={coin} />
+              <Row>
+                <Col></Col>
+                <Col>
+                <Card bg="secondary" text="white" style={{ width: '40rem' }}>
+                <Card.Header><h1>Your first crypto-currency</h1></Card.Header>
+                    <Card.Body>
+                  <h2>Name: {name}</h2>
+                  <h2>Supply: {supply}</h2>
+                  <Row>
+                    <Col>
+                      <SendButton />
+                    </Col>
+                    <Col>
+                      <LinkButton />
+                    </Col>
+                    <Col>
+                    <Button variant="dark" href="https://onclickcoin.herokuapp.com/ico">Sell your coin?</Button>
+                    </Col>
+                  </Row>
+                  <Button>Send the details of my coin by email</Button>
+                  </Card.Body>
+                </Card>
+              
+                </Col>
+                <Col></Col>
+              </Row>
+            
+            </Container>
+          </Container>
+        </div>
+      </>
+    );
+  }
+}
+
+
+{/*<Card style={{ background: 'white' }}>
                 <Card.Header>Your new coin : {name}</Card.Header>
                 <Card.Body>
                   <Card.Title>
@@ -63,15 +104,6 @@ class ContractReceipt extends Component {
                     <Col>Sell your coin?</Col>
                   </Row>
                 </Card.Body>
-              </Card>
-            </Col>
-            <Col />
-          </Row>
-          <Row />
-        </div>
-      </>
-    );
-  }
-}
+              </Card> */}
 
 export default ContractReceipt;

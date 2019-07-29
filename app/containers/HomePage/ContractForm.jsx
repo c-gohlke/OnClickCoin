@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-bootstrap';
 import DeployButton from './DeployButton';
-import loading from '../../images/loading2.gif';
+import loading from '../../images/simple_loading.gif';
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -23,17 +23,6 @@ Supply refers to the initial supply of the coin
 // TODO: can't choose network when web3 provider. Impossible to force change IMO, provide better UI (no dropdown if web3 provider available)
 const Advanced = () => (
   <Form.Group>
-    <Form.Group>
-      <Form.Label>
-        Decimals. 0 for whole coins, 1 for tenth of coins, 2 for cents and so
-        on..
-      </Form.Label>
-      <Form.Control type="number" id="decimals" defaultValue="2" />
-    </Form.Group>
-    <Form.Group>
-      <Form.Label>Total Supply : the number of coins created</Form.Label>
-      <Form.Control type="number" id="supply" defaultValue="1000" />
-    </Form.Group>
     <Form.Group as={Col}>
       <Form.Label>Network Name (Advanced)</Form.Label>
       <Form.Control as="select" id="netID" defaultValue="4">
@@ -56,7 +45,7 @@ const Deploying = () => (
       </Card.Body>
     </Card>
     <Image src={loading} style={{ zIndex: '100' }} />
-  </div>
+  </div>  
 );
 
 class ContractForm extends React.Component {
@@ -92,26 +81,38 @@ class ContractForm extends React.Component {
               {!this.state.isDeploying && (
                 <>
                   <Container>
-                    <Card style={{ width: '40rem', background: 'white' }}>
+                  <Card bg="dark" text="white" style={{ width: '40rem' }}>
                       <Card.Body>
                         <Card.Title>Parameters</Card.Title>
                         <Form>
                           <Form.Group>
-                            <Form.Label>Symbol</Form.Label>
+                            <Form.Label>Symbol. Usually a three letter symbol, but can be more</Form.Label>
                             <Form.Control
                               type="text"
                               id="symbol"
-                              placeholder="BAT"
+                              placeholder="TOK"
                             />
                           </Form.Group>
                           <Form.Group>
-                            <Form.Label>Name</Form.Label>
+                            <Form.Label>Name. The name of your crypto-currency</Form.Label>
                             <Form.Control
                               type="text"
                               id="name"
-                              placeholder="BATman Coin"
+                              placeholder="MyCryptoCoin"
                             />
                           </Form.Group>
+                          <Form.Group>
+                            <Form.Label>Total Supply : the number of coins created</Form.Label>
+                            <Form.Control type="number" id="supply" defaultValue="1000" />
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label>
+                              Decimals. 0 for whole coins, 1 for tenth of coins, 2 for cents and so
+                              on. 18 is the standard
+                            </Form.Label>
+                            <Form.Control type="number" id="decimals" defaultValue="18" />
+                          </Form.Group>
+                        
                           <Form.Group>
                             <Button
                               variant="link"
@@ -121,7 +122,7 @@ class ContractForm extends React.Component {
                                 this.toggleHidden();
                               }}
                             >
-                              advanced settings (recommended)
+                              <h5>advanced settings</h5>
                             </Button>
                             {!this.state.isHidden && <Advanced />}
                           </Form.Group>

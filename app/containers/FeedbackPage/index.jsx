@@ -9,7 +9,7 @@ const Feedback = () => (
   <div>
     <Container>
       <Container style={{ fontFamily: 'Open Sans', textAlign: 'center' }}>
-        <h1>Give us feedback</h1>
+        <h1>Give us feedback at onclickcoin@gmail.com</h1>
       </Container>
     </Container>
   </div>
