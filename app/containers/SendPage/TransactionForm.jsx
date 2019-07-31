@@ -80,24 +80,24 @@ class TransactionForm extends Component {
                   <Card.Title>Transaction</Card.Title>
                   <Form>
                     <Form.Group>
-                      <Form.Label>Contract Address</Form.Label>
+                      <Form.Label>Contract Address. The address of your token :</Form.Label>
                       <Form.Control
                         type="text"
                         id="contract"
-                        placeholder={contractID}
+                        placeholder="0xdeadbeef"
                       />
                     </Form.Group>
                     <Form.Group>
-                      <Form.Label>To</Form.Label>
+                      <Form.Label>To. The address you wish to send the tokens to :</Form.Label>
                       <Form.Control
                         type="text"
                         id="to"
-                        defaultValue="0xfb16FF8087fefbD54cD398e14967dCC72DE5ACf9"
+                        placeholder="0xfb16FF8087fefbD54cD398e14967dCC72DE5ACf9"
                       />
                     </Form.Group>
                     <Form.Group>
                       <Form.Label>
-                        Number of coins to send (will send X * smallest unit)
+                        Number of coins to send :
                       </Form.Label>
                       <Form.Control
                         type="number"

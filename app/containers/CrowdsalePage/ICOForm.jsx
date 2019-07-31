@@ -1,17 +1,13 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Badge from 'react-bootstrap/Badge';
-import Image from 'react-bootstrap/Image';
+import {Alert, Image, Badge, Col, Row, Container, Card, Form, Button} from 'react-bootstrap';
 import ky from 'ky';
 import DeployICOButton from './DeployICOButton';
 import { abiERC20 } from '../../../contracts/erc20';
 import loading from '../../images/simple_loading.gif';
+import ico from '../../images/ico.jpg';
+import history from '../../utils/history';
 const Web3 = require('web3');
+
 
 /*
 This class creates the form to define the constructor of the new ERC-20 token
@@ -35,8 +31,20 @@ const Deploying = () => (
   <div>
     <Card>
       <Card.Body>
+        
+        <Alert  variant='success'>
+        <h5>  
         Your ICO is being deployed on the blockchain. Please wait about 15
         seconds until the transaction is confirmed.
+        </h5>
+        </Alert>
+        <br/>
+        <Alert  variant='warning'>
+        <h5>Your not yet done! Save the address of the contract and send the tokens you wish to sell to it. Go to our <Button variant="info" onClick={() => {
+                history.push('send');
+              }}>send</Button> page :)</h5>
+        </Alert>
+        
       </Card.Body>
     </Card>
     <Image src={loading} style={{ zIndex: '100' }} />
@@ -57,6 +65,7 @@ class ICOForm extends React.Component {
       rate: -1,
       totalRaised: -1,
       isDeploying: false,
+      help: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.Display = this.Display.bind(this);
@@ -65,6 +74,10 @@ class ICOForm extends React.Component {
     this.componentWillUnmount.bind(this);
 
     this.handleChangeRate = this.handleChangeRate.bind(this);
+  }
+
+  toggleHidden() {
+    this.setState(prevState => ({ help: !prevState.help }));
   }
 
   Display() {
@@ -112,6 +125,10 @@ class ICOForm extends React.Component {
       const foundName = await contractInstance.methods.name().call();
       const foundSymbol = await contractInstance.methods.symbol().call();
       const foundDecimals = await contractInstance.methods.decimals().call();
+      if (foundDecimals != 18){
+        alert("We currently don't support non 18 decimals tokens for ICO, sorry.")
+
+      }
       const correctSupply = foundSupply / Math.pow(10, foundDecimals);
       this.setState({ supply: correctSupply });
       this.setState({ name: foundName });
@@ -202,7 +219,23 @@ class ICOForm extends React.Component {
         <br />
         <br />
         <br />
+        
+        <Col>
         <DeployICOButton handleToUpdate={this.handleToUpdate}/>
+        </Col>
+        <br/>
+        <br/>
+        <Col>
+        <Button onClick={() => {this.toggleHidden();}}>What is an ico?</Button>
+        {this.state.help &&
+        <>
+        <Row>
+          <Image src={ico} style={{position: 'center'}}/>
+        </Row>
+         </>
+        }
+        </Col>
+        
         </>
         )}
       </div>

@@ -5,6 +5,7 @@ import { abiERC20 } from '../../../contracts/erc20';
 import PropTypes from 'prop-types';
 const Web3 = require('web3');
 import ky from 'ky';
+import { type } from 'os';
 
 
 /*
@@ -13,6 +14,8 @@ This class creates the DeployButton Component
 
 class DeployICOButton extends Component {
   async handleClick() {
+    const BigNumber = require('bignumber.js');
+
     const dollarsInput = document.getElementById('rate').value;
     console.log("dollars input", dollarsInput)
 
@@ -27,17 +30,13 @@ class DeployICOButton extends Component {
     const res = await ky.get('https://api.cryptonator.com/api/ticker/eth-usd').json();
     const priceEth = res.ticker.price
     console.log("found price", priceEth)
+    const WeiDollarRate = Math.pow(10,18)/priceEth
 
-    const totalBits = foundSupply
-    const raiseInUSD = (foundSupply*dollarsInput)/Math.pow(10, foundDecimals)
-    const raiseInEth = raiseInUSD/priceEth
-    const raiseInWei = raiseInEth*Math.pow(10,18)
-    var rateWei = foundSupply/raiseInWei
-    console.log("our rate",rateWei)
 
-    rateWei = Math.floor(rateWei)
-    console.log("Do we have a good rate?", rateWei) 
-    deployCrowdsale(rateWei, walletValue, ierc20Value);
+    const rate = Math.pow(10, 18)/(WeiDollarRate*dollarsInput)
+    const goodRate = Math.round(rate)
+    console.log(goodRate)
+    deployCrowdsale(goodRate, walletValue, ierc20Value);
     
   }
 
