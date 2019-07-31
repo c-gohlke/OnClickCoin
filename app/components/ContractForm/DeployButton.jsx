@@ -28,7 +28,7 @@ class DeployButton extends React.Component {
     if (symbol.value) {
       symbolValue = symbol.value;
     }
-    let decimalsValue = 2; // if advanced settings undefined, use default value of 2
+    let decimalsValue = 18; // if advanced settings undefined, use default value of 18
     if (decimals) {
       decimalsValue = decimals.value;
     }

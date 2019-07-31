@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import ky from 'ky';
+import { type } from 'os';
 import deployCrowdsale from '../../utils/deployCrowdsale';
 import { abiERC20 } from '../../../contracts/erc20';
 const Web3 = require('web3');
@@ -28,18 +29,12 @@ class DeployICOButton extends Component {
       .json();
     const priceEth = res.ticker.price;
     console.log('found price', priceEth);
+    const WeiDollarRate = Math.pow(10, 18) / priceEth;
 
-    const totalBits = foundSupply;
-    const raiseInUSD =
-      (foundSupply * dollarsInput) / Math.pow(10, foundDecimals);
-    const raiseInEth = raiseInUSD / priceEth;
-    const raiseInWei = raiseInEth * Math.pow(10, 18);
-    let rateWei = foundSupply / raiseInWei;
-    console.log('our rate', rateWei);
-
-    rateWei = Math.floor(rateWei);
-    console.log('Do we have a good rate?', rateWei);
-    deployCrowdsale(rateWei, walletValue, ierc20Value);
+    const rate = Math.pow(10, 18) / (WeiDollarRate * dollarsInput);
+    const goodRate = Math.round(rate);
+    console.log(goodRate);
+    deployCrowdsale(goodRate, walletValue, ierc20Value);
   }
 
   render() {

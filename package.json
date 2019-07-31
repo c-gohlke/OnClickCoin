@@ -15,6 +15,7 @@
     "@babel/preset-react": "^7.0.0",
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
+    "bignumber.js": "^9.0.0",
     "bootstrap": "^4.3.1",
     "connect-flash": "^0.1.1",
     "connected-react-router": "^6.5.2",
