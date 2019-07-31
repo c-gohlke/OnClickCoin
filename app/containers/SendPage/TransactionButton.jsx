@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import transferToken from '../../utils/transferToken';
 import PropTypes from 'prop-types';
+import transferToken from '../../utils/transferToken';
 
 /*
 This class creates the TransactionButton Component for the send page
@@ -27,15 +27,17 @@ class TransactionButton extends Component {
     const { handleToUpdate } = this.props;
     const { handleClick } = this;
     return (
-      <Button variant="dark" onClick={() => {
-        handleClick();
-        handleToUpdate();
-      }}>
+      <Button
+        variant="dark"
+        onClick={() => {
+          handleClick();
+          handleToUpdate();
+        }}
+      >
         Click here to send your coin
       </Button>
     );
   }
-
 }
 
 TransactionButton.propTypes = {

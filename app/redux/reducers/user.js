@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  console.log('user reducer called, action is ', action);
   switch (action.type) {
     case LOGIN: {
       console.log('reducing LOGIN action');
@@ -20,7 +19,6 @@ export default function(state = initialState, action) {
       };
     }
     default:
-      console.log('in user reducer, returning default');
       return { ...state };
   }
 }

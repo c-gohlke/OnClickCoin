@@ -58,7 +58,7 @@ class DeployButton extends React.Component {
     return (
       <>
         <Button
-          variant="warning"
+          variant="primary"
           className="ContractButton"
           onClick={() => {
             handleClick();

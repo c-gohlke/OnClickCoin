@@ -29,8 +29,6 @@ Decimals refers to if the coin is atomic and if not to how many decimals it shou
 Supply refers to the initial supply of the coin
 */
 
-
-
 const Deploying = () => (
   <div>
     <Card>
@@ -40,7 +38,7 @@ const Deploying = () => (
       </Card.Body>
     </Card>
     <Image src={loading} style={{ zIndex: '100' }} />
-  </div> 
+  </div>
 );
 
 class ICOForm extends React.Component {
@@ -93,7 +91,7 @@ class ICOForm extends React.Component {
         </Form>
         <Badge variant="success">Success</Badge>
       </Container>
-    ); 
+    );
   }
 
   async handleChange() {
@@ -153,57 +151,58 @@ class ICOForm extends React.Component {
         {this.state.isDeploying && <Deploying />}
         {!this.state.isDeploying && (
           <>
-          <Row>
-          <Col>
-            <Container>
-              <Card style={{ width: '30rem', background: 'white' }}>
-                <Card.Header as="h5">
-                  1st step: <a href="/">Create your coin</a> and save its
-                  contract address below
-                </Card.Header>
-                <Form>
-                  <Form.Group>
-                    <Form.Label>Your coin address</Form.Label>
-                    <Form.Control
-                      type="text"
-                      id="ierc20"
-                      placeholder="0xc0ff33"
-                      onChange={this.handleChange}
-                    />
-                  </Form.Group>
-                </Form>
-                {this.state.addressSet && <this.Display />}
-              </Card>
-            </Container>
-          </Col>
-          <Col>
-            <Container>
-              <Card style={{ width: '30rem', background: 'white' }}>
-                <Card.Header as="h5">
-                  2nd step: What should be the price of your token in dollars?{' '}
-                </Card.Header>
-                <Form>
-                  <Form.Group>
-                    <Form.Label />
-                    <Form.Control
-                      type="number"
-                      id="rate"
-                      defaultValue="0"
-                      onChange={this.handleChangeRate}
-                    />
-                  </Form.Group>
-                </Form>
-                {this.state.rateSet && <this.DisplayTotal />}
-              </Card>
-            </Container>
-          </Col>
-          <Col />
-        </Row>
-        <br />
-        <br />
-        <br />
-        <DeployICOButton handleToUpdate={this.handleToUpdate}/>
-        </>
+            <Row>
+              <Col>
+                <Container>
+                  <Card style={{ width: '30rem', background: 'white' }}>
+                    <Card.Header as="h5">
+                      1st step: <a href="/">Create your coin</a> and save its
+                      contract address below
+                    </Card.Header>
+                    <Form>
+                      <Form.Group>
+                        <Form.Label>Your coin address</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="ierc20"
+                          placeholder="0xc0ff33"
+                          onChange={this.handleChange}
+                        />
+                      </Form.Group>
+                    </Form>
+                    {this.state.addressSet && <this.Display />}
+                  </Card>
+                </Container>
+              </Col>
+              <Col>
+                <Container>
+                  <Card style={{ width: '30rem', background: 'white' }}>
+                    <Card.Header as="h5">
+                      2nd step: What should be the price of your token in
+                      dollars?{' '}
+                    </Card.Header>
+                    <Form>
+                      <Form.Group>
+                        <Form.Label />
+                        <Form.Control
+                          type="number"
+                          id="rate"
+                          defaultValue="0"
+                          onChange={this.handleChangeRate}
+                        />
+                      </Form.Group>
+                    </Form>
+                    {this.state.rateSet && <this.DisplayTotal />}
+                  </Card>
+                </Container>
+              </Col>
+              <Col />
+            </Row>
+            <br />
+            <br />
+            <br />
+            <DeployICOButton handleToUpdate={this.handleToUpdate} />
+          </>
         )}
       </div>
     );
