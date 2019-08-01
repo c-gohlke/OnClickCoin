@@ -12,14 +12,13 @@ import history from '../../utils/history';
 const axios = require('axios');
 
 async function handleClick() {
-  //First let's try to send just a hardcoded email
+  // First let's try to send just a hardcoded email
 
   try {
     const { data } = await axios.post('/send-mail', {});
   } catch (error) {
-    console.log(Object.keys(error), "this the error", error.message); 
+    console.log(Object.keys(error), 'this the error', error.message);
   }
-  
 }
 
 class ContractReceipt extends Component {
@@ -41,9 +40,6 @@ class ContractReceipt extends Component {
       supply,
     };
   }
-
-  
- 
 
   render() {
     const { name, supply } = this.state;
@@ -97,8 +93,12 @@ class ContractReceipt extends Component {
                         </Button>
                       </Col>
                     </Row>
-                    <Button onClick={() => {handleClick();}}>
-                    Send the details of my coin by email
+                    <Button
+                      onClick={() => {
+                        handleClick();
+                      }}
+                    >
+                      Send the details of my coin by email
                     </Button>
                   </Card.Body>
                 </Card>
