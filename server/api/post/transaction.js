@@ -4,7 +4,7 @@ import TransactionSchema from '../../../app/models/TransactionModel';
 export default () => {
   const app = Router();
 
-  app.post('/transaction', async (request, response) => {
+  app.post('api/transaction', async (request, response) => {
     let userID = null;
     if (request.user) {
       userID = request.user._id;

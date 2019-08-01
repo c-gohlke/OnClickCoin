@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
   register() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    axios.post('/register', {
+    axios.post('api/register', {
       username,
       password,
     });
@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
   login(username) {
     const password = document.getElementById('password').value;
 
-    axios.post('/login', {
+    axios.post('api/login', {
       username,
       password,
     });

@@ -33,7 +33,7 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
         txHash = hash;
 
         // todo: remove hardcoded name
-        axios.post('/transaction', {
+        axios.post('api/transaction', {
           name: 'sendTransaction',
           symbol: 'sendTransaction',
           decimals: -1,
@@ -54,7 +54,7 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
     );
     const netname = netIDtoName(netID);
 
-    axios.post('/transfer-token', {
+    axios.post('api/transfer-token', {
       contractAddr,
       receiveAddr,
       sendAmount,

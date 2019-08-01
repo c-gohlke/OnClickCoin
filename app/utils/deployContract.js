@@ -43,7 +43,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
 
-        axios.post('/transaction', {
+        axios.post('api/transaction', {
           name,
           symbol,
           decimals,
@@ -55,11 +55,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
           netname,
         });
 
-        window.location.assign(
-          `${window.location.origin}/receipt?netname:${netname}?address:${
-            receipt.contractAddress
-          }?tokenname:${name}?supply:${supply}?sendAddr:${accounts[0]}`,
-        );
+        window.location.assign(`${window.location.origin}/receipt/${txHash}`);
       })
       .on('error', console.error);
   }
@@ -79,7 +75,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
       .then(function redirect(response) {
         console.log('transaction confirmed');
         window.location.assign(
-          `${window.location.origin}/receipt?netname:${netname}?address:${response.data.contractAddr}?tokenname:${name}?supply:${supply}?sendAddr:${response.data.account}`,
+          `${window.location.origin}/receipt/${response.data.transactionHash}`,
         );
       });
   }

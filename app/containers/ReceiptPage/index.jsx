@@ -3,7 +3,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Container, Image, Button } from 'react-bootstrap';
+import axios from 'axios';
 
+import PropTypes from 'prop-types';
 import SendButton from './RerouteSendButton';
 import LinkButton from './EtherscanLinkButton';
 import coin from '../../images/coins.gif';
@@ -11,26 +13,27 @@ import history from '../../utils/history';
 
 class ContractReceipt extends Component {
   constructor(props) {
-    // TODO: use redux to store name, supply etc.
-
     super(props);
-    const url = String(window.location);
 
-    const parseName = url.split('tokenname:')[1];
-    const parseSupply = url.split('supply:')[1];
-
-    const name = parseName.split('?supply')[0];
-
-    const supply = parseSupply.split('?sendAddr')[0];
+    const transactionID = this.props.match.params.txHash;
+    const name = transactionID;
+    const supply = transactionID;
 
     this.state = {
       name,
       supply,
+      transactionID,
     };
   }
 
+  async componentDidMount() {
+    const tx = await axios.get('api/transaction/transactionID');
+    console.log('tx is ', tx);
+    this.setState({ name: tx.data.name });
+  }
+
   render() {
-    const { name, supply } = this.state;
+    const { name, supply, transactionID } = this.state;
     return (
       <div>
         <div className="receipt" />
@@ -44,7 +47,7 @@ class ContractReceipt extends Component {
           }}
         >
           <h1>
-            Your coin was successfully created{' '}
+            Your coin was successfully created
             <span role="img" aria-label="Party">
               🎉🎉🎉
             </span>
@@ -63,6 +66,7 @@ class ContractReceipt extends Component {
                   <Card.Body>
                     <h2>Name: {name}</h2>
                     <h2>Supply: {supply}</h2>
+                    <h2>TransactionID: {transactionID}</h2>
                     <Row>
                       <Col>
                         <SendButton />
@@ -93,5 +97,11 @@ class ContractReceipt extends Component {
     );
   }
 }
+
+ContractReceipt.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({ txHash: PropTypes.string }),
+  }),
+};
 
 export default ContractReceipt;

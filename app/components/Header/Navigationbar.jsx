@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Navigationbar extends React.Component {
   logout() {
-    const res = axios.get('/logout');
+    const res = axios.get('api/logout');
     history.push(res);
     this.props.logout();
   }

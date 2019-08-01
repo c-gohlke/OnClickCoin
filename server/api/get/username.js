@@ -4,7 +4,7 @@ import UserSchema from '../../../app/models/UserModel';
 export default () => {
   const app = Router();
 
-  app.get('/username/:uid', async (request, response) => {
+  app.get('api/username/:uid', async (request, response) => {
     try {
       const creator = await UserSchema.findOne({ _id: request.params.uid });
       response.send(creator.username);

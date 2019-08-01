@@ -3,7 +3,7 @@ import { Router } from 'express';
 export default () => {
   const app = Router();
 
-  app.get('/logout', (request, response) => {
+  app.get('api/logout', (request, response) => {
     request.logout();
     response.send('/');
   });

@@ -8,10 +8,7 @@ const Web3 = require('web3');
 export default () => {
   const app = Router();
 
-  app.post('/transfer-token', async function transferToken(req, res) {
-    // TODO: find way to make synchronous. If many clients use website and deploy tokens at the same time,
-    // huge bottleneck happening here, waiting for each individual contract to get confirmed one-at-a-time
-
+  app.post('api/transfer-token', async function transferToken(req, res) {
     const apiKey = process.env.INFURA_API_KEY;
     const sendAddr = process.env.ADDRESS;
     const sendPrivKey = process.env.PRIVATE_KEY;

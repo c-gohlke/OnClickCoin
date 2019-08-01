@@ -6,7 +6,9 @@ import { Card, Table } from 'react-bootstrap';
 Defines the data page of the app
 */
 
-// TODO: change functions file structure
+// TODO: page not working anymore, get/post requests not working anymore
+
+// TODO: change function's file structure
 async function asyncForEach(array, callback) {
   // TODO: find more elegant solution
   for (let index = 0; index < array.length; index += 1) {
@@ -17,7 +19,7 @@ async function asyncForEach(array, callback) {
 async function addUsernames(transactions) {
   const txs = [];
   await asyncForEach(transactions, async transaction => {
-    const res = await axios.get(`/username/${transaction.userID}`);
+    const res = await axios.get(`api/username/${transaction.userID}`);
     txs.push({ ...transaction, username: res.data });
   });
 
@@ -34,7 +36,7 @@ class Data extends React.Component {
   }
 
   async getTransactions() {
-    const response = await axios.get('/transactions');
+    const response = await axios.get('api/transactions');
     const txs = await addUsernames(response.data);
 
     this.setState({
