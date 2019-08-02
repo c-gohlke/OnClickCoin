@@ -2,14 +2,24 @@ import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+<<<<<<< HEAD
 import { Container, Image, Button } from 'react-bootstrap';
 import axios from 'axios';
+=======
+import { Container, Image, Button, Form } from 'react-bootstrap';
+>>>>>>> 72fbb5f39932b2fec67eac80fd7625f0f1567956
 
 import PropTypes from 'prop-types';
 import SendButton from './RerouteSendButton';
 import LinkButton from './EtherscanLinkButton';
 import coin from '../../images/coins.gif';
 import history from '../../utils/history';
+
+
+const axios = require('axios');
+
+
+
 
 class ContractReceipt extends Component {
   constructor(props) {
@@ -20,6 +30,29 @@ class ContractReceipt extends Component {
       supply: 'loading',
       transactionHash: 'loading',
     };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+
+  handleClick() {
+    const { name, supply, address, netname} = this.state;
+    // First let's try to send just a hardcoded email
+    const emailFound = document.getElementById("email").value;
+    console.log(name, supply, address, netname)
+    const link = `https://${netname}.etherscan.io/token/${address}`;
+    console.log(link);
+
+    try {
+      const { data } =  axios.post('/send-mail', {
+        email: emailFound,
+        nameCoin: name,
+        supplyCoin: supply,
+        linkCoin: link 
+      });
+    } catch (error) {
+      console.log(Object.keys(error), 'this the error', error.message);
+    }
   }
 
   async componentDidMount() {
@@ -85,7 +118,21 @@ class ContractReceipt extends Component {
                         </Button>
                       </Col>
                     </Row>
-                    <Button>Send the details of my coin by email</Button>
+                    <Form>
+                      <Form.Group >
+                        <Form.Label>We will use this email only once and delete it afterwards.</Form.Label>
+                        <Form.Control id="email" type="email" placeholder="Enter email" />
+                        <Form.Text className="text-muted">
+                        </Form.Text>
+                      </Form.Group>
+                      </Form>
+                    <Button
+                      onClick={(e) => {
+                        this.handleClick(e);
+                      }}
+                    >
+                      Send the details of my coin by email
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>

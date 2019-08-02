@@ -70,7 +70,7 @@ class Navigationbar extends React.Component {
                 history.push('/info');
               }}
             >
-              Info
+              FAQ
             </Nav.Link>
           </Nav>
           <Nav>
