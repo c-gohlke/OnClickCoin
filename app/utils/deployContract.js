@@ -43,7 +43,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
 
-        axios.post('api/transaction', {
+        axios.post('/api/transaction', {
           name,
           symbol,
           decimals,
@@ -65,7 +65,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
     const netname = netIDtoName(netID);
 
     axios
-      .post('/deploy-contract', {
+      .post('/api/deploy-contract', {
         symbol,
         name,
         decimals,

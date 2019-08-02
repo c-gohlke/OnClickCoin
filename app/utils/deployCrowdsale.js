@@ -46,7 +46,7 @@ async function deployCrowdsale(rate, wallet, ierc20) {
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
 
-        axios.post('api/transaction', {
+        axios.post('/api/transaction', {
           name: 'CrowdsaleHardcoded',
           symbol: '',
           decimals: '',

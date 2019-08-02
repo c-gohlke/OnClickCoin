@@ -4,7 +4,7 @@ import UserSchema from '../../../app/models/UserModel';
 export default () => {
   const app = Router();
 
-  app.delete('api/user/:id', async (request, response) => {
+  app.delete('/api/user/:id', async (request, response) => {
     try {
       const result = await UserSchema.deleteOne({
         _id: request.params.id,

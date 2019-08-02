@@ -9,7 +9,7 @@ const Web3 = require('web3');
 export default () => {
   const app = Router();
 
-  app.post('api/deploy-contract', async function deploycontract(req, res) {
+  app.post('/api/deploy-contract', async function deploycontract(req, res) {
     // TODO: find way to make synchronous. If many clients use website and deploy tokens at the same time,
     // huge bottleneck happening here, waiting for each individual contract to get confirmed one-at-a-time
     console.log('Deploying contract post request received');

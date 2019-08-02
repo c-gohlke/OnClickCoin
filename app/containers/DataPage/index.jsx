@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import { Card, Table } from 'react-bootstrap';
+import history from '../../utils/history';
 
 /*
 Defines the data page of the app
 */
 
-// TODO: page not working anymore, get/post requests not working anymore
+function tdclick(event) {
+  console.log('td clicked');
+  event.stopPropagation();
+}
 
 // TODO: change function's file structure
 async function asyncForEach(array, callback) {
@@ -19,7 +23,7 @@ async function asyncForEach(array, callback) {
 async function addUsernames(transactions) {
   const txs = [];
   await asyncForEach(transactions, async transaction => {
-    const res = await axios.get(`api/username/${transaction.userID}`);
+    const res = await axios.get(`/api/username/${transaction.userID}`);
     txs.push({ ...transaction, username: res.data });
   });
 
@@ -36,7 +40,7 @@ class Data extends React.Component {
   }
 
   async getTransactions() {
-    const response = await axios.get('api/transactions');
+    const response = await axios.get('/api/transactions');
     const txs = await addUsernames(response.data);
 
     this.setState({
@@ -71,7 +75,15 @@ class Data extends React.Component {
                   <tbody>
                     {transactions.map(transaction => (
                       <tr key={transaction.transactionHash}>
-                        <td>{transaction.name}</td>
+                        <td
+                          onClick={() => {
+                            history.push(
+                              `/receipt/${transaction.transactionHash}`,
+                            );
+                          }}
+                        >
+                          {transaction.name}
+                        </td>
                         <td>{transaction.username}</td>
                         <td>{transaction.transactionHash}</td>
                         <td>{transaction.netname}</td>

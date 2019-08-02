@@ -5,7 +5,7 @@ export default () => {
   const app = Router();
 
   app.post(
-    'api/login',
+    '/api/login',
     passport.authenticate('local', {
       successRedirect: 'login',
       failureFlash: true,

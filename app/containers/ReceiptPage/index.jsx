@@ -15,25 +15,25 @@ class ContractReceipt extends Component {
   constructor(props) {
     super(props);
 
-    const transactionID = this.props.match.params.txHash;
-    const name = transactionID;
-    const supply = transactionID;
-
     this.state = {
-      name,
-      supply,
-      transactionID,
+      name: 'loading',
+      supply: 'loading',
+      transactionHash: 'loading',
     };
   }
 
   async componentDidMount() {
-    const tx = await axios.get('api/transaction/transactionID');
+    const tx = await axios.get(
+      `/api/transaction/${this.props.match.params.txHash}`,
+    );
     console.log('tx is ', tx);
     this.setState({ name: tx.data.name });
+    this.setState({ supply: tx.data.supply });
+    this.setState({ transactionHash: tx.data.transactionHash });
   }
 
   render() {
-    const { name, supply, transactionID } = this.state;
+    const { name, supply, transactionHash } = this.state;
     return (
       <div>
         <div className="receipt" />
@@ -66,7 +66,7 @@ class ContractReceipt extends Component {
                   <Card.Body>
                     <h2>Name: {name}</h2>
                     <h2>Supply: {supply}</h2>
-                    <h2>TransactionID: {transactionID}</h2>
+                    <h2>Transaction Hash: {transactionHash}</h2>
                     <Row>
                       <Col>
                         <SendButton />

@@ -3,7 +3,7 @@
 ## Overall work flow of the app
 
 As specified in ~/package.json, the application launches by running "npm start" in the terminal, which will call server/server.js
-The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
+The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js. Webpack bundles the whole project together according to webpack.config.js and creates the /dist folder with many files including /dist/index.html, which will be the file rendered on the client. index.html has access to bundle.js, which defines what is being rendered. bundle.js is created by webpack and is a "summary" of the app.
 
 ### File structure
 
@@ -18,14 +18,8 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 > > **images**:  
 > > _where we put the front-end-related images_
 >
-> > **views**:  
-> > _this folder contains the pages that will be served from the server. They are all very similar, specifically because of the line_
-> >
-> > ```
-> > <script  src="bundle.js"></script>
-> > ```
-> >
-> > _webpack bundles all of our app into a same folder for better performance. After running the "npm run build" or "npm start" commands, you will find a dist folder in the root directory. The dist/bundle.js file holds most of the app information and is the one being referred to by the above line_
+> > **models**:  
+> > _defines the mongoose Schemas - the shape of the documents for each specific collection_
 >
 > > **redux**:
 > >
@@ -35,15 +29,20 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 > > > **reducers**:
 > > > _defines how to update the store based on the dispatched actions_
 > >
-> > > **reducers**:
-> > > _defines how to update the store based on the dispatched actions_
-> >
-> > > **reducers**:
-> > > _defines how to update the store based on the dispatched actions_
+> > > **selectors**:
+> > > _defines functions that allow us to access the store states_
 > >
 > > > **store**:
-> > > _defines the initialisation of the store_ > > **app.jsx**:  
-> > > _the entry point to the front-end part of the app_ > > &nbsp;
+> > > _defines the initialisation of the store_
+>
+> > **utils**:
+> > _where we put many helper functions used by the front-end_
+>
+> > **app.jsx**:
+> > _the entry point to the front-end part of the app_
+>
+> > **index.html**:
+> > _the file being rendered to the client (not exactly true - webpack uses this file as a template, and will create a index.html file in the dist folder that will be rendered to the client_ > > &nbsp;
 
 &nbsp;
 
@@ -64,18 +63,21 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 
 > **server**
 >
-> > **api**
+> > **api** > > _defines the api of our application. As a convention, all the requests should be of the form /api/X_
 >
-> > **routes**
+> > **config** > > _sets up express configurations _
 >
-> > **server.js** > > &nbsp;
-
-&nbsp;
+> > **middleware** > > _sets up the middlewares our app will use with express_
+>
+> > **server.js** > > _the entry point to the backend of the app, called by `npm start`, as defined in package.json_ > > &nbsp;
 
 > **.env**  
 > _holds the Environment variables (private key, address and infura api token to be used to deploy contracts in case the client does not have a web3 provider installed (e.g. metamask)). To stay safe of potential accidents, do not hold any mainnet tokens on this account. While this folder is in .gitignore and changes made to it will not be uploaded, we advise you to use the already compromised account, or for you to create a new account specifically for the development of this app to prevent potential losses_ > &nbsp;
 
 &nbsp;
+
+> **.env.default**  
+> _holds default environment variables to be used if .env folder doesn't exist or a value can't be found in .env. The .env.default values are overwritten by those in .env **this file is not in .gitignore, so any value you put in here will be public. It is good to fill in this file with mock account credentials so that the project can be run by someone pulling the project without requiring them to fill in the .env file first**_ > &nbsp;
 
 > **.eslintrc.js**  
 > _holds the configurations with which eslint should be run with. Use "npm run lint" to call eslint_ > &nbsp;
@@ -111,16 +113,6 @@ The entry point to the app is ~/app/app.jsx, as specified in webpack.config.js
 
 ### GET/POST Requests
 
-- get(/)
-- get(/receipt')
-- get(/receipt\*)
-- get(/send')
-- get(/send\*)
-- get(/info')
-- get(/info\*)
-- get(/ico)
-- get(/ico\*)
-
 - post(/transfer-token)  
   _requests body with {netname, receiveAmount, sendAddr, contractAddr}_  
   _responds with res.end("transaction confirmed")_
@@ -148,13 +140,91 @@ mongodb+srv://compromisedUserName:compromisedPassword@mongotest-brllv.mongodb.ne
 In production, use another client to access the database. It can be overwritten by specifying a value in .env file (not public as in .gitignore). The Schemas for the collections are defined in api/models/.
 To add, delete or get information, make get/post requests to the server, as defined in server.js.
 
-## Redux Tutorial
+## Redux
 
-hrefs resets the store to initial state
+Redux is a small library with an API designed to be a predictable container for application state. In our application, we use Redux to store many variables such as the current username of the client.
+The store is accessible throughout the whole app and is first called in app/app.jsx
 
-## Frequently used functions Cheat Sheet
+```js
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root'),
+);
+```
 
-### Markdown
+Mainly, it is comprised of actions and reducers to update the state of the app.
 
-- to skip to the next line, add 2 spaces at the end of the previous line
-- to add a blank line, type "`&nbsp;`" followed by a blank
+To use it in a React component:
+
+```javascript
+// ~/app/components/Header/Navigationbar.jsx
+import logout from '../../redux/actions/logout';
+import { connect } from 'react-redux';
+import { getUser } from '../../redux/selectors/selectors';
+
+function mapStateToProps(state) {
+  const user = getUser(state);
+  // component receives additionally:
+  return { user };
+}
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logout()),
+});
+
+class Navigationbar extends React.Component {
+  logout() {
+    const res = axios.get('/api/logout');
+    history.push(res);
+    this.props.logout();
+  }
+
+  render() {
+    return (
+      <button onclick="logout">
+        {this.props.user.username}
+      <div/>
+    )}
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Navigationbar);
+```
+
+When the button is clicked, it will call the logout function which will call this.props.logout, this last function will dispatch the LOGOUT action as defined in /app/redux/actions/logout
+
+The redux middleware will see that an action has been dispatched and update the store according to the redux reducers.
+
+```js
+// ~/app/redux/reducers/user.js
+import { LOGIN, LOGOUT } from '../actions/actionTypes';
+
+const initialState = {
+  username: 'anonymous',
+};
+
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case LOGIN: {
+      console.log('reducing LOGIN action');
+      const { username } = action.payload;
+      return { ...state, username };
+    }
+    case LOGOUT: {
+      console.log('reducing LOGOUT action');
+      return {
+        ...state,
+        username: initialState,
+      };
+    }
+    default:
+      return { ...state };
+  }
+}
+```

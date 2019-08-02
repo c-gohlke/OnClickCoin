@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Navigationbar extends React.Component {
   logout() {
-    const res = axios.get('api/logout');
+    const res = axios.get('/api/logout');
     history.push(res);
     this.props.logout();
   }
@@ -39,35 +39,35 @@ class Navigationbar extends React.Component {
             </Navbar.Brand>
             <Nav.Link
               onClick={() => {
-                history.push('send');
+                history.push('/send');
               }}
             >
               Send
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                history.push('ico');
+                history.push('/ico');
               }}
             >
               ICO
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                history.push('data');
+                history.push('/data');
               }}
             >
               Data
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                history.push('feedback');
+                history.push('/feedback');
               }}
             >
               Feedback
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                history.push('info');
+                history.push('/info');
               }}
             >
               Info
@@ -90,14 +90,14 @@ class Navigationbar extends React.Component {
             >
               <NavDropdown.Item
                 onClick={() => {
-                  history.push('dashboard');
+                  history.push('/dashboard');
                 }}
               >
                 {this.props.user.username}
               </NavDropdown.Item>
               <NavDropdown.Item
                 onClick={() => {
-                  history.push('login');
+                  history.push('/login');
                 }}
               >
                 Login

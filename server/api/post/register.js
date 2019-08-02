@@ -5,7 +5,7 @@ const User = require('../../../app/models/UserModel');
 export default () => {
   const app = Router();
 
-  app.post('api/register', function register(req, res) {
+  app.post('/api/register', function register(req, res) {
     User.register(
       new User({ username: req.body.username }),
       req.body.password,
