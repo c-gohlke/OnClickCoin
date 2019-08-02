@@ -54,7 +54,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
           contractAddress: receipt.contractAddr,
           netname,
         });
-
+        console.log("Hello")
         window.location.assign(
           `${window.location.origin}/receipt?netname:${netname}?address:${
             receipt.contractAddress

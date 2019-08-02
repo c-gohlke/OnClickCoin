@@ -117,7 +117,7 @@ class ContractReceipt extends Component {
                     </Row>
                     <Form>
                       <Form.Group >
-                        <Form.Label>Email address.</Form.Label>
+                        <Form.Label>We will use this email only once and delete it afterwards.</Form.Label>
                         <Form.Control id="email" type="email" placeholder="Enter email" />
                         <Form.Text className="text-muted">
                         </Form.Text>
