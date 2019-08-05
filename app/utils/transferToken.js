@@ -43,7 +43,9 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
             contractAddr,
             netname,
           })
-          .then(history.push(`/receipt/${receipt.transactionHash}`));
+          .then(
+            history.push(`/receipt/transaction/${receipt.transactionHash}`),
+          );
       });
   }
   // when the client does not have metamask, go through infura http provider
@@ -60,7 +62,7 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
       })
       .then(function redirect(response) {
         console.log('transaction confirmed');
-        history.push(`/receipt/${response.data.txHash}`);
+        history.push(`/receipt/transaction/${response.data.txHash}`);
       });
   }
 }

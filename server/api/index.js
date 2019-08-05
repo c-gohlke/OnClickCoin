@@ -10,7 +10,6 @@ import sendEmail from './post/sendEmail';
 
 import getLogout from './get/logout';
 import getTransactions from './get/transactions';
-import getUsername from './get/username';
 import getCurrentUser from './get/currentUser';
 import getContracts from './get/contracts';
 
@@ -31,7 +30,6 @@ export default () => {
   app.use(getTransactions());
   app.use(getContracts());
   app.use(getCurrentUser());
-  app.use(getUsername());
 
   app.use(deleteUser());
 

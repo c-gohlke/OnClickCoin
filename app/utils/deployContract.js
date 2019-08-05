@@ -53,7 +53,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
             address: receipt.contractAddress,
             netname,
           })
-          .then(history.push(`/receipt/${receipt.transactionHash}`));
+          .then(history.push(`/receipt/token/${receipt.transactionHash}`));
       })
       .once('error', console.error);
   }
@@ -72,7 +72,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
       })
       .then(function redirect(response) {
         console.log('transaction confirmed');
-        history.push(`/receipt/${response.data.txHash}`);
+        history.push(`/receipt/token/${response.data.txHash}`);
       });
   }
 }

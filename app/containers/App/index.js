@@ -2,7 +2,8 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Particles from 'react-particles-js';
 import Home from '../HomePage';
-import ContractReceipt from '../ReceiptPage';
+import ContractReceipt from '../ContractReceiptPage';
+import TransactionReceipt from '../TransactionReceiptPage';
 import Send from '../SendPage';
 import Info from '../InfoPage';
 import ICO from '../CrowdsalePage';
@@ -24,7 +25,11 @@ const App = () => (
     />
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/receipt/:txHash" component={ContractReceipt} />
+      <Route path="/receipt/token/:txHash" component={ContractReceipt} />
+      <Route
+        path="/receipt/transaction/:txHash"
+        component={TransactionReceipt}
+      />
       <Route path="/send" component={Send} />
       <Route path="/info" component={Info} />
       <Route path="/dashboard" component={Dashboard} />
