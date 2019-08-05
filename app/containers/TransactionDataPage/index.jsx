@@ -63,7 +63,9 @@ class TransactionData extends React.Component {
                       <tr key={transaction.txHash}>
                         <td
                           onClick={() => {
-                            history.push(`/receipt/${transaction.txHash}`);
+                            history.push(
+                              `/receipt/transaction/${transaction.txHash}`,
+                            );
                           }}
                         >
                           {transaction.contract.name}
