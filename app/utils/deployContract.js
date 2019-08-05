@@ -29,7 +29,6 @@ async function deployContract(symbol, name, decimals, supply, netID) {
     const netname = netIDtoName(networkID);
 
     // sends the transaction via metamask
-    let txHash;
     await window.web3.eth
       .sendTransaction({
         from: accounts[0],
@@ -37,27 +36,26 @@ async function deployContract(symbol, name, decimals, supply, netID) {
         chainId: netID,
         data: bcode,
       })
-      .on('txHash', hash => {
+      .once('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
-        txHash = hash;
       })
-      .on('confirmation', (confirmationNumber, receipt) => {
+      .once('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
 
-        axios.post('/api/contract', {
-          name,
-          symbol,
-          decimals,
-          supply,
-          sender: accounts[0],
-          txHash,
-          address: receipt.contractAddr,
-          netname,
-        });
-
-        history.push(`${window.location.origin}/receipt/${txHash}`);
+        axios
+          .post('/api/contract', {
+            name,
+            symbol,
+            decimals,
+            supply,
+            sender: accounts[0],
+            txHash: receipt.transactionHash,
+            address: receipt.contractAddress,
+            netname,
+          })
+          .then(history.push(`/receipt/${receipt.transactionHash}`));
       })
-      .on('error', console.error);
+      .once('error', console.error);
   }
   // when the client does not have metamask, go through infura http provider
   else {

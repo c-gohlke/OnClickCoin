@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
-import { abiERC20 } from '../../../contracts/erc20';
 import transferToken from '../../utils/transferToken';
+// import { abiERC20 } from '../../../contracts/erc20';
 
 /*
 This class creates the TransactionButton Component for the send page
@@ -12,23 +12,24 @@ This class creates the TransactionButton Component for the send page
 class TransactionButton extends Component {
   async handleClick() {
     const contractAddress = document.getElementById('contract').value;
-    const recipientAddress = document.getElementById('to').value;
+    const recipientAddress = document.getElementById('receiver').value;
     const amount = document.getElementById('amount').value;
     const netID = document.getElementById('netID');
-    console.log(abiERC20);
-    const contractInstance = new window.web3.eth.Contract(
-      abiERC20,
-      contractAddress,
-    );
-    const foundDecimals = await contractInstance.methods.decimals().call();
 
-    let netIDValue = 4; // if advanced settings undefined, use default value of 2
+    let netIDValue = 4;
     if (netID) {
-      netIDValue = parseInt(document.getElementById('netID').value, 10);
+      netIDValue = parseInt(netID.value, 10);
     }
 
     // TODO: find decimals and correct the amount given. Weird web3 is not a constructor error
-    const correctedAmount = amount * foundDecimals ** 10;
+    // const correctedAmount = amount * foundDecimals ** 10;
+    // console.log(abiERC20);
+    // const contractInstance = new window.web3.eth.Contract(
+    //   abiERC20,
+    //   contractAddress,
+    // );
+    // const foundDecimals = await contractInstance.methods.decimals().call();
+
     transferToken(contractAddress, recipientAddress, amount, netIDValue);
   }
 

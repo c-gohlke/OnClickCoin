@@ -91,12 +91,14 @@ class TransactionForm extends Component {
                         </Form.Group>
                         <Form.Group>
                           <Form.Label>
-                            To. The address you wish to send the tokens to :
+                            Receiver Address. The address you wish to send the
+                            tokens to :
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            id="to"
+                            id="receiver"
                             placeholder="0xfb16FF8087fefbD54cD398e14967dCC72DE5ACf9"
+                            defaultValue="0xfb16FF8087fefbD54cD398e14967dCC72DE5ACf9"
                           />
                         </Form.Group>
                         <Form.Group>

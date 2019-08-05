@@ -15,30 +15,30 @@ async function asyncForEach(array, callback) {
   }
 }
 
-class Data extends React.Component {
+class TokenData extends React.Component {
   constructor() {
     super();
     this.state = {
-      transactions: [],
+      tokens: [],
       isLoading: true,
     };
   }
 
-  async getTransactions() {
+  async getTokens() {
     const response = await axios.get('/api/contracts');
 
     this.setState({
-      transactions: response.data,
+      tokens: response.data,
       isLoading: false,
     });
   }
 
   componentDidMount() {
-    this.getTransactions();
+    this.getTokens();
   }
 
   render() {
-    const { isLoading, transactions } = this.state;
+    const { isLoading, tokens } = this.state;
     return (
       <div>
         <React.Fragment>
@@ -54,24 +54,26 @@ class Data extends React.Component {
                       <th>Name</th>
                       <th>username</th>
                       <th>Transaction Hash</th>
+                      <th>Contract address</th>
                       <th>netname</th>
                       <th>createdAt</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {transactions.map(transaction => (
-                      <tr key={transaction.txHash}>
+                    {tokens.map(token => (
+                      <tr key={token.txHash}>
                         <td
                           onClick={() => {
-                            history.push(`/receipt/${transaction.txHash}`);
+                            history.push(`/receipt/${token.txHash}`);
                           }}
                         >
-                          {transaction.name}
+                          {token.name}
                         </td>
-                        <td>{transaction.username}</td>
-                        <td>{transaction.txHash}</td>
-                        <td>{transaction.netname}</td>
-                        <td>{transaction.createdAt}</td>
+                        <td>{token.username}</td>
+                        <td>{token.txHash}</td>
+                        <td>{token.address}</td>
+                        <td>{token.netname}</td>
+                        <td>{token.createdAt}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -87,4 +89,4 @@ class Data extends React.Component {
   }
 }
 
-export default Data;
+export default TokenData;

@@ -6,13 +6,13 @@ export default () => {
   const app = Router();
 
   app.post('/api/transaction', async (request, response) => {
-    const username = 'anonymous';
+    let username = 'anonymous';
     if (request.user) {
       username = request.user.username;
     }
 
     const contract = await ContractSchema.findOne({
-      address: request.body.contractAddress,
+      address: request.body.contractAddr,
     });
 
     const transaction = new TransactionSchema({

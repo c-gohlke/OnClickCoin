@@ -53,10 +53,10 @@ class Navigationbar extends React.Component {
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                history.push('/data');
+                history.push('/info');
               }}
             >
-              Data
+              FAQ
             </Nav.Link>
             <Nav.Link
               onClick={() => {
@@ -65,13 +65,22 @@ class Navigationbar extends React.Component {
             >
               Feedback
             </Nav.Link>
-            <Nav.Link
-              onClick={() => {
-                history.push('/info');
-              }}
-            >
-              FAQ
-            </Nav.Link>
+            <NavDropdown title="Data" className="nav-dropdown">
+              <NavDropdown.Item
+                onClick={() => {
+                  history.push('/data/tokens');
+                }}
+              >
+                tokens
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={() => {
+                  history.push('/data/transactions');
+                }}
+              >
+                transactions
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
           <Nav>
             {' '}

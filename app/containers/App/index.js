@@ -6,7 +6,8 @@ import ContractReceipt from '../ReceiptPage';
 import Send from '../SendPage';
 import Info from '../InfoPage';
 import ICO from '../CrowdsalePage';
-import Data from '../DataPage';
+import TokenData from '../TokenDataPage';
+import TransactionData from '../TransactionDataPage';
 import Dashboard from '../DashboardPage';
 import Feedback from '../FeedbackPage';
 import Login from '../LoginPage';
@@ -29,7 +30,8 @@ const App = () => (
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/feedback" component={Feedback} />
       <Route path="/ico" component={ICO} />
-      <Route path="/data" component={Data} />
+      <Route path="/data/tokens" component={TokenData} />
+      <Route path="/data/transactions" component={TransactionData} />
       <Route path="/login" component={Login} />
       <Route component={Notfound} />
       <Redirect to="/" />

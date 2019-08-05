@@ -20,7 +20,6 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
     const networkID = await window.web3.eth.net.getId();
     const netname = netIDtoName(networkID);
 
-    let txHash;
     await window.web3.eth
       .sendTransaction({
         from: accounts[0],
@@ -29,40 +28,40 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
         chainId: networkID,
         data,
       })
-      .on('txHash', hash => {
+      .once('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
-        txHash = hash;
+      })
 
-        // todo: remove hardcoded name
-        axios.post('/api/transaction', {
-          name: 'sendTransaction',
-          symbol: 'sendTransaction',
-          decimals: -1,
-          supply: -1,
-          sender: accounts[0],
-          receiver: receiveAddr,
-          txHash,
-          contractAddress: contractAddr,
-          netname,
-        });
-
-        history.pushState(`${window.location.origin}/receipt/${txHash}`);
+      .once('confirmation', (confirmationNumber, receipt) => {
+        console.log('transaction has been confirmed');
+        axios
+          .post('/api/transaction', {
+            sender: accounts[0],
+            receiver: receiveAddr,
+            amount: sendAmount,
+            txHash: receipt.transactionHash,
+            contractAddr,
+            netname,
+          })
+          .then(history.push(`/receipt/${receipt.transactionHash}`));
       });
   }
   // when the client does not have metamask, go through infura http provider
   else {
     console.log('Client does not have a web3 provider');
-    window.alert(
-      'It seems you do not have a web3 provider installed. To be able to safely deploy your smart contracts/create your own ERC-20 token, it is recommended you download metamask. Visit info page for more information',
-    );
     const netname = netIDtoName(netID);
 
-    axios.post('/api/transfer-token', {
-      contractAddr,
-      receiveAddr,
-      sendAmount,
-      netname,
-    });
+    axios
+      .post('/api/transfer-token', {
+        contractAddr,
+        receiveAddr,
+        sendAmount,
+        netname,
+      })
+      .then(function redirect(response) {
+        console.log('transaction confirmed');
+        history.push(`/receipt/${response.data.txHash}`);
+      });
   }
 }
 

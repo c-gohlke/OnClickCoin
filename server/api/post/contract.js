@@ -5,7 +5,7 @@ export default () => {
   const app = Router();
 
   app.post('/api/contract', async (request, response) => {
-    let username = null;
+    let username = 'anonymous';
     if (request.user) {
       username = request.user.username;
     }

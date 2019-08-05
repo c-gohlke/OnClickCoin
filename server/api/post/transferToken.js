@@ -58,28 +58,31 @@ export default () => {
     if (req.user) {
       username = req.user.username;
     }
-    web3.eth
-      .sendSignedTransaction(`0x${serializedTx.toString('hex')}`)
-      .on('txHash', async hash => {
-        console.log('transaction received, hash is', hash);
 
+    await web3.eth
+      .sendSignedTransaction(`0x${serializedTx.toString('hex')}`)
+      .once('transactionHash', txHash => {
+        console.log('transaction received, hash is', txHash);
+      })
+      .once('confirmation', async (confirmationNumber, receipt) => {
+        console.log('transaction has been confirmed');
         const contract = await ContractSchema.findOne({
           address: req.body.contractAddr,
         });
+
         const transaction = new TransactionSchema({
           sender: sendAddr,
           receiver: req.body.receiveAddr,
           amount: req.body.sendAmount,
-          txHash: hash,
+          txHash: receipt.transactionHash,
           contract,
           username,
           netname,
         });
 
         transaction.save();
+        res.send({ txHash: receipt.transactionHash });
       });
-
-    res.end('transaction confirmed');
   });
 
   return app;

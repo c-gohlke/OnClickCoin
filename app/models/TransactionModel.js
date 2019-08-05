@@ -12,7 +12,7 @@ const TransactionSchema = new Schema(
     amount: { type: Number },
     txHash: { type: String, unique: true, required: true },
     contract: { type: Object, required: true },
-    username: { type: mongoose.Schema.Types.ObjectId },
+    username: { type: String },
     netname: { type: String, required: true },
   },
   {

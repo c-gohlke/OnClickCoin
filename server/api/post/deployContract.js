@@ -68,7 +68,7 @@ export default () => {
 
     await web3.eth
       .sendSignedTransaction(`0x${serializedTx.toString('hex')}`)
-      .once('txHash', hash => {
+      .once('transactionHash', hash => {
         console.log('transaction hash is', hash);
       })
       .once('confirmation', (confirmationNumber, receipt) => {
@@ -89,6 +89,8 @@ export default () => {
         contract.save();
         res.send({ txHash: receipt.transactionHash });
       });
+
+    res.end();
   });
 
   return app;

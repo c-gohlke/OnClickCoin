@@ -38,12 +38,12 @@ async function deployCrowdsale(rate, wallet, ierc20) {
         chainId: netID,
         data: bcode,
       })
-      .on('txHash', hash => {
+      .once('transactionHash', hash => {
         console.log('transaction received, hash is', hash);
         txHash = hash;
         window.alert('This will take a minute please be patient');
       })
-      .on('confirmation', (confirmationNumber, receipt) => {
+      .once('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
 
         axios.post('/api/transaction', {
@@ -58,7 +58,7 @@ async function deployCrowdsale(rate, wallet, ierc20) {
           netname,
         });
       })
-      .on('error', console.error);
+      .once('error', console.error);
   } else {
     console.log('Client does not have a web3 provider');
     window.alert(
