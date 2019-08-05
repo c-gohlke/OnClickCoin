@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { bytecodeERC20, abiConstructorErc20 } from '../../../contracts/erc20';
-import TransactionSchema from '../../../app/models/TransactionModel';
+import ContractSchema from '../../../app/models/ContractModel';
 
 const EthereumTx = require('ethereumjs-tx').Transaction;
 const Web3 = require('web3');
@@ -61,35 +61,33 @@ export default () => {
     tx.sign(privateKeyFromBuffer);
     const serializedTx = tx.serialize();
 
-    let userID;
+    let username = 'anonymous';
     if (req.user) {
-      userID = req.user._id;
+      username = req.user.username;
     }
 
     await web3.eth
       .sendSignedTransaction(`0x${serializedTx.toString('hex')}`)
-      .once('transactionHash', hash => {
+      .once('txHash', hash => {
         console.log('transaction hash is', hash);
       })
       .once('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
 
-        const transaction = new TransactionSchema({
+        const contract = new ContractSchema({
           name: req.body.name,
           symbol: req.body.symbol,
           decimals: req.body.decimals,
           supply: req.body.supply,
           sender: receipt.from,
-          receiver: receipt.to,
-          transactionHash: receipt.transactionHash,
-          contractAddress: receipt.contractAddress,
+          txHash: receipt.transactionHash,
+          address: receipt.contractAddress,
           netname,
-          userID,
+          username,
         });
 
-        transaction.save();
-
-        res.send({ transactionHash: receipt.transactionHash });
+        contract.save();
+        res.send({ txHash: receipt.transactionHash });
       });
   });
 

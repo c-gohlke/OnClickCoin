@@ -38,7 +38,7 @@ async function deployCrowdsale(rate, wallet, ierc20) {
         chainId: netID,
         data: bcode,
       })
-      .on('transactionHash', hash => {
+      .on('txHash', hash => {
         console.log('transaction received, hash is', hash);
         txHash = hash;
         window.alert('This will take a minute please be patient');
@@ -53,7 +53,7 @@ async function deployCrowdsale(rate, wallet, ierc20) {
           supply: '',
           sender: accounts[0],
           receiver: '-1',
-          transactionHash: txHash,
+          txHash,
           contractAddress: receipt.contractAddr,
           netname,
         });

@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import UserSchema from '../../../app/models/UserModel';
 
+// TODO: remove file?
+
 export default () => {
   const app = Router();
 

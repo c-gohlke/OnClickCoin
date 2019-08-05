@@ -22,7 +22,7 @@ class ContractReceipt extends Component {
     this.state = {
       name: 'loading',
       supply: 'loading',
-      transactionHash: 'loading',
+      txHash: 'loading',
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -34,7 +34,6 @@ class ContractReceipt extends Component {
     const emailFound = document.getElementById('email').value;
     console.log(name, supply, address, netname);
     const link = `https://${netname}.etherscan.io/token/${address}`;
-    console.log(link);
 
     try {
       const { data } = axios.post('/send-mail', {
@@ -49,17 +48,17 @@ class ContractReceipt extends Component {
   }
 
   async componentDidMount() {
-    const tx = await axios.get(
-      `/api/transaction/${this.props.match.params.txHash}`,
+    const contract = await axios.get(
+      `/api/contract/${this.props.match.params.txHash}`,
     );
-    console.log('tx is ', tx);
-    this.setState({ name: tx.data.name });
-    this.setState({ supply: tx.data.supply });
-    this.setState({ transactionHash: tx.data.transactionHash });
+
+    this.setState({ name: contract.data.name });
+    this.setState({ supply: contract.data.supply });
+    this.setState({ txHash: contract.data.txHash });
   }
 
   render() {
-    const { name, supply, transactionHash } = this.state;
+    const { name, supply, txHash } = this.state;
     return (
       <div>
         <div className="receipt" />
@@ -92,7 +91,7 @@ class ContractReceipt extends Component {
                   <Card.Body>
                     <h2>Name: {name}</h2>
                     <h2>Supply: {supply}</h2>
-                    <h2>Transaction Hash: {transactionHash}</h2>
+                    <h2>Transaction Hash: {txHash}</h2>
                     <Row>
                       <Col>
                         <SendButton />

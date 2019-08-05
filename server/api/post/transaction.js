@@ -1,26 +1,28 @@
 import { Router } from 'express';
 import TransactionSchema from '../../../app/models/TransactionModel';
+import ContractSchema from '../../../app/models/ContractModel';
 
 export default () => {
   const app = Router();
 
   app.post('/api/transaction', async (request, response) => {
-    let userID = null;
+    const username = 'anonymous';
     if (request.user) {
-      userID = request.user._id;
+      username = request.user.username;
     }
 
+    const contract = await ContractSchema.findOne({
+      address: request.body.contractAddress,
+    });
+
     const transaction = new TransactionSchema({
-      transactionHash: request.body.transactionHash,
-      name: request.body.name,
-      symbol: request.body.symbol,
-      decimals: request.body.decimals,
-      supply: request.body.supply,
       sender: request.body.sender,
       receiver: request.body.receiver,
-      contractAddress: request.body.contractAddress,
+      amount: request.body.amount,
+      txHash: request.body.txHash,
+      contract,
       netname: request.body.netname,
-      userID,
+      username,
     });
 
     transaction.save();

@@ -7,7 +7,7 @@ export default () => {
   app.get('/api/transaction/:txHash', async (request, response) => {
     response.send(
       await TransactionSchema.findOne({
-        transactionHash: request.params.txHash,
+        txHash: request.params.txHash,
       }).exec(),
     );
   });

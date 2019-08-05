@@ -1,6 +1,7 @@
 import { bytecodeERC20, abiConstructorErc20 } from '../../contracts/erc20';
 import getPermission from './getPermission';
 import netIDtoName from './netIDtoName';
+import history from './history';
 
 const axios = require('axios');
 const Web3 = require('web3');
@@ -36,26 +37,25 @@ async function deployContract(symbol, name, decimals, supply, netID) {
         chainId: netID,
         data: bcode,
       })
-      .on('transactionHash', hash => {
+      .on('txHash', hash => {
         console.log('transaction received, hash is', hash);
         txHash = hash;
       })
       .on('confirmation', (confirmationNumber, receipt) => {
         console.log('transaction has been confirmed');
 
-        axios.post('/api/transaction', {
+        axios.post('/api/contract', {
           name,
           symbol,
           decimals,
           supply,
           sender: accounts[0],
-          receiver: '-1',
-          transactionHash: txHash,
-          contractAddress: receipt.contractAddr,
+          txHash,
+          address: receipt.contractAddr,
           netname,
         });
 
-        window.location.assign(`${window.location.origin}/receipt/${txHash}`);
+        history.push(`${window.location.origin}/receipt/${txHash}`);
       })
       .on('error', console.error);
   }
@@ -74,9 +74,7 @@ async function deployContract(symbol, name, decimals, supply, netID) {
       })
       .then(function redirect(response) {
         console.log('transaction confirmed');
-        window.location.assign(
-          `${window.location.origin}/receipt/${response.data.transactionHash}`,
-        );
+        history.push(`/receipt/${response.data.txHash}`);
       });
   }
 }

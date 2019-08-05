@@ -1,6 +1,7 @@
 import { abiTransferErc20 } from '../../contracts/erc20';
 import getPermission from './getPermission';
 import netIDtoName from './netIDtoName';
+import history from './history';
 const axios = require('axios');
 const Web3 = require('web3');
 
@@ -28,7 +29,7 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
         chainId: networkID,
         data,
       })
-      .on('transactionHash', hash => {
+      .on('txHash', hash => {
         console.log('transaction received, hash is', hash);
         txHash = hash;
 
@@ -40,10 +41,12 @@ async function transferToken(contractAddr, receiveAddr, sendAmount, netID) {
           supply: -1,
           sender: accounts[0],
           receiver: receiveAddr,
-          transactionHash: txHash,
+          txHash,
           contractAddress: contractAddr,
           netname,
         });
+
+        history.pushState(`${window.location.origin}/receipt/${txHash}`);
       });
   }
   // when the client does not have metamask, go through infura http provider

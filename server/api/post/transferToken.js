@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import { abiTransferErc20 } from '../../../contracts/erc20';
 import TransactionSchema from '../../../app/models/TransactionModel';
+import ContractSchema from '../../../app/models/ContractModel';
+
 const EthereumTx = require('ethereumjs-tx').Transaction;
 const Web3 = require('web3');
 
@@ -52,25 +54,26 @@ export default () => {
     tx.sign(privateKeyFromBuffer);
     const serializedTx = tx.serialize();
 
-    let userID = null;
+    let username = 'anonymous';
     if (req.user) {
-      userID = req.user._id;
+      username = req.user.username;
     }
     web3.eth
       .sendSignedTransaction(`0x${serializedTx.toString('hex')}`)
-      .on('transactionHash', hash => {
+      .on('txHash', async hash => {
         console.log('transaction received, hash is', hash);
 
+        const contract = await ContractSchema.findOne({
+          address: req.body.contractAddr,
+        });
         const transaction = new TransactionSchema({
-          name: 'sendTransaction',
-          symbol: 'sendTransaction',
-          decimals: -1,
           sender: sendAddr,
-          supply: -1,
-          transactionHash: hash,
-          contractAddress: req.body.contractAddr,
+          receiver: req.body.receiveAddr,
+          amount: req.body.sendAmount,
+          txHash: hash,
+          contract,
+          username,
           netname,
-          userID,
         });
 
         transaction.save();
