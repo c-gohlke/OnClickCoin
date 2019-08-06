@@ -1,4 +1,7 @@
 import { createBrowserHistory } from 'history';
 
-const history = createBrowserHistory();
+let history;
+if (typeof document !== 'undefined') {
+  history = createBrowserHistory();
+}
 export default history;

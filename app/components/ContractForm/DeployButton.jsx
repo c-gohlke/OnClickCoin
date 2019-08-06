@@ -56,18 +56,16 @@ class DeployButton extends React.Component {
     const { handleToUpdate } = this.props;
     const { handleClick } = this;
     return (
-      <>
-        <Button
-          variant="primary"
-          className="ContractButton"
-          onClick={() => {
-            handleClick();
-            handleToUpdate();
-          }}
-        >
-          Click here to create your coin
-        </Button>
-      </>
+      <Button
+        variant="primary"
+        className="ContractButton"
+        onClick={() => {
+          handleClick();
+          handleToUpdate();
+        }}
+      >
+        Click here to create your coin
+      </Button>
     );
   }
 }

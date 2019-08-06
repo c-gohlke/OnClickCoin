@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Image } from 'react-bootstrap';
-import ContractForm from '../../components/ContractForm/ContractForm';
+import ContractForm from '../../components/ContractForm';
 import logo from '../../images/eth_black_3.png';
 
 /*

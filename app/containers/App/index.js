@@ -12,7 +12,7 @@ import TransactionData from '../TransactionDataPage';
 import Dashboard from '../DashboardPage';
 import Feedback from '../FeedbackPage';
 import Login from '../LoginPage';
-import Navbar from '../../components/Header/Navigationbar';
+import Navbar from '../../components/Header';
 import Notfound from '../NotfoundPage';
 import paramObject from './particlesConfig';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Form, Card, Container, Row, Col } from 'react-bootstrap';
 import DeployButton from './DeployButton';
-import Hint from '../Hint/Hint';
-import './ContractForm.css';
+import Hint from '../Hint';
+// import './ContractForm.css';
 import Deploying from './Deploying';
 import AdvancedParams from './AdvancedParams';
 

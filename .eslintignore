@@ -1,3 +1,5 @@
 node_modules/
 dist/
 docs/
+babel.config.js
+jest.config.js

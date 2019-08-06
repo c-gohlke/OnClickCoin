@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`userReducer handles the login action 1`] = `
+Object {
+  "username": "admin",
+}
+`;
+
+exports[`userReducer handles the logout action 1`] = `
+Object {
+  "username": Object {
+    "username": "anonymous",
+  },
+}
+`;
+
+exports[`userReducer returns the initial state 1`] = `
+Object {
+  "username": "anonymous",
+}
+`;

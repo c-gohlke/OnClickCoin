@@ -64,7 +64,7 @@ class TokenData extends React.Component {
                       <tr key={token.txHash}>
                         <td
                           onClick={() => {
-                            history.push(`/receipt/${token.txHash}`);
+                            history.push(`/receipt/token/${token.txHash}`);
                           }}
                         >
                           {token.name}
