@@ -11,7 +11,6 @@ import {
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import SendButton from './RerouteSendButton';
-import LinkButton from './EtherscanLinkButton';
 import coin from '../../images/coins.gif';
 import history from '../../utils/history';
 
@@ -23,6 +22,8 @@ class ContractReceipt extends Component {
       name: 'loading',
       supply: 'loading',
       txHash: 'loading',
+      netname: 'loading',
+      contractAddr: 'loading',
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -36,7 +37,7 @@ class ContractReceipt extends Component {
     const link = `https://${netname}.etherscan.io/token/${address}`;
 
     try {
-      const { data } = axios.post('/send-mail', {
+      axios.post('/send-mail', {
         email: emailFound,
         nameCoin: name,
         supplyCoin: supply,
@@ -52,13 +53,17 @@ class ContractReceipt extends Component {
       `/api/contract/${this.props.match.params.txHash}`,
     );
 
+    console.log('contract data is ', contract.data);
+
     this.setState({ name: contract.data.name });
     this.setState({ supply: contract.data.supply });
     this.setState({ txHash: contract.data.txHash });
+    this.setState({ netname: contract.data.netname });
+    this.setState({ contractAddr: contract.data.address });
   }
 
   render() {
-    const { name, supply, txHash } = this.state;
+    const { name, supply, txHash, netname, contractAddr } = this.state;
     return (
       <div>
         <div className="receipt" />
@@ -97,7 +102,16 @@ class ContractReceipt extends Component {
                         <SendButton />
                       </Col>
                       <Col>
-                        <LinkButton />
+                        <Button
+                          variant="dark"
+                          onClick={() => {
+                            window.open(
+                              `https://${netname}.etherscan.io/token/${contractAddr}`,
+                            );
+                          }}
+                        >
+                          See your coin page
+                        </Button>
                       </Col>
                       <Col>
                         <Button
