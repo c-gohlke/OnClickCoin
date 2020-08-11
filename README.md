@@ -2,7 +2,7 @@
 
 This is a proof of concept application to showcase the ease with which you can create a token using the Ethereum blockchain. It is also nice to be able to tell that you can create your own "cryptocurrency" in less than a minute and less than three clicks. For a more specific documentation visit our [official docs](https://github.com/clement2705/OnClickCoin/blob/master/docs/docs.md)
 
-Take a look at [OnClickCoin](https://onclickcoin.herokuapp.com/) 
+Take a look at [OnClickCoin](https://onclickcoin.herokuapp.com/) (App is running on the free version of Heroku. If noone interacted with the website in the last 30 minutes, heroku will need to redeploy the website and you will get an error 404 on the first request. Simply refresh the page and it will load properly.)
            
 ## Getting Started
 ![alt text](https://github.com/clement2705/OnClickCoin/blob/assets/Homepage.png)
