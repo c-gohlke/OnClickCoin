@@ -34,7 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "ky": "^0.11.1",
     "lodash": "^4.17.14",
-    "mongoose": "^5.6.6",
+    "mongoose": "^5.7.5",
     "nodemailer": "^6.3.0",
     "nodemon": "^1.19.1",
     "openzeppelin-solidity": "^2.3.0",
